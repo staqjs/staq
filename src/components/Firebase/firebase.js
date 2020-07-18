@@ -2,18 +2,8 @@ import app from 'firebase/app'
 import 'firebase/auth'
 import 'firebase/firestore'
 
-const config = {
-  apiKey: 'AIzaSyD4AruMj-wSu7P97KjHptyS6IsZYWuuuwA',
-  authDomain: 'checklist-3b164.firebaseapp.com',
-  databaseURL: 'https://checklist-3b164.firebaseio.com',
-  projectId: 'checklist-3b164',
-  storageBucket: 'checklist-3b164.appspot.com',
-  messagingSenderId: '854528730477',
-  appId: '1:854528730477:web:7fbe6aece7fa32b105e664',
-  measurementId: 'G-81Q0NDVDKF',
-}
 class Firebase {
-  constructor() {
+  constructor(config) {
     app.initializeApp(config)
 
     this.auth = app.auth()
