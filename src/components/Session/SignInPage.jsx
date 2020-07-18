@@ -1,6 +1,6 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import { Button, TextField } from '@material-ui/core'
+import { Button, TextField, Typography } from '@material-ui/core'
 
 import { withFirebase } from '../Firebase'
 
@@ -36,7 +36,7 @@ function SignInPage(props) {
   }
 
   const onSubmit = event => {
-    props.firebase
+    firebase
       .doSignInWithEmailAndPassword(email, password)
       .then(() => {
         resetState()
