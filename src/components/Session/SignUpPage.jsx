@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import { Button, TextField } from '@material-ui/core'
 
 import { withFirebase } from '../Firebase'
+import staqConfig from '../../StaqConfig'
 
 import * as urls from '../../constants/urls'
 import * as routes from '../../constants/routes'
@@ -63,7 +64,7 @@ function SignUpForm(props) {
 
   async function createStripeCustomer(email, callback) {
     const payload = { email }
-    const response = await fetch(urls.CREATE_STRIPE_CUSTOMER, {
+    const response = await fetch(urls.STRIPE_CUSTOMER, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
@@ -99,7 +100,7 @@ function SignUpForm(props) {
       })
   }
 
-  const onSubmit = (event) => {
+  const onSubmitWithPaymentsEnabled = () => {
     setLoading(true)
     createStripeCustomer(user.email, (response) => {
       if (response.statusCode && response.statusCode !== 200) {
@@ -118,6 +119,29 @@ function SignUpForm(props) {
         )
       }
     })
+  }
+
+  const onSubmitWithPaymentsDisabled = () => {
+    setLoading(true)
+    createFirebaseUser(
+      user.email,
+      user.passwordOne,
+      null,
+      (user) => {
+        firebase.logEvent('sign_up', {
+          email: user.contact_email
+        })
+        setLoading(false)
+      }
+    )
+  }
+
+  const onSubmit = (event) => {
+    if (staqConfig.payments) {
+      onSubmitWithPaymentsEnabled()
+    } else {
+      onSubmitWithPaymentsDisabled()
+    }
 
     event.preventDefault()
   }
