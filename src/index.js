@@ -1,6 +1,7 @@
-import React from 'react'
-import styles from './styles.module.css'
+import SignInPage from './components/Session/SignInPage'
+import SignUpPage from './components/Session/SignUpPage'
 
-export const ExampleComponent = ({ text }) => {
-  return <div className={styles.test}>Example Component: {text}</div>
+export {
+  SignInPage,
+  SignUpPage,
 }
