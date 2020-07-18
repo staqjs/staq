@@ -15,34 +15,34 @@ const useStyles = makeStyles(() => ({
     height: 70,
     boxShadow: '0 0 8px lightgray',
     paddingLeft: 30,
-    paddingRight: 30,
+    paddingRight: 30
   },
   topnavLhs: {
     display: 'flex',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   topnavRhs: {
     display: 'flex',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   appTitle: {
     fontFamily: "'Rubik', sans-serif",
     fontSize: 26
   },
   homeLink: {
-    textDecoration: 'none',
+    textDecoration: 'none'
   },
   signInLink: {
-    textDecoration: 'none',
+    textDecoration: 'none'
   },
   startTrialBtn: {
     borderRadius: 20,
     marginLeft: 15,
-    textTransform: 'none',
+    textTransform: 'none'
   },
   logoutBtn: {
     textTransform: 'none',
-    marginLeft: 15,
+    marginLeft: 15
   }
 }))
 
@@ -50,9 +50,9 @@ function HomeLogo() {
   const classes = useStyles()
 
   return (
-    <Link to="/" className={classes.homeLink}>
+    <Link to='/' className={classes.homeLink}>
       <Typography className={classes.appTitle}>
-        { staqConfig.siteTitle }
+        {staqConfig.siteTitle}
       </Typography>
     </Link>
   )
@@ -78,13 +78,11 @@ function NavBarAuth(props) {
       </div>
 
       <div className={classes.topnavRhs}>
-        <Link to="/settings/user" className={classes.signInLink}>
-          <Typography className={classes.signInText}>
-            Account
-          </Typography>
+        <Link to='/settings/user' className={classes.signInLink}>
+          <Typography className={classes.signInText}>Account</Typography>
         </Link>
         <Button
-          variant="contained"
+          variant='contained'
           className={classes.logoutBtn}
           onClick={logout}
         >
@@ -105,21 +103,18 @@ function NavBarNonAuth(props) {
       </div>
 
       <div className={classes.topnavRhs}>
-        <Link to="/signin" className={classes.signInLink}>
-          <Typography className={classes.signInText}>
-            Sign In
-          </Typography>
+        <Link to='/signin' className={classes.signInLink}>
+          <Typography className={classes.signInText}>Sign In</Typography>
         </Link>
 
-        <Link to="/signup" className={classes.signInLink}>
+        <Link to='/signup' className={classes.signInLink}>
           <Button
             color='primary'
-            variant="contained"
+            variant='contained'
             className={classes.startTrialBtn}
           >
             Start Free Trial
           </Button>
-
         </Link>
       </div>
     </div>
@@ -129,9 +124,11 @@ function NavBarNonAuth(props) {
 function NavBar(props) {
   const { auth, firebase } = props
 
-  return auth.currentUser
-       ? <NavBarAuth auth={auth} firebase={firebase} />
-       : <NavBarNonAuth />
+  return auth.currentUser ? (
+    <NavBarAuth auth={auth} firebase={firebase} />
+  ) : (
+    <NavBarNonAuth />
+  )
 }
 
 export default withFirebase(NavBar)

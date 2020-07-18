@@ -1,4 +1,6 @@
-import { SignInPage, SignUpPage, AuthContext, withAuth } from './components/Session'
+import {
+  SignInPage, SignUpPage, AuthContext, withAuth,
+} from './components/Session'
 import NavBar from './components/Navigation/NavBar'
 import { initStaq, withStaq } from './withStaq'
 import { withFirebase } from './components/Firebase'

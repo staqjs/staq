@@ -10,7 +10,7 @@ export const initStaq = (config) => {
 export const withStaq = (children) => {
   return (
     <FirebaseContext.Provider value={new Firebase(staqConfig.firebaseConfig)}>
-      { children }
+      {children}
     </FirebaseContext.Provider>
   )
 }

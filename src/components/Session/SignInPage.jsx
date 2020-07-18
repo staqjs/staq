@@ -7,18 +7,18 @@ import { withFirebase } from '../Firebase'
 const useStyles = makeStyles((theme) => ({
   container: {
     display: 'flex',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   form: {
     display: 'flex',
     flexDirection: 'column',
     width: '25%',
     maxWidth: 500,
-    marginTop: 100,
+    marginTop: 100
   },
   input: {
-    marginBottom: 10,
-  },
+    marginBottom: 10
+  }
 }))
 
 function SignInPage(props) {
@@ -27,7 +27,7 @@ function SignInPage(props) {
 
   const [email, setEmail] = React.useState('')
   const [password, setPassword] = React.useState('')
-  const [error, setError] = React.useState("")
+  const [error, setError] = React.useState('')
 
   const resetState = () => {
     setEmail('')
@@ -35,24 +35,24 @@ function SignInPage(props) {
     setError(null)
   }
 
-  const onSubmit = event => {
+  const onSubmit = (event) => {
     firebase
       .doSignInWithEmailAndPassword(email, password)
       .then(() => {
         resetState()
       })
-      .catch(error => {
-        setError("Please enter a valid username and password.");
-      });
-    event.preventDefault();
+      .catch((error) => {
+        setError('Please enter a valid username and password.')
+      })
+    event.preventDefault()
   }
 
-  const onChangeEmail = event => {
-    setEmail(event.target.value);
+  const onChangeEmail = (event) => {
+    setEmail(event.target.value)
   }
 
-  const onChangePassword = event => {
-    setPassword(event.target.value);
+  const onChangePassword = (event) => {
+    setPassword(event.target.value)
   }
 
   return (
@@ -60,30 +60,35 @@ function SignInPage(props) {
       <form onSubmit={onSubmit} className={classes.form}>
         <TextField
           className={classes.input}
-          label="Email"
+          label='Email'
           value={email}
           onChange={onChangeEmail}
-          inputProps={{required: true, type: 'email', style: {boxShadow: 'none'}}}
+          inputProps={{
+            required: true,
+            type: 'email',
+            style: { boxShadow: 'none' }
+          }}
         />
         <TextField
           className={classes.input}
-          label="Password"
+          label='Password'
           value={password}
           onChange={onChangePassword}
-          type="password"
-          inputProps={{required: true, style: {boxShadow: 'none'}}}
+          type='password'
+          inputProps={{ required: true, style: { boxShadow: 'none' } }}
         />
         <Button
-          variant="contained"
+          variant='contained'
           color='primary'
           className={classes.submitBtn}
-          type="submit">
+          type='submit'
+        >
           Login
         </Button>
 
-        {
-          error && <Typography className={classes.errorMessage}>{error}</Typography>
-        }
+        {error && (
+          <Typography className={classes.errorMessage}>{error}</Typography>
+        )}
       </form>
     </div>
   )

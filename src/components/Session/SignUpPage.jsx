@@ -10,20 +10,19 @@ import * as routes from '../../constants/routes'
 const useStyles = makeStyles(() => ({
   container: {
     display: 'flex',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   form: {
     display: 'flex',
     flexDirection: 'column',
     width: '25%',
     maxWidth: 500,
-    marginTop: 100,
+    marginTop: 100
   },
   input: {
-    marginBottom: 10,
-  },
+    marginBottom: 10
+  }
 }))
-
 
 function SignUpPage(props) {
   const classes = useStyles()
@@ -83,7 +82,7 @@ function SignUpForm(props) {
         })
       })
       .then(() => {
-        return firebase.doSendEmailVerification();
+        return firebase.doSendEmailVerification()
       })
       .then(() => {
         setUser({ ...INITIAL_STATE })
@@ -124,48 +123,48 @@ function SignUpForm(props) {
   }
 
   const onChange = (event) => {
-    setUser({ ...user, [event.target.name]: event.target.value });
+    setUser({ ...user, [event.target.name]: event.target.value })
   }
 
   return (
     <form onSubmit={onSubmit} className={classes.form}>
       <TextField
         className={classes.input}
-        name="email"
+        name='email'
         value={user.email}
         onChange={onChange}
-        type="text"
-        label="Email Address"
+        type='text'
+        label='Email Address'
         inputProps={{ required: true, style: { boxShadow: 'none' } }}
-        />
+      />
       <TextField
         className={classes.input}
-        name="passwordOne"
+        name='passwordOne'
         value={user.passwordOne}
         onChange={onChange}
-        type="password"
-        label="Password"
-        inputProps={{ required: true, style: { boxShadow: 'none' }}}
-        />
+        type='password'
+        label='Password'
+        inputProps={{ required: true, style: { boxShadow: 'none' } }}
+      />
       <TextField
         className={classes.input}
-        name="passwordTwo"
+        name='passwordTwo'
         value={user.passwordTwo}
         onChange={onChange}
-        type="password"
-        label="Confirm Password"
+        type='password'
+        label='Confirm Password'
         inputProps={{ required: true, style: { boxShadow: 'none' } }}
-        />
+      />
       <Button
         color='primary'
         className={classes.submitBtn}
         variant='contained'
-        type="submit"
+        type='submit'
       >
         Sign Up
       </Button>
 
-      { user.error && <p>{user.error.message}</p> }
+      {user.error && <p>{user.error.message}</p>}
     </form>
   )
 }
