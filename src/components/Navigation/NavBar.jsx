@@ -4,6 +4,7 @@ import { Link, useHistory } from 'react-router-dom'
 import { Button, Typography } from '@material-ui/core'
 
 import { withFirebase } from '../Firebase'
+import staqConfig from '../../StaqConfig'
 
 import * as ROUTES from '../../constants/routes'
 
@@ -51,7 +52,7 @@ function HomeLogo() {
   return (
     <Link to="/" className={classes.homeLink}>
       <Typography className={classes.appTitle}>
-        CheckFox
+        { staqConfig.siteTitle }
       </Typography>
     </Link>
   )
