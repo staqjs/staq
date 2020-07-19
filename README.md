@@ -1,29 +1,16 @@
 # staq
 
-> The fastest way to create a fully functional SaaS application
+Staq is a Javascript library for creating Software-as-a-Service (SaaS) businesses.
 
-[![NPM](https://img.shields.io/npm/v/staq.svg)](https://www.npmjs.com/package/staq) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+The `staq` package contains a set of React components that implement standard SaaS features including:
 
-## Install
+- User accounts
+- Landing page
+- Pricing page
+- Subscription management (via Stripe [Customer Portal](https://stripe.com/docs/billing/subscriptions/customer-portal))
 
-```bash
-npm install --save staq
-```
+The package also ships with a set of NodeJS functions to be used with Google [Firebase](https://firebase.google.com/) to implement the backend logic necessary for features like subscription billing with Stripe.
 
-## Usage
-
-```jsx
-import React, { Component } from 'react'
-
-import MyComponent from 'staq'
-import 'staq/dist/index.css'
-
-class Example extends Component {
-  render() {
-    return <MyComponent />
-  }
-}
-```
 
 ## License
 
