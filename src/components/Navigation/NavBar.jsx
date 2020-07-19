@@ -52,7 +52,7 @@ function HomeLogo() {
   return (
     <Link to='/' className={classes.homeLink}>
       <Typography className={classes.appTitle}>
-        {staqConfig.siteTitle}
+        {staqConfig.get('siteTitle')}
       </Typography>
     </Link>
   )

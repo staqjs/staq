@@ -57,14 +57,15 @@ function Landing() {
     <div className={classes.container}>
       <div className={classes.banner}>
         <Typography className={classes.bannerTitle}>
-          { staqConfig.landingPageHeader }
+          { staqConfig.get('landingPageHeader') }
         </Typography>
         <Typography className={classes.bannerSubtitle}>
-          { staqConfig.landingPageSubheader }
+          { staqConfig.get('landingPageSubheader') }
         </Typography>
 
         <Link className={classes.tryItOutLink} to={ROUTES.DEMO}>
           <Button
+            color="primary"
             variant="contained"
             className={classes.tryItOutBtn}
           >
@@ -83,7 +84,7 @@ function LandingPage(props) {
   const { auth } = props
 
   return auth.currentUser
-    ? <Redirect to={staqConfig.userHome}/>
+    ? <Redirect to={staqConfig.get('userHome')} />
     : <Landing {...props} />
 }
 

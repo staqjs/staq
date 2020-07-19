@@ -4,15 +4,12 @@ import Auth, { AuthContext } from './components/Session'
 import staqConfig from './StaqConfig'
 
 export const initStaq = (config) => {
-  staqConfig.siteTitle = config.siteTitle
-  staqConfig.landingPageHeader = config.landingPageHeader
-  staqConfig.landingPageSubheader = config.landingPageSubheader
-  staqConfig.firebaseConfig = config.firebaseConfig
+  staqConfig.config = config
 }
 
 
 export const withStaq = (children) => {
-  const firebase = new Firebase(staqConfig.firebaseConfig)
+  const firebase = new Firebase(staqConfig.get('firebaseConfig'))
 
   return (
     <FirebaseContext.Provider value={firebase}>

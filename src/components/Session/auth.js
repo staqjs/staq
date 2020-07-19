@@ -4,9 +4,11 @@ class Auth {
 
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'))
     this.onLogoutCallback = () => { }
+
+    this.initListener()
   }
 
-  componentDidMount() {
+  initListener() {
     this.listener = this.firebase.onAuthUserListener(
       (currentUser) => {
         localStorage.setItem('currentUser', JSON.stringify(currentUser))
@@ -18,10 +20,6 @@ class Auth {
         this.onLogoutCallback()
       },
     )
-  }
-
-  componentWillUnmount() {
-    this.listener()
   }
 
   onLogout = (newCallbackOnLogout) => {
