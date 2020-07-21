@@ -1,8 +1,11 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
+import { Redirect } from 'react-router-dom'
 import { Button, TextField, Typography } from '@material-ui/core'
 
 import { withFirebase } from '../Firebase'
+import { withAuth } from './context'
+import staqConfig from '../../StaqConfig'
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -22,6 +25,19 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 function SignInPage(props) {
+  const classes = useStyles()
+  const { auth, firebase } = props
+
+  return auth.currentUser
+    ? <Redirect to={staqConfig.get('userHome')} />
+    : (
+      <div className={classes.container}>
+        <SignInForm firebase={firebase} />
+      </div>
+    )
+}
+
+function SignInForm(props) {
   const classes = useStyles()
   const { firebase } = props
 
@@ -56,42 +72,40 @@ function SignInPage(props) {
   }
 
   return (
-    <div className={classes.container}>
-      <form onSubmit={onSubmit} className={classes.form}>
-        <TextField
-          className={classes.input}
-          label='Email'
-          value={email}
-          onChange={onChangeEmail}
-          inputProps={{
-            required: true,
-            type: 'email',
-            style: { boxShadow: 'none' }
-          }}
-        />
-        <TextField
-          className={classes.input}
-          label='Password'
-          value={password}
-          onChange={onChangePassword}
-          type='password'
-          inputProps={{ required: true, style: { boxShadow: 'none' } }}
-        />
-        <Button
-          variant='contained'
-          color='primary'
-          className={classes.submitBtn}
-          type='submit'
-        >
-          Login
-        </Button>
+    <form onSubmit={onSubmit} className={classes.form}>
+      <TextField
+        className={classes.input}
+        label='Email'
+        value={email}
+        onChange={onChangeEmail}
+        inputProps={{
+          required: true,
+          type: 'email',
+          style: { boxShadow: 'none' }
+        }}
+      />
+      <TextField
+        className={classes.input}
+        label='Password'
+        value={password}
+        onChange={onChangePassword}
+        type='password'
+        inputProps={{ required: true, style: { boxShadow: 'none' } }}
+      />
+      <Button
+        variant='contained'
+        color='primary'
+        className={classes.submitBtn}
+        type='submit'
+      >
+        Login
+      </Button>
 
-        {error && (
-          <Typography className={classes.errorMessage}>{error}</Typography>
-        )}
-      </form>
-    </div>
+      {error && (
+        <Typography className={classes.errorMessage}>{error}</Typography>
+      )}
+    </form>
   )
 }
 
-export default withFirebase(SignInPage)
+export default withFirebase(withAuth(SignInPage))

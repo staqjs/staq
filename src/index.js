@@ -1,19 +1,22 @@
 import {
-  SignInPage, SignUpPage, AuthContext, withAuth,
+  SignInPage, SignUpPage, withAuth,
 } from './components/Session'
 import NavBar from './components/Navigation/NavBar'
 import LandingPage from './components/LandingPage'
+import StaqRoutes, { PrivateRoute } from './components/StaqRoutes'
 import { initStaq, withStaq } from './withStaq'
 import { withFirebase } from './components/Firebase'
 
 export {
-  initStaq,
-  withStaq,
-  withFirebase,
+  LandingPage,
+  NavBar,
+  PrivateRoute,
   SignInPage,
   SignUpPage,
-  LandingPage,
-  AuthContext,
+  StaqRoutes,
+
+  initStaq,
   withAuth,
-  NavBar,
+  withFirebase,
+  withStaq,
 }

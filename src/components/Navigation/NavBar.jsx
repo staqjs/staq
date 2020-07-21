@@ -4,6 +4,7 @@ import { Link, useHistory } from 'react-router-dom'
 import { Button, Typography } from '@material-ui/core'
 
 import { withFirebase } from '../Firebase'
+import { withAuth } from '../Session'
 import staqConfig from '../../StaqConfig'
 
 import * as ROUTES from '../../constants/routes'
@@ -131,4 +132,4 @@ function NavBar(props) {
   )
 }
 
-export default withFirebase(NavBar)
+export default withFirebase(withAuth(NavBar))
