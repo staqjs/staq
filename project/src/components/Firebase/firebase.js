@@ -1,6 +1,7 @@
 import app from 'firebase/app'
 import 'firebase/auth'
 import 'firebase/firestore'
+import 'firebase/analytics'
 
 class Firebase {
   constructor(config) {
