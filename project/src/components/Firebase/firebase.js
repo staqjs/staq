@@ -8,6 +8,11 @@ class Firebase {
 
     this.auth = app.auth()
     this.db = app.firestore()
+    this.analytics = app.analytics()
+  }
+
+  logEvent = (eventName, eventParams) => {
+    this.analytics.logEvent(eventName, eventParams)
   }
 
   // *** Auth API ***
