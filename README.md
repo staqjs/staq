@@ -32,6 +32,8 @@ The package also ships with a set of NodeJS functions to be used with Google [Fi
     ```js
     initStaq({
       siteTitle: 'Test App',
+      landingPageHeader: 'SaaS apps are great',
+      landingPageSubheader: 'You should totally subscribe',
       firebaseConfig: {
         // your firebase config
       }
