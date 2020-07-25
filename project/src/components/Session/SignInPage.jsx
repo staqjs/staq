@@ -29,7 +29,7 @@ function SignInPage(props) {
   const { auth, firebase } = props
 
   return auth.currentUser
-    ? <Redirect to={staqConfig.get('userHome')} />
+    ? <Redirect to={staqConfig.get('userHome') || '/'} />
     : (
       <div className={classes.container}>
         <SignInForm firebase={firebase} />
