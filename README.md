@@ -2,6 +2,10 @@
 
 Staq is a Javascript library for creating Software-as-a-Service (SaaS) businesses.
 
+
+[Live Demo](https://staq-live-demo.web.app/)
+
+
 The `staq` package contains a set of [React](https://reactjs.org/) components that implement standard SaaS features including:
 
 - User accounts
