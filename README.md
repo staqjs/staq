@@ -74,7 +74,7 @@ In your `App.js[x]`, import `StaqRoutes` and render them inside your router.
 
     Run `yarn start` and head to `http://localhost:3000` to see your landing page generated courtesy of `staq`. You should see something like this.
     
-    ![landing](landing-page.png)
+    ![landing](project/landing-page.png)
 
 
 ## License
