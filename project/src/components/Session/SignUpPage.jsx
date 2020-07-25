@@ -6,7 +6,6 @@ import { withFirebase } from '../Firebase'
 import staqConfig from '../../StaqConfig'
 
 import * as urls from '../../constants/urls'
-import * as routes from '../../constants/routes'
 
 const useStyles = makeStyles(() => ({
   container: {
@@ -88,7 +87,7 @@ function SignUpForm(props) {
       .then(() => {
         setUser({ ...INITIAL_STATE })
         next(user)
-        props.history.push(routes.AFTER_SIGN_UP)
+        props.history.push(staqConfig.get('userHome') || '/')
       })
       .catch((error) => {
         if (error.code === ERROR_CODE_ACCOUNT_EXISTS) {

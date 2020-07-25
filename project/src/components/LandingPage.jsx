@@ -84,7 +84,7 @@ function LandingPage(props) {
   const { auth } = props
 
   return auth.currentUser
-    ? <Redirect to={staqConfig.get('userHome')} />
+    ? <Redirect to={staqConfig.get('userHome') || '/'} />
     : <Landing {...props} />
 }
 
