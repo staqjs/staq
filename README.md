@@ -99,7 +99,7 @@ Here's how to set `staq` up locally to hack on it.
     $ npx create-react-app staq-dev
     ```
     
-3. Create a fresh Firebase project.
+3. Create a fresh Firebase project. [Here](https://github.com/staqjs/staq#create-a-firebase-project) are some more details.
 
 4. Register your clone of `staq` with `npm link`
 
@@ -135,6 +135,22 @@ Here's how to set `staq` up locally to hack on it.
     $ cd /path/to/staq-dev
     $ yarn start
     ```
+    
+## Create a Firebase Project
+
+1. Head over to the [Firebase Console](https://console.firebase.google.com/).
+
+2. Click **Add Project**
+
+3. Follow the steps to create the project.
+
+4. On the left side bar of the project dashboard, click **Authentication**.
+
+5. On the **Authentication** page, go to the **Sign-in Method** tab and enable **Email/Password** sign-in.
+
+6. On the left side bar, click **Database**. Create a Firestore database.
+
+7. All done!
    
 
 
