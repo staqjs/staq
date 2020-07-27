@@ -121,15 +121,17 @@ Here's how to set `staq` up locally to hack on it.
    $ cd /path/to/staq/clone
    $ npm link ../staq-dev/node_modules/react
    ```
+   
+7. Follow the [Quickstart](https://github.com/staqjs/staq#quickstart) steps to install `staq` to the new `staq-dev` project.
 
-7. In one terminal, start a file watcher in your `staq` clone that will recompile with any changes.
+8. In one terminal, start a file watcher in your `staq` clone that will recompile with any changes.
 
     ```
     $ cd /path/to/staq/clone
     $ yarn start
     ```
     
-8. In another terminal, start up `staq-dev`.
+9. In another terminal, start up `staq-dev`.
 
     ```
     $ cd /path/to/staq-dev
