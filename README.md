@@ -81,6 +81,61 @@ In your `App.js[x]`, import `StaqRoutes` and render them inside your router.
     Run `yarn start` and head to `http://localhost:3000` to see your landing page generated courtesy of `staq`. You should see something like this.
     
     ![landing](project/landing-page.png)
+    
+    
+# Contributor Guide
+
+Here's how to set `staq` up locally to hack on it.
+
+1. Clone the repo.
+
+    ```
+    $ git clone git@github.com/staqjs/staq
+    ```
+    
+2. Create a fresh React project. Let's call it `staq-dev`.
+
+    ```
+    $ npx create-react-app staq-dev
+    ```
+    
+3. Create a fresh Firebase project.
+
+4. Register your clone of `staq` with `npm link`
+
+    ```
+    $ cd /path/to/staq/clone
+    $ npm link
+    ```
+    
+5. Link your clone of `staq` to the new React project
+
+    ```
+    $ cd /path/to/staq-dev
+    $ npm link staq
+    ```
+    
+6. Link the new project's React to your clone of `staq`. (Assuming your clone of `staq` and `staq-dev` are siblings in the file tree.)
+
+   ```
+   $ cd /path/to/staq/clone
+   $ npm link ../staq-dev/node_modules/react
+   ```
+
+7. In one terminal, start a file watcher in your `staq` clone that will recompile with any changes.
+
+    ```
+    $ cd /path/to/staq/clone
+    $ yarn start
+    ```
+    
+8. In another terminal, start up `staq-dev`.
+
+    ```
+    $ cd /path/to/staq-dev
+    $ yarn start
+    ```
+   
 
 
 ## License
