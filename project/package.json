@@ -1,6 +1,6 @@
 {
   "name": "staq",
-  "version": "0.10.0",
+  "version": "0.11.0",
   "description": "Javascript library for creating Software-as-a-Service (SaaS) businesses",
   "author": "mroll",
   "license": "MIT",
@@ -24,6 +24,7 @@
     "deploy": "gh-pages -d example/build"
   },
   "peerDependencies": {
+    "@material-ui/styles": "^4.10.0",
     "firebase": "^7.16.1",
     "react": "^16.0.0",
     "react-router": "^5.2.0",

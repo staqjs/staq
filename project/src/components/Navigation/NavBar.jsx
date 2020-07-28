@@ -29,13 +29,15 @@ const useStyles = makeStyles(() => ({
   },
   appTitle: {
     fontFamily: "'Rubik', sans-serif",
-    fontSize: 26
+    fontSize: 26,
   },
   homeLink: {
-    textDecoration: 'none'
+    textDecoration: 'none',
+    color: 'black',
   },
   signInLink: {
-    textDecoration: 'none'
+    textDecoration: 'none',
+    color: 'black',
   },
   startTrialBtn: {
     borderRadius: 20,
