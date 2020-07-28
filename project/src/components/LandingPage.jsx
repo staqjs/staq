@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import { Link, Redirect } from 'react-router-dom'
 import { Button, Typography } from '@material-ui/core'
 
+import StaqStyleProvider from './StaqStyleProvider'
 import staqConfig from '../StaqConfig'
 import { withAuth } from './Session'
 import * as ROUTES from '../constants/routes'
@@ -83,9 +84,15 @@ function Landing() {
 function LandingPage(props) {
   const { auth } = props
 
-  return auth.currentUser
-    ? <Redirect to={staqConfig.get('userHome') || '/'} />
-    : <Landing {...props} />
+  return (
+    <StaqStyleProvider>
+      {
+        auth.currentUser
+          ? <Redirect to={staqConfig.get('userHome') || '/'} />
+          : <Landing {...props} />
+      }
+    </StaqStyleProvider>
+  )
 }
 
 export default withAuth(LandingPage)

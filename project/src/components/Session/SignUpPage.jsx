@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { Button, TextField } from '@material-ui/core'
 
+import StaqStyleProvider from '../StaqStyleProvider'
 import { withFirebase } from '../Firebase'
 import staqConfig from '../../StaqConfig'
 
@@ -29,9 +30,11 @@ function SignUpPage(props) {
   const { firebase } = props
 
   return (
-    <div className={classes.container}>
-      <SignUpForm firebase={firebase} />
-    </div>
+    <StaqStyleProvider>
+      <div className={classes.container}>
+        <SignUpForm firebase={firebase} />
+      </div>
+    </StaqStyleProvider>
   )
 }
 

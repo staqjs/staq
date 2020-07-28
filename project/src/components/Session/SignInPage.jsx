@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import { Redirect } from 'react-router-dom'
 import { Button, TextField, Typography } from '@material-ui/core'
 
+import StaqStyleProvider from '../StaqStyleProvider'
 import { withFirebase } from '../Firebase'
 import { withAuth } from './context'
 import staqConfig from '../../StaqConfig'
@@ -28,13 +29,19 @@ function SignInPage(props) {
   const classes = useStyles()
   const { auth, firebase } = props
 
-  return auth.currentUser
-    ? <Redirect to={staqConfig.get('userHome') || '/'} />
-    : (
-      <div className={classes.container}>
-        <SignInForm firebase={firebase} />
-      </div>
-    )
+  return (
+    <StaqStyleProvider>
+      {
+        auth.currentUser
+          ? <Redirect to={staqConfig.get('userHome') || '/'} />
+          : (
+            <div className={classes.container}>
+              <SignInForm firebase={firebase} />
+            </div>
+          )
+      }
+    </StaqStyleProvider>
+  )
 }
 
 function SignInForm(props) {

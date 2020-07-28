@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import { Link, useHistory } from 'react-router-dom'
 import { Button, Typography } from '@material-ui/core'
 
+import StaqStyleProvider from '../StaqStyleProvider'
 import { withFirebase } from '../Firebase'
 import { withAuth } from '../Session'
 import staqConfig from '../../StaqConfig'
@@ -125,10 +126,14 @@ function NavBarNonAuth(props) {
 function NavBar(props) {
   const { auth, firebase } = props
 
-  return auth.currentUser ? (
-    <NavBarAuth auth={auth} firebase={firebase} />
-  ) : (
-    <NavBarNonAuth />
+  return (
+    <StaqStyleProvider>
+      {
+        auth.currentUser
+          ? <NavBarAuth auth={auth} firebase={firebase} />
+          : <NavBarNonAuth />
+      }
+    </StaqStyleProvider>
   )
 }
 
