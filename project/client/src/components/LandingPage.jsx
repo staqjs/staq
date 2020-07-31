@@ -4,7 +4,7 @@ import { Link, Redirect } from 'react-router-dom'
 import { Button, Typography } from '@material-ui/core'
 
 import StaqStyleProvider from './StaqStyleProvider'
-import staqConfig from '../StaqConfig'
+import staqConfig from '../../../staq'
 import { withAuth } from './Session'
 import * as ROUTES from '../constants/routes'
 

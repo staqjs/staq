@@ -4,6 +4,8 @@ import { Redirect, Route } from 'react-router-dom'
 import { withAuth, SignInPage, SignUpPage } from './Session'
 import LandingPage from './LandingPage'
 import NavBar from './Navigation/NavBar'
+import UserSettingsPage from './Settings/UserSettingsPage'
+import BillingSettingsPage from './Settings/BillingSettingsPage'
 import * as ROUTES from '../constants/routes'
 
 function PrivateRouteBase({ component: Component, auth, ...rest }) {
@@ -29,6 +31,9 @@ function StaqRoutes(props) {
       <Route exact path={ROUTES.LANDING} component={LandingPage} />
       <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
       <Route path={ROUTES.SIGN_IN} component={SignInPage} />
+
+      <PrivateRoute path={ROUTES.USER_SETTINGS} component={UserSettingsPage} />
+      <PrivateRoute path={ROUTES.BILLING_SETTINGS} component={BillingSettingsPage} />
     </React.Fragment>
   )
 }

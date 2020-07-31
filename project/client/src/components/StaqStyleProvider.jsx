@@ -2,7 +2,7 @@ import React from 'react'
 import { StylesProvider, createGenerateClassName } from '@material-ui/core/styles'
 import { ThemeProvider } from '@material-ui/styles'
 
-import staqConfig from '../StaqConfig'
+import staqConfig from '../../../staq'
 
 const generateClassName = createGenerateClassName({
   disableGlobal: true,

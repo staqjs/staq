@@ -1,5 +1,5 @@
 {
-  "name": "staq",
+  "name": "staq-client",
   "version": "0.11.0",
   "description": "Javascript library for creating Software-as-a-Service (SaaS) businesses",
   "author": "mroll",
@@ -49,6 +49,8 @@
   ],
   "dependencies": {
     "@material-ui/core": "^4.11.0",
-    "@material-ui/styles": "^4.10.0"
+    "@material-ui/styles": "^4.10.0",
+    "@stripe/react-stripe-js": "^1.1.2",
+    "@stripe/stripe-js": "^1.8.0"
   }
 }

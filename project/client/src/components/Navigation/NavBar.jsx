@@ -6,7 +6,7 @@ import { Button, Typography } from '@material-ui/core'
 import StaqStyleProvider from '../StaqStyleProvider'
 import { withFirebase } from '../Firebase'
 import { withAuth } from '../Session'
-import staqConfig from '../../StaqConfig'
+import staqConfig from '../../../../staq'
 
 import * as ROUTES from '../../constants/routes'
 
@@ -49,6 +49,8 @@ const useStyles = makeStyles(() => ({
     marginLeft: 15
   }
 }))
+
+console.log(staqConfig)
 
 function HomeLogo() {
   const classes = useStyles()

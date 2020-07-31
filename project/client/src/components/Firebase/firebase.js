@@ -1,7 +1,8 @@
 import app from 'firebase/app'
+import 'firebase/analytics'
 import 'firebase/auth'
 import 'firebase/firestore'
-import 'firebase/analytics'
+import 'firebase/functions'
 
 class Firebase {
   constructor(config) {
@@ -10,6 +11,7 @@ class Firebase {
     this.auth = app.auth()
     this.db = app.firestore()
     this.analytics = app.analytics()
+    this.functions = app.functions()
   }
 
   logEvent = (eventName, eventParams) => {

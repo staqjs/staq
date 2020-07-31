@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
+import { useHistory } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles'
 import { Button, TextField } from '@material-ui/core'
 
 import StaqStyleProvider from '../StaqStyleProvider'
 import { withFirebase } from '../Firebase'
-import staqConfig from '../../StaqConfig'
+import staqConfig from '../../../../staq'
 
 import * as urls from '../../constants/urls'
 
@@ -54,25 +55,31 @@ const ERROR_MSG_ACCOUNT_EXISTS = `
 
 function SignUpForm(props) {
   const classes = useStyles()
+  const history = useHistory()
   const { firebase } = props
   const [user, setUser] = useState({
     email: '',
     passwordOne: '',
     passwordTwo: '',
     isAdmin: false,
-    error: null
+    error: null,
   })
   const [loading, setLoading] = React.useState(false)
 
   async function createStripeCustomer(email, callback) {
-    const payload = { email }
-    const response = await fetch(urls.STRIPE_CUSTOMER, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
-    }).then((response) => response.json())
-
-    callback(response)
+    const stripeCustomerFn = firebase.functions.httpsCallable('stripeCustomer')
+    stripeCustomerFn({
+      action: 'create',
+      customer: { email },
+    }).then((result) => {
+      callback(result)
+    }).catch((error) => {
+      // Getting the Error details.
+      const code = error.code;
+      const message = error.message;
+      const details = error.details;
+      // ...
+    })
   }
 
   const createFirebaseUser = (email, password, stripeCustomerId, next) => {
@@ -84,13 +91,13 @@ function SignUpForm(props) {
           email: email
         })
       })
-      .then(() => {
-        return firebase.doSendEmailVerification()
-      })
+      // .then(() => {
+      //   return firebase.doSendEmailVerification()
+      // })
       .then(() => {
         setUser({ ...INITIAL_STATE })
         next(user)
-        props.history.push(staqConfig.get('userHome') || '/')
+        history.push(staqConfig.get('userHome') || '/')
       })
       .catch((error) => {
         if (error.code === ERROR_CODE_ACCOUNT_EXISTS) {
@@ -139,7 +146,7 @@ function SignUpForm(props) {
   }
 
   const onSubmit = (event) => {
-    if (staqConfig.payments) {
+    if (staqConfig.get('payments')) {
       onSubmitWithPaymentsEnabled()
     } else {
       onSubmitWithPaymentsDisabled()

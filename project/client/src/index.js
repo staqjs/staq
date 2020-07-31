@@ -4,7 +4,8 @@ import {
 import NavBar from './components/Navigation/NavBar'
 import LandingPage from './components/LandingPage'
 import StaqRoutes, { PrivateRoute } from './components/StaqRoutes'
-import { initStaq, withStaq } from './withStaq'
+import { initStaq } from '../../staq'
+import withStaq from './withStaq'
 import { withFirebase } from './components/Firebase'
 
 export {

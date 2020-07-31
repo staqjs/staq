@@ -6,7 +6,7 @@ import { Button, TextField, Typography } from '@material-ui/core'
 import StaqStyleProvider from '../StaqStyleProvider'
 import { withFirebase } from '../Firebase'
 import { withAuth } from './context'
-import staqConfig from '../../StaqConfig'
+import staqConfig from '../../../../staq'
 
 const useStyles = makeStyles((theme) => ({
   container: {

@@ -25,6 +25,7 @@
         "react/jsx-props-no-spreading": [2, { "custom": "ignore" }],
         "react/prop-types": 0,
         "arrow-body-style": 0,
-        "no-nested-ternary": 0
+        "no-nested-ternary": 0,
+        "no-multi-assign": 0
     }
 }
