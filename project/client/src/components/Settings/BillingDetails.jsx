@@ -1,9 +1,10 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { Button } from '@material-ui/core'
 
 import { withFirebase } from '../Firebase'
 import { withAuth } from '../Session'
+import staqConfig from '../../../../staq'
 
 const useStyles = makeStyles(() => ({
   container: {
@@ -50,15 +51,14 @@ const useStyles = makeStyles(() => ({
 function BillingDetails(props) {
   const classes = useStyles()
   const { auth, firebase } = props
-  const [stripeCustomer, setStripeCustomer] = useState()
 
   const onClickManageBilling = () => {
-    const createPortalSession = firebase.functions.httpsCallable('create-stripe-customer-portal-session')
+    const createPortalSession = firebase.functions.httpsCallable('createStripeCustomerPortalSession')
     createPortalSession({
-      customer: stripeCustomer.id,
-      return_url
+      customerId: auth.currentUser.stripeCustomerId,
+      return_url: staqConfig.get('urlBase'),
     }).then((result) => {
-      window.location = result.body.url
+      window.location = result.data.url
     }).catch((error) => {
       // Getting the Error details.
       const code = error.code;

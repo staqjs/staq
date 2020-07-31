@@ -87,8 +87,9 @@ function SignUpForm(props) {
       .doCreateUserWithEmailAndPassword(email, password)
       .then((currentUser) => {
         return firebase.user(currentUser.user.uid).set({
+          email,
+          stripeCustomerId,
           uid: currentUser.user.uid,
-          email: email
         })
       })
       // .then(() => {
@@ -100,10 +101,6 @@ function SignUpForm(props) {
         history.push(staqConfig.get('userHome') || '/')
       })
       .catch((error) => {
-        if (error.code === ERROR_CODE_ACCOUNT_EXISTS) {
-          error.message = ERROR_MSG_ACCOUNT_EXISTS
-        }
-
         setUser({ ...user, error })
         next(user)
       })
@@ -118,7 +115,7 @@ function SignUpForm(props) {
         createFirebaseUser(
           user.email,
           user.passwordOne,
-          response.id,
+          response.data.id,
           (user) => {
             firebase.logEvent('sign_up', {
               email: user.contact_email
