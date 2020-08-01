@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import { Button } from '@material-ui/core'
+import { Button, Typography } from '@material-ui/core'
+import LaunchIcon from '@material-ui/icons/Launch'
 
 import { withFirebase } from '../Firebase'
 import { withAuth } from '../Session'
 import staqConfig from '../../../../staq'
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   container: {
     display: 'flex',
     flexDirection: 'column',
@@ -46,6 +47,23 @@ const useStyles = makeStyles(() => ({
   cardIcon: {
     fill: '#069af3',
   },
+  manageBillingBtn: {
+    boxShadow: 'none',
+    width: 'fit-content',
+  },
+  manageBillingBtnLabel: {
+    display: 'flex',
+    justifyContent: 'flex-start',
+    textTransform: 'none',
+    marginRight: 10,
+  },
+  linkText: {
+    marginRight: 10,
+  },
+  launchIcon: {
+    width: 20,
+    height: 20,
+  },
 }))
 
 function BillingDetails(props) {
@@ -72,10 +90,20 @@ function BillingDetails(props) {
     <div className={classes.container}>
       <Button
         variant="contained"
-        className={classes.manageBillingBtn}
+        color="primary"
+        classes={{
+          root: classes.manageBillingBtn,
+          label: classes.manageBillingBtnLabel,
+        }}
         onClick={onClickManageBilling}
       >
-        Manage Billing
+        <Typography className={classes.linkText}>
+          Manage billing with Stripe
+        </Typography>
+        <LaunchIcon style={{
+          width: 20,
+          height: 20,
+        }} />
       </Button>
     </div>
   )
