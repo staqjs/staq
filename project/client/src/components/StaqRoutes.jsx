@@ -3,6 +3,7 @@ import { Redirect, Route } from 'react-router-dom'
 
 import { withAuth, SignInPage, SignUpPage } from './Session'
 import LandingPage from './LandingPage'
+import Footer from './Footer'
 import NavBar from './Navigation/NavBar'
 import UserSettingsPage from './Settings/UserSettingsPage'
 import BillingSettingsPage from './Settings/BillingSettingsPage'
@@ -34,6 +35,8 @@ function StaqRoutes(props) {
 
       <PrivateRoute path={ROUTES.USER_SETTINGS} component={UserSettingsPage} />
       <PrivateRoute path={ROUTES.BILLING_SETTINGS} component={BillingSettingsPage} />
+
+      <Footer />
     </React.Fragment>
   )
 }
