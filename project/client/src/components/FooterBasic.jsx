@@ -44,7 +44,7 @@ function FooterColumn(props) {
         {
           links.map((link) => {
             return (
-              <Link to={link.link} className={classes.footerLink}>
+              <Link key={link.link} to={link.link} className={classes.footerLink}>
                 { link.text }
               </Link>
             )
@@ -67,6 +67,7 @@ function FooterBasic(props) {
             footerColumns.map((footerColumn) => {
               return (
                 <FooterColumn
+                  key={footerColumn.title}
                   title={footerColumn.title}
                   links={footerColumn.links}
                 />

@@ -50,8 +50,6 @@ const useStyles = makeStyles(() => ({
   }
 }))
 
-console.log(staqConfig)
-
 function HomeLogo() {
   const classes = useStyles()
 

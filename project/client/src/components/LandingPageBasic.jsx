@@ -119,7 +119,7 @@ function ValueSection(props) {
         {
           values.map((value) => {
             return (
-              <ValueCard title={value.title} text={value.text} />
+              <ValueCard key={value.title} title={value.title} text={value.text} />
             )
           })
         }

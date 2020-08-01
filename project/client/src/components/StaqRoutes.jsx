@@ -1,5 +1,5 @@
 import React from 'react'
-import { Redirect, Route } from 'react-router-dom'
+import { Redirect, Route, useHistory } from 'react-router-dom'
 
 import { withAuth, SignInPage, SignUpPage } from './Session'
 import LandingPage from './LandingPage'
@@ -22,8 +22,15 @@ function PrivateRouteBase({ component: Component, auth, ...rest }) {
   )
 }
 
+const footerRoutes = [
+  '/',
+  '/demo',
+  '/signin',
+  '/signup',
+]
+
 function StaqRoutes(props) {
-  const { auth } = props
+  const history = useHistory()
 
   return (
     <React.Fragment>
@@ -36,7 +43,11 @@ function StaqRoutes(props) {
       <PrivateRoute path={ROUTES.USER_SETTINGS} component={UserSettingsPage} />
       <PrivateRoute path={ROUTES.BILLING_SETTINGS} component={BillingSettingsPage} />
 
-      <Footer />
+      {
+        footerRoutes.includes(history.location.pathname)
+          ? <Footer />
+          : null
+      }
     </React.Fragment>
   )
 }
