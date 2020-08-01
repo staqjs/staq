@@ -82,13 +82,17 @@ function SignUpForm(props) {
     })
   }
 
-  const createFirebaseUser = (email, password, stripeCustomerId, next) => {
+  const createFirebaseUser = (email, password, stripeData, next) => {
+    const stripeCustomer = stripeData.customer
+    const stripeSubscription = stripeData.subscription
+
     firebase
       .doCreateUserWithEmailAndPassword(email, password)
       .then((currentUser) => {
         return firebase.user(currentUser.user.uid).set({
           email,
-          stripeCustomerId,
+          stripeCustomerId: stripeCustomer.id,
+          stripeSubscriptionPriceId: stripeSubscription.items.data[0].price.id,
           uid: currentUser.user.uid,
         })
       })
@@ -115,7 +119,7 @@ function SignUpForm(props) {
         createFirebaseUser(
           user.email,
           user.passwordOne,
-          response.data.id,
+          response.data,
           (user) => {
             firebase.logEvent('sign_up', {
               email: user.contact_email

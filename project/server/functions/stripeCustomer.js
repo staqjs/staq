@@ -4,43 +4,44 @@ const functions = require('firebase-functions')
 const _stripe = require("stripe")
 const { SecretManagerServiceClient } = require('@google-cloud/secret-manager')
 
-function createCustomer(data, context, stripe) {
-  const starttime = new Date().getTime()
-  const customer = data.customer
-  const customerFields = Object.keys(customer).map(k => `${k}=${customer[k]}`).join(' ')
-  console.log(`request started customer_fields=${customerFields}`)
+async function createCustomer(data, context, stripe) {
+  try {
+    const customer = await stripe.customers.create(data.customer)
+    const subscription = await stripe.subscriptions.create({
+      customer: customer.id,
+      items: [
+        { price: staqConfig.get('stripeTrialPriceId') }
+      ],
+      trial_period_days: staqConfig.get('stripeTrialPeriodDays') || 14
+    })
 
-  return stripe.customers.create(customer)
-               .then((customer) => {
-                 console.log('created customer', customer);
-                 return customer
-               })
-               .catch((err) => {
-                 console.error('error while creating customer', err)
-                 return err
-               })
+    return {
+      customer,
+      subscription,
+    }
+  } catch (error) {
+    console.error(error)
+    return {
+      error,
+    }
+  }
 }
 
-function getCustomer(data, context, stripe) {
-  const starttime = new Date().getTime()
-  console.log(`request started customer_id=${data.customerId}`)
-
-  return stripe.customers.retrieve(payload.customerId)
-               .then((customer) => {
-                 console.log('retrieved customer', customer);
-                 return customer
-               })
-               .catch((err) => {
-                 console.error('error retrieving customer', err)
-                 return err
-               })
+async function getCustomer(data, context, stripe) {
+  try {
+    const customer = await stripe.customers.retrieve(data.customerId)
+    console.log('retrieved customer', customer);
+    return customer
+  } catch (error) {
+    console.error('error retrieving customer', err)
+    return {
+      error
+    }
+  }
 }
 
 export default functions.https.onCall(async (data, context) => {
   console.log('data', data)
-  // console.log(`received request data='${data}' context='${context}'`)
-
-  console.log(staqConfig)
 
   // Get Stripe secret key from Secret Manger
   const projectNumber = staqConfig.get('gcpProjectNumber')
@@ -51,8 +52,6 @@ export default functions.https.onCall(async (data, context) => {
   })
   const stripeSecretKey = version.payload.data.toString()
   const stripe = _stripe(stripeSecretKey)
-
-  console.log(stripeSecretKey)
 
   if (data.action === 'create') {
     return createCustomer(data, context, stripe);
