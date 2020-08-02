@@ -11,14 +11,19 @@ import staqConfig from '../../../../staq'
 const useStyles = makeStyles((theme) => ({
   container: {
     display: 'flex',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    marginBottom: 30,
   },
   form: {
     display: 'flex',
     flexDirection: 'column',
     width: '25%',
     maxWidth: 500,
-    marginTop: 100
+    marginTop: 100,
+
+    [theme.breakpoints.down('md')]: {
+      width: '80%',
+    },
   },
   input: {
     marginBottom: 10
