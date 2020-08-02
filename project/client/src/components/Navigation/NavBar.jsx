@@ -10,6 +10,9 @@ import staqConfig from '../../../../staq'
 
 import * as ROUTES from '../../constants/routes'
 
+const headerFont = staqConfig.get('headerFont') || "'Montserrat', sans-serif"
+const contentFont = staqConfig.get('contentFont') || "'Rubik', sans-serif"
+
 const useStyles = makeStyles(() => ({
   topnav: {
     display: 'flex',
@@ -28,7 +31,7 @@ const useStyles = makeStyles(() => ({
     alignItems: 'center'
   },
   appTitle: {
-    fontFamily: "'Rubik', sans-serif",
+    fontFamily: headerFont,
     fontSize: 26,
   },
   homeLink: {
@@ -36,18 +39,20 @@ const useStyles = makeStyles(() => ({
     color: 'black',
   },
   signInLink: {
+    fontFamily: contentFont,
     textDecoration: 'none',
     color: 'black',
   },
   startTrialBtn: {
     borderRadius: 20,
     marginLeft: 15,
-    textTransform: 'none'
+    textTransform: 'none',
+    fontFamily: contentFont,
   },
   logoutBtn: {
     textTransform: 'none',
-    marginLeft: 15
-  }
+    marginLeft: 15,
+  },
 }))
 
 function HomeLogo() {

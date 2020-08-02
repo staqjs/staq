@@ -1,9 +1,9 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
 
-import StaqStyleProvider from './StaqStyleProvider'
-import staqConfig from '../../../staq'
-import { withAuth } from './Session'
+import StaqStyleProvider from '../StaqStyleProvider'
+import staqConfig from '../../../../staq'
+import { withAuth } from '../Session'
 
 import LandingPageBasic from './LandingPageBasic'
 

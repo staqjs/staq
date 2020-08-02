@@ -3,7 +3,10 @@ import { Link } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles'
 import { Portal } from 'react-portal'
 
-import staqConfig from '../../../staq'
+import staqConfig from '../../../../staq'
+
+const headerFont = staqConfig.get('headerFont') || "'Montserrat', sans-serif"
+const contentFont = staqConfig.get('contentFont') || "'Rubik', sans-serif"
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -20,12 +23,14 @@ const useStyles = makeStyles((theme) => ({
     paddingRight: 16,
   },
   columnTitle: {
-    color: theme.palette.primary.contrastText,
-    textAlign: 'center',
+    fontFamily: headerFont,
     fontWeight: 600,
+    color: theme.palette.primary.contrastText,
+    textAlign: 'left',
     marginBottom: 15,
   },
   footerLink: {
+    fontFamily: contentFont,
     color: theme.palette.primary.contrastText,
     textDecoration: 'none',
   },
