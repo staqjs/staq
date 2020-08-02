@@ -23,7 +23,11 @@ const useStyles = makeStyles(() => ({
   },
   input: {
     marginBottom: 10
-  }
+  },
+  submitBtn: {
+    textTransform: 'none',
+    fontWeight: 600,
+  },
 }))
 
 function SignUpPage(props) {

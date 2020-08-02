@@ -1,5 +1,5 @@
-import React from 'react'
-import { Redirect, Route, useHistory } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { Redirect, Route, useLocation, useHistory } from 'react-router-dom'
 
 import { withAuth, SignInPage, SignUpPage } from './Session'
 import LandingPage from './LandingPage/LandingPage'
@@ -8,6 +8,16 @@ import NavBar from './Navigation/NavBar'
 import UserSettingsPage from './Settings/UserSettingsPage'
 import BillingSettingsPage from './Settings/BillingSettingsPage'
 import * as ROUTES from '../constants/routes'
+
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
 
 function PrivateRouteBase({ component: Component, auth, ...rest }) {
   return (
@@ -34,6 +44,7 @@ function StaqRoutes(props) {
 
   return (
     <React.Fragment>
+      <ScrollToTop />
       <NavBar />
 
       <Route exact path={ROUTES.LANDING} component={LandingPage} />

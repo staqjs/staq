@@ -1,6 +1,6 @@
 {
   "name": "staq-server",
-  "version": "0.0.14",
+  "version": "0.0.16",
   "description": "backend code for staqjs",
   "main": "dist/index.js",
   "module": "dist/index.modern.js",

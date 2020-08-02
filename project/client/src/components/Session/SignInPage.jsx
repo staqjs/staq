@@ -22,7 +22,11 @@ const useStyles = makeStyles((theme) => ({
   },
   input: {
     marginBottom: 10
-  }
+  },
+  submitBtn: {
+    textTransform: 'none',
+    fontWeight: 600,
+  },
 }))
 
 function SignInPage(props) {

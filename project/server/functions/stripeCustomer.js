@@ -7,13 +7,18 @@ const { SecretManagerServiceClient } = require('@google-cloud/secret-manager')
 async function createCustomer(data, context, stripe) {
   try {
     const customer = await stripe.customers.create(data.customer)
-    const subscription = await stripe.subscriptions.create({
+    const subscriptionObj = {
       customer: customer.id,
       items: [
         { price: staqConfig.get('stripeTrialPriceId') }
       ],
-      trial_period_days: staqConfig.get('stripeTrialPeriodDays') || 14
-    })
+    }
+
+    if (staqConfig.get('useTrial')) {
+      subscriptionObj.trial_period_days = staqConfig.get('stripeTrialPeriodDays') || 14
+    }
+
+    const subscription = await stripe.subscriptions.create(subscriptionObj)
 
     return {
       customer,

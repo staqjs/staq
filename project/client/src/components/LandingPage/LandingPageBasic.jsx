@@ -80,14 +80,16 @@ const useStyles = makeStyles(() => ({
     marginBottom: 40,
   },
   valueCardsContainer: {
+    display: 'flex',
+    justifyContent: 'center',
     padding: '0 32px',
     maxWidth: 1200,
-    display: 'flex',
   },
   valueCard: {
     boxShadow: '0px 2px 4px -1px rgba(0,0,0,0.2), 0px 1px 4px 0px rgba(0,0,0,0.14), 0px 2px 4px 0px rgba(0,0,0,0.12)',
     marginRight: 20,
     padding: 25,
+    maxWidth: '30%',
   },
   valueCardTitle: {
     fontFamily: headerFont,

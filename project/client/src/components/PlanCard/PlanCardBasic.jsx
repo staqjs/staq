@@ -1,5 +1,6 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
+import { Link } from 'react-router-dom'
 import {
   Button, Card, CardHeader, CardContent,
   Typography, List, ListItem,
@@ -47,6 +48,15 @@ const useStyles = makeStyles(() => ({
   },
   checkIcon: {
     marginRight: 10,
+  },
+  getStartedLink: {
+    textDecoration: 'none',
+  },
+  getStartedBtn: {
+    width: '100%',
+    marginTop: 20,
+    textTransform: 'none',
+    fontWeight: 600,
   },
 }))
 
@@ -98,6 +108,16 @@ function PlanCardBasic(props) {
             })
           }
         </List>
+
+        <Link to="/signup" className={classes.getStartedLink}>
+          <Button
+            color="primary"
+            variant="contained"
+            className={classes.getStartedBtn}
+          >
+            Get Started
+          </Button>
+        </Link>
       </CardContent>
     </Card>
   )
