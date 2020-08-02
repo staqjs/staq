@@ -11,12 +11,19 @@ import staqConfig from '../../../../staq'
 const headerFont = staqConfig.get('headerFont') || "'Montserrat', sans-serif"
 const contentFont = staqConfig.get('contentFont') || "'Rubik', sans-serif"
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   card: {
     boxShadow: '0px 2px 4px -1px rgba(0,0,0,0.2), 0px 1px 4px 0px rgba(0,0,0,0.14), 0px 2px 4px 0px rgba(0,0,0,0.12)',
     marginRight: 20,
     padding: 10,
     width: 300,
+
+    [theme.breakpoints.down('sm')]: {
+      width: '100%',
+      maxWidth: '100%',
+      marginBottom: 20,
+      marginRight: 0,
+    },
   },
   title: {
     fontFamily: headerFont,

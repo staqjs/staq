@@ -13,7 +13,7 @@ import * as ROUTES from '../../constants/routes'
 const headerFont = staqConfig.get('headerFont') || "'Montserrat', sans-serif"
 const contentFont = staqConfig.get('contentFont') || "'Rubik', sans-serif"
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   topnav: {
     display: 'flex',
     justifyContent: 'space-between',
@@ -33,6 +33,10 @@ const useStyles = makeStyles(() => ({
   appTitle: {
     fontFamily: headerFont,
     fontSize: 26,
+
+    [theme.breakpoints.down('xs')]: {
+      fontSize: 22,
+    },
   },
   homeLink: {
     textDecoration: 'none',
@@ -43,11 +47,20 @@ const useStyles = makeStyles(() => ({
     textDecoration: 'none',
     color: 'black',
   },
+  signInText: {
+    [theme.breakpoints.down('xs')]: {
+      fontSize: 14,
+    },
+  },
   startTrialBtn: {
     borderRadius: 20,
     marginLeft: 15,
     textTransform: 'none',
     fontFamily: contentFont,
+
+    [theme.breakpoints.down('xs')]: {
+      fontSize: 12,
+    },
   },
   logoutBtn: {
     textTransform: 'none',

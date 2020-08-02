@@ -50,6 +50,10 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: contentFont,
     fontSize: 14,
     color: theme.palette.primary.contrastText,
+
+    [theme.breakpoints.down('xs')]: {
+      fontSize: 12,
+    },
   },
   poweredByContainer: {
     display: 'flex',
@@ -60,6 +64,10 @@ const useStyles = makeStyles((theme) => ({
     opacity: 0.8,
     marginRight: 5,
     color: theme.palette.primary.contrastText,
+
+    [theme.breakpoints.down('xs')]: {
+      fontSize: 12,
+    },
   },
   poweredByLink: {
     display: 'flex',
@@ -70,6 +78,10 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 14,
     fontWeight: 600,
     color: theme.palette.primary.contrastText,
+
+    [theme.breakpoints.down('xs')]: {
+      fontSize: 12,
+    },
   },
 }))
 

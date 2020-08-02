@@ -1,5 +1,7 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
+import { useTheme } from '@material-ui/core/styles'
+import useMediaQuery from '@material-ui/core/useMediaQuery'
 import { Link } from 'react-router-dom'
 import {
   Button, Card, CardHeader, CardContent,
@@ -14,7 +16,7 @@ import PlanCard from '../PlanCard/PlanCard'
 const headerFont = staqConfig.get('headerFont') || "'Montserrat', sans-serif"
 const contentFont = staqConfig.get('contentFont') || "'Rubik', sans-serif"
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   container: {
     display: 'flex',
     flexDirection: 'column',
@@ -25,6 +27,8 @@ const useStyles = makeStyles(() => ({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
+    marginTop: 30,
+    marginBottom: 30,
   },
   bannerTitle: {
     fontFamily: headerFont,
@@ -32,6 +36,11 @@ const useStyles = makeStyles(() => ({
     fontWeight: 700,
     maxWidth: '50%',
     textAlign: 'center',
+
+    [theme.breakpoints.down('sm')]: {
+      maxWidth: '90%',
+      textAlign: 'left',
+    },
   },
   bannerSubtitle: {
     fontFamily: contentFont,
@@ -39,6 +48,11 @@ const useStyles = makeStyles(() => ({
     fontWeight: 400,
     maxWidth: '40%',
     textAlign: 'center',
+
+    [theme.breakpoints.down('sm')]: {
+      maxWidth: '90%',
+      textAlign: 'left',
+    },
   },
   tryItOutLink: {
     textDecoration: 'none',
@@ -78,18 +92,35 @@ const useStyles = makeStyles(() => ({
     textAlign: 'center',
     margin: 'auto',
     marginBottom: 40,
+
+    [theme.breakpoints.down('sm')]: {
+      maxWidth: '90%',
+      textAlign: 'left',
+    },
   },
   valueCardsContainer: {
     display: 'flex',
     justifyContent: 'center',
     padding: '0 32px',
     maxWidth: 1200,
+
+    [theme.breakpoints.down('sm')]: {
+      flexDirection: 'column',
+      alignItems: 'center',
+    },
   },
   valueCard: {
     boxShadow: '0px 2px 4px -1px rgba(0,0,0,0.2), 0px 1px 4px 0px rgba(0,0,0,0.14), 0px 2px 4px 0px rgba(0,0,0,0.12)',
     marginRight: 20,
     padding: 25,
     maxWidth: '30%',
+
+    [theme.breakpoints.down('sm')]: {
+      width: '100%',
+      maxWidth: '100%',
+      marginBottom: 20,
+      marginRight: 0,
+    },
   },
   valueCardTitle: {
     fontFamily: headerFont,
@@ -111,11 +142,21 @@ const useStyles = makeStyles(() => ({
     textAlign: 'center',
     margin: 'auto',
     marginBottom: 40,
+
+    [theme.breakpoints.down('sm')]: {
+      maxWidth: '90%',
+      textAlign: 'left',
+    },
   },
   pricingCardsContainer: {
-    padding: '0 32px',
+    padding: '0 20px',
     maxWidth: 1200,
     display: 'flex',
+
+    [theme.breakpoints.down('sm')]: {
+      flexDirection: 'column',
+      alignItems: 'center',
+    },
   },
 }))
 
@@ -194,6 +235,8 @@ function PricingSection() {
 
 function LandingPageBasic() {
   const classes = useStyles()
+  const theme = useTheme()
+  const xsScreen = useMediaQuery(theme.breakpoints.down('xs'))
 
   return (
     <div className={classes.container}>
@@ -220,7 +263,11 @@ function LandingPageBasic() {
       </div>
 
       <div className={classes.imageContainer}>
-        <img src={staqConfig.get('landingPageImage')} className={classes.image} />
+        {
+          xsScreen
+            ? <img src={staqConfig.get('landingPageImageXs')} className={classes.image} />
+            : <img src={staqConfig.get('landingPageImage')} className={classes.image} />
+        }
       </div>
 
       <ValueSection />
