@@ -1,10 +1,7 @@
 {
-  "name": "staq-client",
-  "version": "0.11.0",
-  "description": "Javascript library for creating Software-as-a-Service (SaaS) businesses",
-  "author": "mroll",
-  "license": "MIT",
-  "repository": "mroll/staq",
+  "name": "@staqjs/client",
+  "version": "0.0.1",
+  "description": "StaqJS is a Javascript library for creating Software-as-a-Service (SaaS) businesses",
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
   "source": "src/index.js",
@@ -22,6 +19,20 @@
     "test:watch": "react-scripts test --env=jsdom",
     "predeploy": "cd example && yarn install && yarn run build",
     "deploy": "gh-pages -d example/build"
+  },
+  "directories": {
+    "example": "example"
+  },
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.9.1",
+    "@material-ui/styles": "^4.10.0",
+    "@stripe/react-stripe-js": "^1.1.2",
+    "@stripe/stripe-js": "^1.8.0",
+    "react-portal": "^4.2.1"
   },
   "peerDependencies": {
     "firebase": "^7.16.1",
@@ -44,14 +55,14 @@
     "prettier": "^2.0.4",
     "react-scripts": "^3.4.1"
   },
-  "files": [
-    "dist"
-  ],
-  "dependencies": {
-    "@material-ui/core": "^4.11.0",
-    "@material-ui/styles": "^4.10.0",
-    "@stripe/react-stripe-js": "^1.1.2",
-    "@stripe/stripe-js": "^1.8.0",
-    "react-portal": "^4.2.1"
-  }
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/staqjs/staq.git"
+  },
+  "author": "Matt Roll",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/staqjs/staq/issues"
+  },
+  "homepage": "https://github.com/staqjs/staq#readme"
 }
