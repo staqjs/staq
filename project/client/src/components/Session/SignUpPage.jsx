@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
   container: {
     display: 'flex',
     justifyContent: 'center',
-    marginBottom: 30,
+    marginBottom: 30
   },
   form: {
     display: 'flex',
@@ -23,16 +23,16 @@ const useStyles = makeStyles((theme) => ({
     marginTop: 100,
 
     [theme.breakpoints.down('md')]: {
-      width: '80%',
-    },
+      width: '80%'
+    }
   },
   input: {
-    marginBottom: 10,
+    marginBottom: 10
   },
   submitBtn: {
     textTransform: 'none',
-    fontWeight: 600,
-  },
+    fontWeight: 600
+  }
 }))
 
 function SignUpPage(props) {
@@ -71,7 +71,7 @@ function SignUpForm(props) {
     passwordOne: '',
     passwordTwo: '',
     isAdmin: false,
-    error: null,
+    error: null
   })
   const [loading, setLoading] = React.useState(false)
 
@@ -79,16 +79,18 @@ function SignUpForm(props) {
     const stripeCustomerFn = firebase.functions.httpsCallable('stripeCustomer')
     stripeCustomerFn({
       action: 'create',
-      customer: { email },
-    }).then((result) => {
-      callback(result)
-    }).catch((error) => {
-      // Getting the Error details.
-      const code = error.code;
-      const message = error.message;
-      const details = error.details;
-      // ...
+      customer: { email }
     })
+      .then((result) => {
+        callback(result)
+      })
+      .catch((error) => {
+        // Getting the Error details.
+        const code = error.code
+        const message = error.message
+        const details = error.details
+        // ...
+      })
   }
 
   const createFirebaseUser = (email, password, stripeData, next) => {
@@ -102,7 +104,7 @@ function SignUpForm(props) {
           email,
           stripeCustomerId: stripeCustomer.id,
           stripeSubscriptionPriceId: stripeSubscription.items.data[0].price.id,
-          uid: currentUser.user.uid,
+          uid: currentUser.user.uid
         })
       })
       // .then(() => {
@@ -142,17 +144,12 @@ function SignUpForm(props) {
 
   const onSubmitWithPaymentsDisabled = () => {
     setLoading(true)
-    createFirebaseUser(
-      user.email,
-      user.passwordOne,
-      null,
-      (user) => {
-        firebase.logEvent('sign_up', {
-          email: user.contact_email
-        })
-        setLoading(false)
-      }
-    )
+    createFirebaseUser(user.email, user.passwordOne, null, (user) => {
+      firebase.logEvent('sign_up', {
+        email: user.contact_email
+      })
+      setLoading(false)
+    })
   }
 
   const onSubmit = (event) => {

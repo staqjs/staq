@@ -1,4 +1,5 @@
 import React from 'react'
+import _ from 'lodash'
 import Firebase, { FirebaseContext } from './components/Firebase'
 import { AuthProvider } from './components/Session'
 import staqConfig from '../../staq'
@@ -8,9 +9,7 @@ export default (children) => {
 
   return (
     <FirebaseContext.Provider value={firebase}>
-      <AuthProvider>
-        { children }
-      </AuthProvider>
+      <AuthProvider>{children}</AuthProvider>
     </FirebaseContext.Provider>
   )
 }

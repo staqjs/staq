@@ -23,13 +23,11 @@ function LandingPage(props) {
 
   return (
     <StaqStyleProvider>
-      {
-        auth.currentUser
-          ? <Redirect to={staqConfig.get('userHome') || '/'} />
-          : (
-            <LandingPageComponent {...props} />
-          )
-      }
+      {auth.currentUser ? (
+        <Redirect to={staqConfig.get('userHome') || '/'} />
+      ) : (
+        <LandingPageComponent {...props} />
+      )}
     </StaqStyleProvider>
   )
 }

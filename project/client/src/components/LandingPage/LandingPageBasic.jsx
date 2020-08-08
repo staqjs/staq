@@ -4,8 +4,11 @@ import { useTheme } from '@material-ui/core/styles'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
 import { Link } from 'react-router-dom'
 import {
-  Button, Card, CardHeader, CardContent,
-  Typography,
+  Button,
+  Card,
+  CardHeader,
+  CardContent,
+  Typography
 } from '@material-ui/core'
 
 import staqConfig from '../../../../staq'
@@ -19,7 +22,7 @@ const contentFont = staqConfig.get('contentFont') || "'Rubik', sans-serif"
 const useStyles = makeStyles((theme) => ({
   container: {
     display: 'flex',
-    flexDirection: 'column',
+    flexDirection: 'column'
   },
   banner: {
     height: 500,
@@ -28,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: 30,
-    marginBottom: 30,
+    marginBottom: 30
   },
   bannerTitle: {
     fontFamily: headerFont,
@@ -39,8 +42,8 @@ const useStyles = makeStyles((theme) => ({
 
     [theme.breakpoints.down('sm')]: {
       maxWidth: '90%',
-      textAlign: 'left',
-    },
+      textAlign: 'left'
+    }
   },
   bannerSubtitle: {
     fontFamily: contentFont,
@@ -51,38 +54,38 @@ const useStyles = makeStyles((theme) => ({
 
     [theme.breakpoints.down('sm')]: {
       maxWidth: '90%',
-      textAlign: 'left',
-    },
+      textAlign: 'left'
+    }
   },
   tryItOutLink: {
-    textDecoration: 'none',
+    textDecoration: 'none'
   },
   tryItOutBtn: {
     marginTop: 30,
     width: 250,
     textTransform: 'none',
     fontWeight: 700,
-    fontFamily: contentFont,
+    fontFamily: contentFont
   },
   tryItOutMessage: {
     fontFamily: contentFont,
     fontSize: 14,
     fontWeight: 300,
-    marginTop: 5,
+    marginTop: 5
   },
   imageContainer: {
     display: 'flex',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   image: {
     width: '75%',
-    maxWidth: 1300,
+    maxWidth: 1300
   },
   valueSection: {
     padding: 20,
     paddingTop: 140,
     paddingBottom: 70,
-    margin: '0 auto',
+    margin: '0 auto'
   },
   valueSectionTitle: {
     fontFamily: headerFont,
@@ -95,8 +98,8 @@ const useStyles = makeStyles((theme) => ({
 
     [theme.breakpoints.down('sm')]: {
       maxWidth: '90%',
-      textAlign: 'left',
-    },
+      textAlign: 'left'
+    }
   },
   valueCardsContainer: {
     display: 'flex',
@@ -106,11 +109,12 @@ const useStyles = makeStyles((theme) => ({
 
     [theme.breakpoints.down('sm')]: {
       flexDirection: 'column',
-      alignItems: 'center',
-    },
+      alignItems: 'center'
+    }
   },
   valueCard: {
-    boxShadow: '0px 2px 4px -1px rgba(0,0,0,0.2), 0px 1px 4px 0px rgba(0,0,0,0.14), 0px 2px 4px 0px rgba(0,0,0,0.12)',
+    boxShadow:
+      '0px 2px 4px -1px rgba(0,0,0,0.2), 0px 1px 4px 0px rgba(0,0,0,0.14), 0px 2px 4px 0px rgba(0,0,0,0.12)',
     marginRight: 20,
     padding: 25,
     maxWidth: '30%',
@@ -119,20 +123,20 @@ const useStyles = makeStyles((theme) => ({
       width: '100%',
       maxWidth: '100%',
       marginBottom: 20,
-      marginRight: 0,
-    },
+      marginRight: 0
+    }
   },
   valueCardTitle: {
-    fontFamily: headerFont,
+    fontFamily: headerFont
   },
   content: {
-    fontWeight: 500,
+    fontWeight: 500
   },
   pricingSection: {
     padding: 20,
     paddingTop: 140,
     paddingBottom: 140,
-    margin: '0 auto',
+    margin: '0 auto'
   },
   pricingSectionTitle: {
     fontFamily: headerFont,
@@ -145,8 +149,8 @@ const useStyles = makeStyles((theme) => ({
 
     [theme.breakpoints.down('sm')]: {
       maxWidth: '90%',
-      textAlign: 'left',
-    },
+      textAlign: 'left'
+    }
   },
   pricingCardsContainer: {
     padding: '0 20px',
@@ -155,9 +159,9 @@ const useStyles = makeStyles((theme) => ({
 
     [theme.breakpoints.down('sm')]: {
       flexDirection: 'column',
-      alignItems: 'center',
-    },
-  },
+      alignItems: 'center'
+    }
+  }
 }))
 
 function ValueCard(props) {
@@ -173,9 +177,7 @@ function ValueCard(props) {
         }}
         className={classes.header}
       />
-      <CardContent className={classes.content}>
-        { text }
-      </CardContent>
+      <CardContent className={classes.content}>{text}</CardContent>
     </Card>
   )
 }
@@ -187,18 +189,18 @@ function ValueSection(props) {
 
   return (
     <div className={classes.valueSection}>
-      <Typography className={classes.valueSectionTitle}>
-        { title }
-      </Typography>
+      <Typography className={classes.valueSectionTitle}>{title}</Typography>
 
       <div className={classes.valueCardsContainer}>
-        {
-          values.map((value) => {
-            return (
-              <ValueCard key={value.title} title={value.title} text={value.text} />
-            )
-          })
-        }
+        {values.map((value) => {
+          return (
+            <ValueCard
+              key={value.title}
+              title={value.title}
+              text={value.text}
+            />
+          )
+        })}
       </div>
     </div>
   )
@@ -211,23 +213,19 @@ function PricingSection() {
 
   return (
     <div className={classes.pricingSection}>
-      <Typography className={classes.pricingSectionTitle}>
-        { title }
-      </Typography>
+      <Typography className={classes.pricingSectionTitle}>{title}</Typography>
 
       <div className={classes.pricingCardsContainer}>
-        {
-          plans.map((plan) => {
-            return (
-              <PlanCard
-                key={plan.name}
-                name={plan.name}
-                price={plan.price}
-                features={plan.features}
-              />
-            )
-          })
-        }
+        {plans.map((plan) => {
+          return (
+            <PlanCard
+              key={plan.name}
+              name={plan.name}
+              price={plan.price}
+              features={plan.features}
+            />
+          )
+        })}
       </div>
     </div>
   )
@@ -242,16 +240,16 @@ function LandingPageBasic() {
     <div className={classes.container}>
       <div className={classes.banner}>
         <Typography className={classes.bannerTitle}>
-          { staqConfig.get('landingPageHeader') }
+          {staqConfig.get('landingPageHeader')}
         </Typography>
         <Typography className={classes.bannerSubtitle}>
-          { staqConfig.get('landingPageSubheader') }
+          {staqConfig.get('landingPageSubheader')}
         </Typography>
 
         <Link className={classes.tryItOutLink} to={ROUTES.DEMO}>
           <Button
-            color="primary"
-            variant="contained"
+            color='primary'
+            variant='contained'
             className={classes.tryItOutBtn}
           >
             Try it out for free
@@ -263,11 +261,17 @@ function LandingPageBasic() {
       </div>
 
       <div className={classes.imageContainer}>
-        {
-          xsScreen
-            ? <img src={staqConfig.get('landingPageImageXs')} className={classes.image} />
-            : <img src={staqConfig.get('landingPageImage')} className={classes.image} />
-        }
+        {xsScreen ? (
+          <img
+            src={staqConfig.get('landingPageImageXs')}
+            className={classes.image}
+          />
+        ) : (
+          <img
+            src={staqConfig.get('landingPageImage')}
+            className={classes.image}
+          />
+        )}
       </div>
 
       <ValueSection />

@@ -177,7 +177,7 @@ Here's how to set `staq` up locally to hack on it.
 4. Register your clone of `staq` with `npm link`
 
     ```
-    $ cd /path/to/staq/clone
+    $ cd /path/to/staq/clone/project/client
     $ npm link
     ```
     
@@ -191,8 +191,8 @@ Here's how to set `staq` up locally to hack on it.
 6. Link the new project's React to your clone of `staq`. (Assuming your clone of `staq` and `staq-dev` are siblings in the file tree.)
 
    ```
-   $ cd /path/to/staq/clone
-   $ npm link ../staq-dev/node_modules/react
+   $ cd /path/to/staq/clone/project/client
+   $ npm link ../../../staq-dev/node_modules/react
    ```
    
 7. Follow the [Quickstart](https://github.com/staqjs/staq#quickstart) steps to install `staq` to the new `staq-dev` project.
@@ -200,7 +200,7 @@ Here's how to set `staq` up locally to hack on it.
 8. In one terminal, start a file watcher in your `staq` clone that will recompile with any changes.
 
     ```
-    $ cd /path/to/staq/clone
+    $ cd /path/to/staq/clone/project/client
     $ yarn start
     ```
     
