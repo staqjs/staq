@@ -17,70 +17,143 @@ The package also ships with a set of NodeJS functions to be used with Google [Fi
 
 # Quickstart
 
-1. **Install**
+Staq comes in two parts, a client side and a server side library. This guide
+will show you how to create a basic SaaS app from scratch using Staq for both
+sides.
+
+**Note:** If you don't have a Stripe account or don't want to enable payments,
+you can skip the `payments` configuration in `index.js` and the entire
+**Server** section.
+
+## Client
+
+1. First let's create a React project with `create-react-app`.
 
     ```sh
-    yarn add staq
+    npx create-react-app staq-quickstart && cd staq-quickstart
     ```
-
-2. **Initialize and configure**
-
-    In your `index.js`, add the following import:
-
-    ```js
-    import { initStaq, withStaq } from staq
-    ```
-
-    Call `initStaq` and pass in a configuration object specifying the name of your site and your Firebase config object.
-
-    ```js
-    initStaq({
-      siteTitle: 'Test App',
-      landingPageHeader: 'SaaS apps are great',
-      landingPageSubheader: 'You should totally subscribe',
-      firebaseConfig: {
-        // your firebase config
-      }
-    })
-    ```
-
-3. **Also in `index.js`, wrap your app in `withStaq`**
-<br><br>
-Take the first argument to `ReactDOM.render` and pass it to the `withStaq` function.
-
-    ```jsx
-    ReactDOM.render(
-      withStaq(<App />),
-      document.getElementById('root')
-    )
-    ```
-
-4. **Use `staq` to install standard SaaS features**
-<br><br>
-In your `App.js[x]`, import `StaqRoutes` and render them inside your router.
-
-    ```jsx
-    import React from 'react'
-    import { BrowserRouter as Router } from 'react-router-dom'
     
-    import { StaqRoutes } from 'staq'
-    
-    function App(props) {
-      return (
-        <Router>
-          <StaqRoutes />
-        </Router>
-      )
-    }
-    
-    export default App
+2. Then let's install dependencies. We need the Staq client side library,
+   Firebase, and React Router.
+   
+   ```sh
+   yarn add @staqjs/client firebase react-router-dom
+   ```
+   
+3. To install Staq into our app, we need to add some code to two files. The
+   first is `index.js`, where we configure the library and wrap our app in a
+   Staq function call. This is what the updated `index.js` should look like.
+   
+   ```jsx
+   // src/index.js
+
+   import React from 'react';
+   import ReactDOM from 'react-dom';
+   import './index.css';
+   import App from './App';
+   import * as serviceWorker from './serviceWorker';
+   import { initStaq, withStaq } from '@staqjs/client'
+
+   initStaq({
+     siteTitle: 'Staq Live Demo',
+     landingPageHeader: 'SaaS apps are great',
+     landingPageSubheader: 'You should totally subscribe',
+     firebaseConfig: {
+       // your firebase config
+     },
+     payments: true // skip if not using Stripe yet
+   })
+
+   ReactDOM.render(
+     withStaq(
+       <React.StrictMode>
+         <App />
+       </React.StrictMode>
+     ),
+     document.getElementById('root')
+   );
+
+   // If you want your app to work offline and load faster, you can change
+   // unregister() to register() below. Note this comes with some pitfalls.
+   // Learn more about service workers: https://bit.ly/CRA-PWA
+   serviceWorker.unregister();
+   ```
+   \
+   The other file we need to update is `App.js`. This is where we use Staq to
+   render basic routes like landing page, sign in page, sign out page, etc.
+   
+   Remove the markup in that file, and replace it with a `Router` and a Staq
+   component. Here's what the updated file should look like.
+
+   ```jsx
+   import React from 'react';
+   import logo from './logo.svg';
+   import './App.css';
+   import { Router } from 'react-router-dom'
+   import { StaqRoutes } from '@staqjs/client'
+   
+   function App() {
+     return (
+       <Router>
+         <StaqRoutes />
+       </Router>
+     );
+   }
+   
+   export default App;
+
+   ```
+
+4. That's it! On the client side anyway. Start up your app with `yarn start` and
+   check out the pages at `/signup`, `/signin`.
+
+
+## Server
+
+1. If you don't have the Firebase CLI yet, follow [this
+   guide](https://firebase.google.com/docs/cli) and install it.
+   
+2. Initialize Firebase in the `staq-quickstart` project.
+
+    ```sh
+    firebase init
     ```
 
-5. **Test out the routes**
+3. Install the Staq server side library.
 
-    Run `yarn start` and head to `http://localhost:3000` to see your landing page generated courtesy of `staq`. You should see something like this.
-    
-    ![landing](project/landing-page.png)
+    ```sh
+    yarn add @staqjs/server
+    ```
+
+4. Add Staq server code to `functions/index.js` to support everything needed for
+   subscription payments with Stripe. Replace what's in the file with the
+   following.
+   
+   ```js
+   const { initStaq, createStripeCustomerPortalSession, stripeCustomer } = require('@staqjs/server')
+
+   initStaq({
+     gcpProjectNumber: // your Google Cloud project number
+     stripeTrialPriceId: // the ID of the default Stripe Price users will be subscribed to
+     useTrial: false, // whether or not user should be started on a trial
+   })
+
+   exports.stripeCustomer = stripeCustomer
+   exports.createStripeCustomerPortalSession = createStripeCustomerPortalSession
+   ```
+   
+5. Deploy your Firebase functions.
+
+    ```sh
+    firebase deploy --only functions
+    ```
+
+6. That's it! With this server configuration, a Stripe Customer and Subscription
+   will be created for each user on signup, and users will be able to manage
+   their billing with the [Stripe Customer
+   portal](https://stripe.com/docs/billing/subscriptions/customer-portal).
+   
+
     
     
 # Contributor Guide
