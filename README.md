@@ -15,6 +15,12 @@ The `staq` package contains a set of [React](https://reactjs.org/) components th
 
 The package also ships with a set of NodeJS functions to be used with Google [Firebase](https://firebase.google.com/) to implement the backend logic necessary for features like subscription billing with [Stripe](https://stripe.com/).
 
+# Project Maturity
+
+Staq is a new project that has yet to undergo thorough testing in the wild. It is in production use at [checkfox.app](https://checkfox.app), but should generally be considered fragile and unpredictable.
+
+It is currently most valuable for the weekend project that you want to get online as fast as possible, but not for supporting your existing business with many paying customers. We will get there soon! But for now it makes sense to think of Staq as a [toy](https://twitter.com/paulg/status/1075675559865270273?lang=en).
+
 # Quickstart
 
 Staq comes in two parts, a client side and a server side library. This guide
