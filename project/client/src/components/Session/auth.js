@@ -3,7 +3,7 @@ class Auth {
     this.firebase = firebase
 
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'))
-    this.onLogoutCallback = () => { }
+    this.onLogoutCallback = () => {}
 
     this.initListener()
   }
@@ -17,8 +17,9 @@ class Auth {
       () => {
         localStorage.removeItem('currentUser')
         this.currentUser = null
+        console.log(this.currentUser)
         this.onLogoutCallback()
-      },
+      }
     )
   }
 

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Redirect, Route, useLocation, useHistory } from 'react-router-dom'
 
 import { withAuth, SignInPage, SignUpPage } from './Session'
@@ -10,37 +10,39 @@ import BillingSettingsPage from './Settings/BillingSettingsPage'
 import * as ROUTES from '../constants/routes'
 
 function ScrollToTop() {
-  const { pathname } = useLocation();
+  const { pathname } = useLocation()
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
+    window.scrollTo(0, 0)
+  }, [pathname])
 
-  return null;
+  return null
 }
 
 function PrivateRouteBase({ component: Component, auth, ...rest }) {
   return (
     <Route
       {...rest}
-      render={(props) => (
-        auth.currentUser
-          ? <Component auth={auth} {...props} />
-          : <Redirect to="/signin" />
-      )}
+      render={(props) =>
+        auth.currentUser ? (
+          <Component auth={auth} {...props} />
+        ) : (
+          <Redirect to='/signin' />
+        )
+      }
     />
   )
 }
 
-const footerRoutes = [
-  '/',
-  '/demo',
-  '/signin',
-  '/signup',
-]
+const footerRoutes = ['/', '/demo', '/signin', '/signup']
 
-function StaqRoutes(props) {
+function StaqRoutes() {
   const history = useHistory()
+  const [pathname, setPathname] = useState(history.location.pathname)
+
+  useEffect(() => {
+    setPathname(history.location.pathname)
+  }, [history.location.pathname])
 
   return (
     <React.Fragment>
@@ -52,13 +54,12 @@ function StaqRoutes(props) {
       <Route path={ROUTES.SIGN_IN} component={SignInPage} />
 
       <PrivateRoute path={ROUTES.USER_SETTINGS} component={UserSettingsPage} />
-      <PrivateRoute path={ROUTES.BILLING_SETTINGS} component={BillingSettingsPage} />
+      <PrivateRoute
+        path={ROUTES.BILLING_SETTINGS}
+        component={BillingSettingsPage}
+      />
 
-      {
-        footerRoutes.includes(history.location.pathname)
-          ? <Footer />
-          : null
-      }
+      {footerRoutes.includes(pathname) ? <Footer /> : null}
     </React.Fragment>
   )
 }
@@ -66,6 +67,4 @@ function StaqRoutes(props) {
 const PrivateRoute = withAuth(PrivateRouteBase)
 
 export default StaqRoutes
-export {
-  PrivateRoute
-}
+export { PrivateRoute }

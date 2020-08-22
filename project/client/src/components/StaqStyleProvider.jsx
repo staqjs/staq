@@ -14,11 +14,9 @@ const generateClassName = createGenerateClassName({
   seed: 'staq'
 })
 
-const defaultTheme = createMuiTheme()
-const theme = staqConfig.get('theme') || defaultTheme
-
 export default function StaqStyleProvider(props) {
   const { children } = props
+  const theme = staqConfig.get('theme')
 
   return (
     <ThemeProvider theme={theme}>

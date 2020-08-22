@@ -220,6 +220,7 @@ function PricingSection() {
           return (
             <PlanCard
               key={plan.name}
+              type={plan.type}
               name={plan.name}
               price={plan.price}
               features={plan.features}

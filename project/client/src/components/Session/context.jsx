@@ -16,26 +16,28 @@ class AuthProvider extends React.Component {
 
     this.state = {
       currentUser: JSON.parse(localStorage.getItem('currentUser')),
-      onLogoutCallback: () => { console.log('logging out') }
+      onLogoutCallback: () => {
+        console.log('logging out')
+      }
     }
   }
 
   componentDidMount() {
     this.listener = this.props.firebase.onAuthUserListener(
-      currentUser => {
-        localStorage.setItem('currentUser', JSON.stringify(currentUser));
-        this.setState({ currentUser });
+      (currentUser) => {
+        localStorage.setItem('currentUser', JSON.stringify(currentUser))
+        this.setState({ currentUser })
       },
       () => {
-        localStorage.removeItem('currentUser');
-        this.setState({ currentUser: null });
+        localStorage.removeItem('currentUser')
+        this.setState({ currentUser: null })
         this.state.onLogoutCallback()
-      },
-    );
+      }
+    )
   }
 
   componentWillUnmount() {
-    this.listener();
+    this.listener()
   }
 
   reload = () => {
@@ -54,12 +56,14 @@ class AuthProvider extends React.Component {
     const { children } = this.props
 
     return (
-      <AuthContext.Provider value={{
-        currentUser: this.state.currentUser,
-        reload: this.reload,
-        onLogout: this.onLogout
-      }}>
-        { children }
+      <AuthContext.Provider
+        value={{
+          currentUser: this.state.currentUser,
+          reload: this.reload,
+          onLogout: this.onLogout
+        }}
+      >
+        {children}
       </AuthContext.Provider>
     )
   }

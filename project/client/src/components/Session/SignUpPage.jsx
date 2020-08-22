@@ -49,7 +49,7 @@ function SignUpPage(props) {
 }
 
 const INITIAL_STATE = {
-  contact_email: '',
+  email: '',
   passwordOne: '',
   passwordTwo: '',
   isAdmin: false,

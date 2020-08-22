@@ -3,19 +3,21 @@ import { makeStyles } from '@material-ui/core/styles'
 import { Link } from 'react-router-dom'
 import { List, ListItem, Typography } from '@material-ui/core'
 
+import staqConfig from '../../../../staq'
+
 const useStyles = makeStyles((theme) => ({
   sectionMenuContainer: {
-    fontFamily: 'Arial',
+    fontFamily: 'Arial'
   },
   sectionMenuHeader: {
     textTransform: 'uppercase',
     color: '#7171a6',
     fontSize: 10,
     fontWeight: 600,
-    marginBottom: 5,
+    marginBottom: 5
   },
   sectionMenu: {
-    listStyleType: 'none',
+    listStyleType: 'none'
   },
   menuItem: {
     paddingLeft: 5,
@@ -24,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: 0,
     marginBottom: 5,
     transition: 'background-color 96ms linear',
-    fontSize: 14,
+    fontSize: 14
   },
   menuLink: {
     textDecoration: 'none',
@@ -35,48 +37,51 @@ const useStyles = makeStyles((theme) => ({
 
     '&:hover': {
       backgroundColor: theme.palette.primary.main,
-      color: theme.palette.primary.contrastText,
-    },
+      color: theme.palette.primary.contrastText
+    }
   },
-  menuItemText: {
-  },
+  menuItemText: {},
   menuItemTextPrimary: {
-    fontSize: 12,
-  },
+    fontSize: 12
+  }
 }))
 
-const sideMenuItems = [
-  {
-    title: 'My account',
-    path: '/settings/user',
-  },
-  {
-    title: 'Manage subscription',
-    path: '/settings/billing',
-  },
-]
+const usePayments = staqConfig.get('payments')
+const sideMenuItems = usePayments
+  ? [
+      {
+        title: 'My account',
+        path: '/settings/user'
+      },
+      {
+        title: 'Manage subscription',
+        path: '/settings/billing'
+      }
+    ]
+  : [
+      {
+        title: 'My account',
+        path: '/settings/user'
+      }
+    ]
 
 function SettingsMenu(props) {
   const classes = useStyles()
 
   return (
     <div className={classes.sectionMenuContainer}>
-      <Typography className={classes.sectionMenuHeader}>
-        Account
-      </Typography>
+      <Typography className={classes.sectionMenuHeader}>Account</Typography>
 
       <List className={classes.sectionMenu}>
-        {
-          sideMenuItems.map((menuItem) => {
-            return (
-              <ListItem key={menuItem.path} className={classes.menuItem}>
-                <Link to={menuItem.path} className={classes.menuLink}>
-                  { menuItem.title }
-                </Link>
-              </ListItem>
-            )
-          })
-        }
+        {sideMenuItems.map((menuItem) => {
+          return (
+            <ListItem key={menuItem.path} className={classes.menuItem}>
+              <Link to={menuItem.path} className={classes.menuLink}>
+                {menuItem.title}
+              </Link>
+            </ListItem>
+          )
+        })}
       </List>
     </div>
   )
