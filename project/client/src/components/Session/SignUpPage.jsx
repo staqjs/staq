@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles'
 import { Button, TextField } from '@material-ui/core'
+import _ from 'lodash'
 
 import StaqStyleProvider from '../StaqStyleProvider'
 import { withFirebase } from '../Firebase'
@@ -94,17 +95,25 @@ function SignUpForm(props) {
   }
 
   const createFirebaseUser = (email, password, stripeData, next) => {
-    const stripeCustomer = stripeData.customer
-    const stripeSubscription = stripeData.subscription
+    const usePayments = staqConfig.get('payments')
+
+    const stripeAttributes = usePayments
+      ? {
+          stripeCustomerId: _.get(stripeData, 'customer.id'),
+          stripeSubscriptionPriceId: _.get(
+            stripeData,
+            'subscription.items.data[0].price.id'
+          )
+        }
+      : {}
 
     firebase
       .doCreateUserWithEmailAndPassword(email, password)
       .then((currentUser) => {
         return firebase.user(currentUser.user.uid).set({
           email,
-          stripeCustomerId: stripeCustomer.id,
-          stripeSubscriptionPriceId: stripeSubscription.items.data[0].price.id,
-          uid: currentUser.user.uid
+          uid: currentUser.user.uid,
+          ...stripeAttributes
         })
       })
       // .then(() => {

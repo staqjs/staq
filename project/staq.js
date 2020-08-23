@@ -1,5 +1,4 @@
 import _ from 'lodash'
-import {createMuiTheme} from '@material-ui/core/styles'
 
 class StaqConfig {
   constructor() {
@@ -18,8 +17,6 @@ class StaqConfig {
 const staqConfig = new StaqConfig()
 
 export const initStaq = (config) => {
-  const defaultTheme = createMuiTheme()
-  const theme = staqConfig.get('theme') || defaultTheme
   staqConfig.config = config
 }
 
