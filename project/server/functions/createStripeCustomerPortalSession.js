@@ -1,4 +1,4 @@
-import staqConfig from '../../staq'
+import { getSecret } from '../util'
 
 const functions = require('firebase-functions')
 const _stripe = require("stripe")
@@ -18,14 +18,7 @@ async function createPortalSession(data, context, stripe) {
 export default functions.https.onCall(async (data, context) => {
   console.log('data', data)
 
-  // Get Stripe secret key from Secret Manger
-  const projectNumber = staqConfig.get('gcpProjectNumber')
-  const secretName = `projects/${projectNumber}/secrets/stripe-secret-key/versions/latest`
-  const smClient = new SecretManagerServiceClient()
-  const [version] = await smClient.accessSecretVersion({
-    name: secretName
-  })
-  const stripeSecretKey = version.payload.data.toString()
+  const stripeSecretKey = getSecret('stripe-secret-key')
   const stripe = _stripe(stripeSecretKey)
 
   return createPortalSession(data, context, stripe)

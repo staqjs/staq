@@ -1,8 +1,8 @@
 import staqConfig from '../../staq'
+import { getSecret } from '../util'
 
 const functions = require('firebase-functions')
 const _stripe = require("stripe")
-const { SecretManagerServiceClient } = require('@google-cloud/secret-manager')
 
 let endpointSecret
 let fulfillOrder
@@ -30,18 +30,11 @@ async function onStripeCheckoutSessionCompleted(req, res, stripe) {
 
 
 export default functions.https.onRequest(async (req, res) => {
-  // Get Stripe secret key from Secret Manger
-  const projectNumber = staqConfig.get('gcpProjectNumber')
-  const secretName = `projects/${projectNumber}/secrets/stripe-secret-key/versions/latest`
-  const smClient = new SecretManagerServiceClient()
-  const [version] = await smClient.accessSecretVersion({
-    name: secretName
-  })
-  const stripeSecretKey = version.payload.data.toString()
+  const stripeSecretKey = getSecret('stripe-secret-key')
   const stripe = _stripe(stripeSecretKey)
 
-    endpointSecret = staqConfig.get('onStripeCheckoutSessionCompletedSecret')
-    fulfillOrder = staqConfig.get('stripeFulfillOrder')
+  endpointSecret = staqConfig.get('onStripeCheckoutSessionCompletedSecret')
+  fulfillOrder = staqConfig.get('stripeFulfillOrder')
 
   onStripeCheckoutSessionCompleted(req, res, stripe)
 })
