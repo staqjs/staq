@@ -81,7 +81,7 @@ class Firebase {
   document = (collectionName, documentId) =>
     this.collection(collectionName).doc(documentId)
 
-  addDocument = (uid, collectionName, document) =>
+  addDocumentForUser = (uid, collectionName, document) =>
     this.db.collection(collectionName).add({
       uid,
       ...document

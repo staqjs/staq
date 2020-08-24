@@ -8,12 +8,12 @@ import { withStripe } from './withStripe'
 import { withFirebase } from './components/Firebase'
 
 export {
-  LandingPage,
-  NavBar,
   PrivateRoute,
+  StaqRoutes,
+  NavBar,
+  LandingPage,
   SignInPage,
   SignUpPage,
-  StaqRoutes,
   initStaq,
   withAuth,
   withFirebase,
