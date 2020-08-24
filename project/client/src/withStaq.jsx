@@ -7,6 +7,7 @@ import staqConfig from '../../staq'
 
 export default (children) => {
   const firebase = new Firebase(staqConfig.get('firebaseConfig'))
+  staqConfig.set('firebase', firebase)
 
   return (
     <FirebaseContext.Provider value={firebase}>

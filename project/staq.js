@@ -12,6 +12,10 @@ class StaqConfig {
   get(field) {
     return _.get(this.config, field)
   }
+
+  set(field, value) {
+    this.config[field] = value
+  }
 }
 
 const staqConfig = new StaqConfig()

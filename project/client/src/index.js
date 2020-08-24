@@ -4,7 +4,7 @@ import LandingPage from './components/LandingPage/LandingPage'
 import StaqRoutes, { PrivateRoute } from './components/StaqRoutes'
 import { initStaq } from '../../staq'
 import withStaq from './withStaq'
-import { withStripe } from './withStripe'
+import { getStripeCheckoutSession, withStripe } from './withStripe'
 import { withFirebase } from './components/Firebase'
 
 export {
@@ -18,5 +18,6 @@ export {
   withAuth,
   withFirebase,
   withStaq,
-  withStripe
+  withStripe,
+  getStripeCheckoutSession
 }

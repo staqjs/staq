@@ -27,6 +27,26 @@ const StripeProviderBase = (props) => {
   )
 }
 
+export const getStripeCheckoutSession = (
+  clientReferenceId,
+  stripeCustomerId,
+  priceId,
+  successUrl,
+  cancelUrl
+) => {
+  const firebase = staqConfig.get('firebase')
+  const createCheckoutSession = firebase.functions.httpsCallable(
+    'createStripeCheckoutSession'
+  )
+  return createCheckoutSession({
+    clientReferenceId,
+    priceId,
+    successUrl,
+    cancelUrl,
+    customerId: stripeCustomerId
+  })
+}
+
 export default (props) => {
   const { children } = props
   const usePayments = staqConfig.get('payments')
