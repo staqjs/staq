@@ -2,7 +2,6 @@ import { getSecret } from '../util'
 
 const functions = require('firebase-functions')
 const _stripe = require("stripe")
-const { SecretManagerServiceClient } = require('@google-cloud/secret-manager')
 
 
 async function createPortalSession(data, context, stripe) {
@@ -18,7 +17,7 @@ async function createPortalSession(data, context, stripe) {
 export default functions.https.onCall(async (data, context) => {
   console.log('data', data)
 
-  const stripeSecretKey = getSecret('stripe-secret-key')
+  const stripeSecretKey = await getSecret('stripe-secret-key')
   const stripe = _stripe(stripeSecretKey)
 
   return createPortalSession(data, context, stripe)

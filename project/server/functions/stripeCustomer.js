@@ -4,9 +4,8 @@ import { getSecret } from '../util'
 const functions = require('firebase-functions')
 const _stripe = require("stripe")
 
-async function createCustomer(data, context, stripe) {
+async function createSubscription(customer) {
   try {
-    const customer = await stripe.customers.create(data.customer)
     const subscriptionObj = {
       customer: customer.id,
       items: [
@@ -19,6 +18,21 @@ async function createCustomer(data, context, stripe) {
     }
 
     const subscription = await stripe.subscriptions.create(subscriptionObj)
+    
+    return subscription
+  } catch (error) {
+    console.error(error)
+    throw new Error(error.message)
+  }
+}
+
+async function createCustomer(data, context, stripe) {
+  try {
+    const customer = await stripe.customers.create(data.customer)
+
+    const subscription = staqConfig.get('paymentType') === 'subscription'
+          ? createSubscription(customer)
+          : null
 
     return {
       customer,
@@ -48,7 +62,8 @@ async function getCustomer(data, context, stripe) {
 export default functions.https.onCall(async (data, context) => {
   console.log('data', data)
 
-  const stripeSecretKey = getSecret('stripe-secret-key')
+  const stripeSecretKey = await getSecret('stripe-secret-key')
+  console.log(stripeSecretKey)
   const stripe = _stripe(stripeSecretKey)
 
   if (data.action === 'create') {

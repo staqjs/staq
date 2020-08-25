@@ -3,8 +3,10 @@ import createStripeCustomerPortalSession from './functions/createStripeCustomerP
 import createStripeCheckoutSession from './functions/createStripeCheckoutSession'
 import onStripeCheckoutSessionCompleted from './functions/onStripeCheckoutSessionCompleted'
 import { initStaq } from '../staq'
+import { getSecret } from './util'
 
 export {
+  getSecret,
   initStaq,
   createStripeCheckoutSession,
   createStripeCustomerPortalSession,

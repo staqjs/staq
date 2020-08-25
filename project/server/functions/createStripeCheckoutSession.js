@@ -27,7 +27,7 @@ async function createCheckoutSession(data, context, stripe) {
 export default functions.https.onCall(async (data, context) => {
   console.log('data', data)
 
-  const stripeSecretKey = getSecret('stripe-secret-key')
+  const stripeSecretKey = await getSecret('stripe-secret-key')
   const stripe = _stripe(stripeSecretKey)
 
   return createCheckoutSession(data, context, stripe)

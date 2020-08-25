@@ -94,18 +94,27 @@ function SignUpForm(props) {
       })
   }
 
-  const createFirebaseUser = (email, password, stripeData, next) => {
+  const getStripeAttributes = (stripeData) => {
     const usePayments = staqConfig.get('payments')
+    const paymentType = staqConfig.get('paymentType')
+    const stripeAttributes = {}
 
-    const stripeAttributes = usePayments
-      ? {
-          stripeCustomerId: _.get(stripeData, 'customer.id'),
-          stripeSubscriptionPriceId: _.get(
-            stripeData,
-            'subscription.items.data[0].price.id'
-          )
-        }
-      : {}
+    if (usePayments) {
+      stripeAttributes.stripeCustomerId = _.get(stripeData, 'customer.id')
+
+      if (paymentType === 'subscription') {
+        stripeAttributes.subscriptionPriceId = _.get(
+          stripeData,
+          'subscription.items.data[0].price.id'
+        )
+      }
+    }
+
+    return stripeAttributes
+  }
+
+  const createFirebaseUser = (email, password, stripeData, next) => {
+    const stripeAttributes = getStripeAttributes(stripeData)
 
     firebase
       .doCreateUserWithEmailAndPassword(email, password)
