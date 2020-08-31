@@ -6,6 +6,7 @@ import staqConfig from '../../../../staq'
 import { withAuth } from '../Session'
 
 import LandingPageBasic from './LandingPageBasic'
+import LandingPageStory from './LandingPageStory'
 
 const getLandingPageComponent = () => {
   const layoutName = staqConfig.get('landingPageLayout')
@@ -13,13 +14,16 @@ const getLandingPageComponent = () => {
     return LandingPageBasic
   }
 
+  if (layoutName === 'Story') {
+    return LandingPageStory
+  }
+
   return LandingPageBasic
 }
 
-const LandingPageComponent = getLandingPageComponent()
-
 function LandingPage(props) {
   const { auth } = props
+  const LandingPageComponent = getLandingPageComponent()
 
   return (
     <StaqStyleProvider>

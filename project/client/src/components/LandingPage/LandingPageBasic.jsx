@@ -156,6 +156,7 @@ const useStyles = makeStyles((theme) => ({
     padding: '0 20px',
     maxWidth: 1200,
     display: 'flex',
+    justifyContent: 'center',
 
     [theme.breakpoints.down('sm')]: {
       flexDirection: 'column',
@@ -187,7 +188,7 @@ function ValueSection(props) {
   const values = staqConfig.get('values') || []
   const title = staqConfig.get('valueSectionTitle') || null
 
-  return (
+  return values.length > 0 ? (
     <div className={classes.valueSection}>
       <Typography className={classes.valueSectionTitle}>{title}</Typography>
 
@@ -203,7 +204,7 @@ function ValueSection(props) {
         })}
       </div>
     </div>
-  )
+  ) : null
 }
 
 function PricingSection() {

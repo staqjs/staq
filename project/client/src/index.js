@@ -1,4 +1,5 @@
 import { SignInPage, SignUpPage, withAuth } from './components/Session'
+import UserSettingsPage from './components/Settings/UserSettingsPage'
 import NavBar from './components/Navigation/NavBar'
 import LandingPage from './components/LandingPage/LandingPage'
 import StaqRoutes, { PrivateRoute } from './components/StaqRoutes'
@@ -14,6 +15,7 @@ export {
   LandingPage,
   SignInPage,
   SignUpPage,
+  UserSettingsPage,
   initStaq,
   withAuth,
   withFirebase,
