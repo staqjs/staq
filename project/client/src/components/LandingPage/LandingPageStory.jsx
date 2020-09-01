@@ -31,7 +31,7 @@ function LandingPageStory(props) {
         </Typography>
 
         <Typography variant='h6' className={classes.paragraph}>
-          You can sign up for free without a credit card to see all the emails that you’ll receive. And when you’re ready to buy, then you can pay and get access to the email course for yourself or a loved one!
+          You can sign up for free without a credit card to see all the emails that you’ll receive. And when you’re ready to buy, then you can pay $5 and get access to the email course for yourself or a loved one!
         </Typography>
 
         <Link className={classes.link} to={ROUTES.SIGN_UP}>
