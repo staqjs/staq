@@ -10,7 +10,6 @@ import staqConfig from '../../../../staq'
 
 import * as ROUTES from '../../constants/routes'
 
-const headerFont = staqConfig.get('headerFont') || "'Montserrat', sans-serif"
 const contentFont = staqConfig.get('contentFont') || "'Rubik', sans-serif"
 
 const useStyles = makeStyles((theme) => ({
@@ -31,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center'
   },
   appTitle: {
-    fontFamily: headerFont,
+    fontFamily: theme.typography.h1.fontFamily,
     fontSize: 26,
 
     [theme.breakpoints.down('xs')]: {
@@ -39,11 +38,13 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   homeLink: {
+    display: 'flex',
+    alignItems: 'center',
     textDecoration: 'none',
     color: 'black',
   },
   signInLink: {
-    fontFamily: contentFont,
+    fontFamily: theme.typography.body1.fontFamily,
     textDecoration: 'none',
     color: 'black',
   },
@@ -64,15 +65,17 @@ const useStyles = makeStyles((theme) => ({
   },
   logoutBtn: {
     textTransform: 'none',
-    marginLeft: 15,
+    marginLeft: 25,
   },
 }))
 
 function HomeLogo() {
   const classes = useStyles()
+  const logo = staqConfig.get('navbarLogo')
 
   return (
     <Link to='/' className={classes.homeLink}>
+      { logo }
       <Typography className={classes.appTitle}>
         {staqConfig.get('siteTitle')}
       </Typography>

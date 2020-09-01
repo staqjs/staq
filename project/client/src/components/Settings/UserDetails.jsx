@@ -13,6 +13,13 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
   },
+  row: {
+    display: 'flex',
+  },
+  input: {
+    width: '100%',
+    marginLeft: 5,
+  },
   title: {
     marginBottom: 10,
   },
@@ -48,12 +55,18 @@ function UserDetails(props) {
         User Details
       </Typography>
       <form className={classes.form}>
-        <input
-          value={userDetails.email}
-          type="email"
-          required={true}
-          disabled={true}
-        />
+
+        <div className={classes.row}>
+          Email:
+
+          <input
+            className={classes.input}
+            value={userDetails.email}
+            type="email"
+            required={true}
+            disabled={true}
+          />
+        </div>
 
       </form>
     </div>
