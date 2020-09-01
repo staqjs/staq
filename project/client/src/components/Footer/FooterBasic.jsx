@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
   columns: {
     display: 'flex',
     justifyContent: 'center',
-    height: 500,
+    // height: 500,
   },
   column: {
     paddingLeft: 16,
@@ -97,11 +97,13 @@ function FooterColumn(props) {
       <div className={classes.columnLinks}>
         {
           links.map((link) => {
-            return (
+            return _.startsWith(link, '/') ?
+              (
               <Link key={link.link} to={link.link} className={classes.footerLink}>
                 { link.text }
               </Link>
-            )
+              )
+              : ( <a href={link.link} className={classes.footerLink}> { link.text } </a> )
           })
         }
       </div>

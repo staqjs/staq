@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
   container: {
     display: 'flex',
     justifyContent: 'center',
-    marginBottom: 30
+    height: 'calc(100vh - 179px)'
   },
   form: {
     display: 'flex',
@@ -31,8 +31,15 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: 10
   },
   submitBtn: {
-    textTransform: 'none',
-    fontWeight: 600
+    // textTransform: 'none',
+    // fontWeight: 400,
+    '&:hover': {
+      backgroundColor: '#286a81'
+    },
+    width: 150,
+    height: 40,
+    marginTop: 20,
+    alignSelf: 'center'
   }
 }))
 
