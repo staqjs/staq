@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 26,
 
     [theme.breakpoints.down('xs')]: {
-      fontSize: 22,
+      fontSize: 18,
     },
   },
   homeLink: {

@@ -10,7 +10,7 @@ import { withAuth } from './context'
 import staqConfig from '../../../../staq'
 
 const useStyles = makeStyles((theme) => ({
-  container: {
+  signInContainer: {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -70,7 +70,7 @@ function SignInPage(props) {
         auth.currentUser
           ? <Redirect to={staqConfig.get('userHome') || '/'} />
           : (
-            <div className={classes.container}>
+            <div className={classes.signInContainer}>
               <Link to="/">
                 <FavoriteTwoToneIcon className={classes.icon} />
               </Link>

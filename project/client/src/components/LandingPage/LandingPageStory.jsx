@@ -65,8 +65,8 @@ const useStyles = makeStyles((theme) => ({
     position: 'relative',
     alignItems: 'stretch',
     backgroundColor: '#ffffff',
-    minHeight: 1000,
-    height: 'calc(100vh - 178px)',
+    minHeight: 'calc(100vh - 178px)',
+    height: 'fit-content',
   },
   headerRow: {
     display: 'flex',
@@ -78,6 +78,11 @@ const useStyles = makeStyles((theme) => ({
     width: 50,
     height: 50,
     marginRight: 15,
+
+    [theme.breakpoints.down('md')]: {
+      width: 30,
+      height: 30,
+    }
   },
   imageContainer: {
     flexGrow: 0,
@@ -102,6 +107,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: 0,
   },
   textSection: {
+    display: 'flex',
     alignSelf: 'center',
     flexGrow: 1,
     flexShrink: 1,
@@ -110,12 +116,20 @@ const useStyles = makeStyles((theme) => ({
     padding: 150,
     justifyContent: 'center',
     margin: '0 auto',
+
+    [theme.breakpoints.down('md')]: {
+      padding: 40,
+    }
   },
   title: {
     fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
     fontWeight: 400,
     color: '#000000',
     fontSize: '3.2rem',
+
+    [theme.breakpoints.down('md')]: {
+      fontSize: '1.5rem'
+    }
   },
   paragraph: {
     fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
