@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { Redirect, Route, useLocation, useHistory } from 'react-router-dom'
+import _ from 'lodash'
+
+import staqConfig from '../../../staq'
 
 import { withAuth, SignInPage, SignUpPage } from './Session'
 import LandingPage from './LandingPage/LandingPage'
@@ -39,15 +42,21 @@ const footerRoutes = ['/', '/demo', '/signin', '/signup']
 function StaqRoutes() {
   const history = useHistory()
   const [pathname, setPathname] = useState(history.location.pathname)
+  const navbarRoutes = staqConfig.get('navbarRoutes')
 
-  useEffect(() => {
-    setPathname(history.location.pathname)
-  }, [history.location.pathname])
+  history.listen((location) => {
+    setPathname(location.pathname)
+  })
 
   return (
     <React.Fragment>
       <ScrollToTop />
-      <NavBar />
+
+      {
+        _.isNil(navbarRoutes)
+          ? <NavBar />
+          : navbarRoutes.includes(pathname) ? <NavBar /> : null
+      }
 
       <Route exact path={ROUTES.LANDING} component={LandingPage} />
       <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
