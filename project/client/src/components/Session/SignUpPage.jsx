@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles'
-import { Button, TextField } from '@material-ui/core'
+import FavoriteTwoToneIcon from '@material-ui/icons/FavoriteTwoTone'
+import { Button, TextField, Typography } from '@material-ui/core'
 import _ from 'lodash'
 
 import StaqStyleProvider from '../StaqStyleProvider'
@@ -13,15 +14,18 @@ import * as urls from '../../constants/urls'
 const useStyles = makeStyles((theme) => ({
   container: {
     display: 'flex',
+    flexDirection: 'column',
     justifyContent: 'center',
-    height: 'calc(100vh - 179px)'
+    alignItems: 'center',
+    marginBottom: 30,
+    marginTop: 50,
   },
   form: {
     display: 'flex',
     flexDirection: 'column',
     width: '25%',
     maxWidth: 500,
-    marginTop: 100,
+    marginTop: 30,
 
     [theme.breakpoints.down('md')]: {
       width: '80%'
@@ -36,10 +40,33 @@ const useStyles = makeStyles((theme) => ({
     '&:hover': {
       backgroundColor: '#286a81'
     },
-    width: 150,
+    width: '100%',
     height: 40,
     marginTop: 20,
     alignSelf: 'center'
+  },
+  icon: {
+    fill: '#3a9cbd',
+    width: 50,
+    height: 50,
+    marginRight: 15,
+  },
+  title: {
+    fontSize: 32,
+    color: '#3a9cbd'
+  },
+  signinContainer: {
+    display: 'flex',
+    alignSelf: 'center',
+    marginTop: 20,
+  },
+  signinMessage: {
+    marginRight: 5,
+    fontSize: 18,
+  },
+  signinLink: {
+    color: '#3a9cbd',
+    fontSize: 18,
   }
 }))
 
@@ -50,6 +77,14 @@ function SignUpPage(props) {
   return (
     <StaqStyleProvider>
       <div className={classes.container}>
+        <Link to="/">
+          <FavoriteTwoToneIcon className={classes.icon} />
+        </Link>
+
+        <Typography className={classes.title}>
+          Create new account
+        </Typography>
+
         <SignUpForm firebase={firebase} />
       </div>
     </StaqStyleProvider>
@@ -228,6 +263,16 @@ function SignUpForm(props) {
       >
         Sign Up
       </Button>
+
+      <span className={classes.signinContainer}>
+        <Typography className={classes.signinMessage}>
+          Already have an account?
+        </Typography>
+
+        <Link to="/signin" className={classes.signinLink}>
+          Sign in
+        </Link>
+      </span>
 
       {user.error && <p>{user.error.message}</p>}
     </form>

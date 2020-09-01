@@ -1,6 +1,7 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
-import { Redirect } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
+import FavoriteTwoToneIcon from '@material-ui/icons/FavoriteTwoTone'
 import { Button, TextField, Typography } from '@material-ui/core'
 
 import StaqStyleProvider from '../StaqStyleProvider'
@@ -11,15 +12,18 @@ import staqConfig from '../../../../staq'
 const useStyles = makeStyles((theme) => ({
   container: {
     display: 'flex',
+    flexDirection: 'column',
     justifyContent: 'center',
+    alignItems: 'center',
     marginBottom: 30,
+    marginTop: 50,
   },
   form: {
     display: 'flex',
     flexDirection: 'column',
     width: '25%',
     maxWidth: 500,
-    marginTop: 100,
+    marginTop: 30,
 
     [theme.breakpoints.down('md')]: {
       width: '80%',
@@ -29,9 +33,31 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: 10
   },
   submitBtn: {
-    textTransform: 'none',
-    fontWeight: 600,
+    marginTop: 20,
   },
+  icon: {
+    fill: '#3a9cbd',
+    width: 50,
+    height: 50,
+    marginRight: 15,
+  },
+  title: {
+    fontSize: 32,
+    color: '#3a9cbd'
+  },
+  signupContainer: {
+    display: 'flex',
+    alignSelf: 'center',
+    marginTop: 20,
+  },
+  signupMessage: {
+    marginRight: 5,
+    fontSize: 18,
+  },
+  signupLink: {
+    color: '#3a9cbd',
+    fontSize: 18,
+  }
 }))
 
 function SignInPage(props) {
@@ -45,6 +71,15 @@ function SignInPage(props) {
           ? <Redirect to={staqConfig.get('userHome') || '/'} />
           : (
             <div className={classes.container}>
+              <Link to="/">
+                <FavoriteTwoToneIcon className={classes.icon} />
+              </Link>
+
+              <Typography className={classes.title}>
+                Sign in
+              </Typography>
+
+
               <SignInForm firebase={firebase} />
             </div>
           )
@@ -116,6 +151,16 @@ function SignInForm(props) {
       >
         Login
       </Button>
+
+      <span className={classes.signupContainer}>
+        <Typography className={classes.signupMessage}>
+          Don't have an account yet?
+        </Typography>
+
+        <Link to="/signup" className={classes.signupLink}>
+          Sign up
+        </Link>
+      </span>
 
       {error && (
         <Typography className={classes.errorMessage}>{error}</Typography>

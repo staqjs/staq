@@ -1,6 +1,7 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { Typography, Button } from '@material-ui/core'
+import FavoriteTwoToneIcon from '@material-ui/icons/FavoriteTwoTone'
 import { Link } from 'react-router-dom'
 import staqConfig from '../../../../staq'
 import * as ROUTES from '../../constants/routes'
@@ -12,7 +13,10 @@ function LandingPageStory(props) {
   return (
     <div className={classes.container}>
       <div className={classes.textSection}>
-        <Typography variant='h2' className={classes.title} >Self-Care Reminder</Typography>
+        <span className={classes.headerRow}>
+          <FavoriteTwoToneIcon className={classes.icon} />
+          <Typography variant='h2' className={classes.title} >Self-Care Reminder</Typography>
+        </span>
 
         <Typography variant='h6' className={classes.paragraph}>
           The world we live in today is full of things that stress us out. Negativity on the internet makes its way to us all too easily. It seems like there’s no escape. In the midst of all this chaos, we have forgotten ourselves. For many of us taking time out of our day to tend to our own needs is almost an afterthought.
@@ -56,6 +60,17 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     backgroundColor: '#ffffff',
   },
+  headerRow: {
+    display: 'flex',
+    alignItems: 'center',
+    marginBottom: 30,
+  },
+  icon: {
+    fill: '#3a9cbd',
+    width: 50,
+    height: 50,
+    marginRight: 15,
+  },
   image: {
     height: 'calc(100vh - 179px)',
     width: '50%'
@@ -69,12 +84,13 @@ const useStyles = makeStyles(() => ({
     justifyContent: 'center',
   },
   title: {
-    fontFamily: 'Arial',
-    marginBottom: 30,
-    color: '#000000'
+    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+    fontWeight: 400,
+    color: '#000000',
+    fontSize: '3.2rem',
   },
   paragraph: {
-    fontFamily: 'Arial',
+    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
     marginBottom: 20,
     color: '#000000',
     lineHeight: 1.65
