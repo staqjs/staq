@@ -9,7 +9,7 @@ import SettingsCard from './SettingsCard'
 import UserDetails from './UserDetails'
 
 const useStyles = makeStyles((theme) => ({
-  container: {
+  settingsContainer: {
     margin: 0,
     marginLeft: 80,
     paddingLeft: 30,
@@ -66,7 +66,7 @@ function UserSettingsPage(props) {
 
   return (
     <StaqStyleProvider>
-      <div className={classes.container}>
+      <div className={classes.settingsContainer}>
         <div className={classes.content}>
           <div className={classes.settingsMenuColumn}>
             <SettingsMenu React={React} />
