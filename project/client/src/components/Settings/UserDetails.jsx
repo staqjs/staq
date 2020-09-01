@@ -20,8 +20,8 @@ const useStyles = makeStyles((theme) => ({
   },
   input: {
     width: '100%',
-    marginLeft: 5,
-    fontSize: 18,
+    marginLeft: 10,
+    fontSize: 15,
     padding: 5,
   },
   title: {
