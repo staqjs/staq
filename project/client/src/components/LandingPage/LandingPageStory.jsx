@@ -44,21 +44,29 @@ function LandingPageStory(props) {
         </Link>
 
       </div>
-      <img
-        src={staqConfig.get('landingPageImage')}
-        className={classes.image}
-        alt="Photo by Joshua Earl on Unsplash"
-      />
+
+      <div className={classes.imageContainer}>
+        <img
+          src={staqConfig.get('landingPageImage')}
+          className={classes.image}
+          alt="Photo by Joshua Earl on Unsplash"
+        />
+      </div>
     </div>
   )
 }
 
 export default LandingPageStory
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   container: {
     display: 'flex',
+    justifyContent: 'flex-end',
+    position: 'relative',
+    alignItems: 'stretch',
     backgroundColor: '#ffffff',
+    minHeight: 1000,
+    height: 'calc(100vh - 178px)',
   },
   headerRow: {
     display: 'flex',
@@ -71,17 +79,37 @@ const useStyles = makeStyles(() => ({
     height: 50,
     marginRight: 15,
   },
+  imageContainer: {
+    flexGrow: 0,
+    flexShrink: 0,
+    width: '50%',
+    display: 'inline-block',
+    position: 'relative',
+
+    [theme.breakpoints.down('md')]: {
+      display: 'none'
+    }
+  },
   image: {
-    height: 'calc(100vh - 179px)',
-    width: '50%'
+    objectPosition: 'right',
+    objectFit: 'cover',
+    display: 'block',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+    borderRadius: 0,
   },
   textSection: {
-    display: 'flex',
-    flexDirection: 'column',
+    alignSelf: 'center',
+    flexGrow: 1,
+    flexShrink: 1,
     width: '50%',
+    flexDirection: 'column',
     padding: 150,
-    // paddingTop: 0,
     justifyContent: 'center',
+    margin: '0 auto',
   },
   title: {
     fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',

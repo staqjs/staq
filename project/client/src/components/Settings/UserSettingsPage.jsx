@@ -75,7 +75,6 @@ function UserSettingsPage(props) {
           <SettingsCard
             React={React}
             title="My Account"
-            subheader="Edit account details"
           >
             <UserDetails
               React={React}
