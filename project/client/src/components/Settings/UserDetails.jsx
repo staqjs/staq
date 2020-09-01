@@ -3,15 +3,23 @@ import { makeStyles } from '@material-ui/core/styles'
 import { Typography } from '@material-ui/core'
 
 const useStyles = makeStyles((theme) => ({
-  container: {
+  userDetailsContainer: {
     display: 'flex',
     flexDirection: 'column',
     backgroundColor: 'white',
     padding: 20,
+
+    [theme.breakpoints.down('md')]: {
+      flexDirection: 'column',
+      padding: 0,
+      alignItems: 'flex-start',
+      marginTop: 50,
+    }
   },
   form: {
     display: 'flex',
     flexDirection: 'column',
+    width: '100%'
   },
   row: {
     display: 'flex',
@@ -54,7 +62,7 @@ function UserDetails(props) {
   }
 
   return (
-    <div className={classes.container}>
+    <div className={classes.userDetailsContainer}>
       <form className={classes.form}>
         <div className={classes.row}>
           Email:

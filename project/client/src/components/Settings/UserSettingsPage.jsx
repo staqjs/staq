@@ -17,6 +17,11 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     minHeight: '100vh',
+
+    [theme.breakpoints.down('md')]: {
+      margin: 0,
+      padding: 0,
+    }
   },
   heading: {
     display: 'flex',
@@ -34,6 +39,13 @@ const useStyles = makeStyles((theme) => ({
   content: {
     display: 'flex',
     marginTop: 110,
+
+    [theme.breakpoints.down('md')]: {
+      flexDirection: 'column',
+      padding: 0,
+      alignItems: 'flex-start',
+      marginTop: 50,
+    }
   },
   settingsMenuColumn: {
     minWidth: 160,
@@ -68,9 +80,9 @@ function UserSettingsPage(props) {
     <StaqStyleProvider>
       <div className={classes.settingsContainer}>
         <div className={classes.content}>
-          <div className={classes.settingsMenuColumn}>
-            <SettingsMenu React={React} />
-          </div>
+          {/* <div className={classes.settingsMenuColumn}>
+              <SettingsMenu React={React} />
+              </div> */}
 
           <SettingsCard
             React={React}

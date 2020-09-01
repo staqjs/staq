@@ -7,6 +7,12 @@ const useStyles = makeStyles((theme) => ({
     width: '50%',
     maxWidth: 1200,
     minWidth: 600,
+
+    [theme.breakpoints.down('md')]: {
+      width: '90%',
+      minWidth: 0,
+      alignSelf: 'center',
+    }
   },
   header: {
     backgroundColor: theme.palette.primary.main,
