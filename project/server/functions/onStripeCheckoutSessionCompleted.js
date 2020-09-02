@@ -33,7 +33,9 @@ export default functions.https.onRequest(async (req, res) => {
   const stripeSecretKey = await getSecret('stripe-secret-key')
   const stripe = _stripe(stripeSecretKey)
 
-  endpointSecret = staqConfig.get('stripeCheckoutSessionCompletedSecret')
+  const secretName = staqConfig.get('stripeCheckoutSessionCompletedSecretName')
+  endpointSecret = await getSecret(secretName)
+
   fulfillOrder = staqConfig.get('stripeFulfillOrder')
 
   onStripeCheckoutSessionCompleted(req, res, stripe)
