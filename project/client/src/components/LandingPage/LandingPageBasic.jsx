@@ -54,8 +54,8 @@ const useStyles = makeStyles((theme) => ({
 
     [theme.breakpoints.down('sm')]: {
       maxWidth: '90%',
-      textAlign: 'left'
-    }
+      textAlign: 'left',
+    },
   },
   tryItOutLink: {
     textDecoration: 'none'
@@ -81,13 +81,13 @@ const useStyles = makeStyles((theme) => ({
     width: '75%',
     maxWidth: 1300
   },
-  valueSection: {
+  featureSection: {
     padding: 20,
     paddingTop: 140,
     paddingBottom: 70,
     margin: '0 auto'
   },
-  valueSectionTitle: {
+  featureSectionTitle: {
     fontFamily: headerFont,
     fontSize: 42,
     fontWeight: 700,
@@ -101,7 +101,7 @@ const useStyles = makeStyles((theme) => ({
       textAlign: 'left'
     }
   },
-  valueCardsContainer: {
+  featureCardsContainer: {
     display: 'flex',
     justifyContent: 'center',
     padding: '0 32px',
@@ -112,7 +112,7 @@ const useStyles = makeStyles((theme) => ({
       alignItems: 'center'
     }
   },
-  valueCard: {
+  featureCard: {
     boxShadow:
       '0px 2px 4px -1px rgba(0,0,0,0.2), 0px 1px 4px 0px rgba(0,0,0,0.14), 0px 2px 4px 0px rgba(0,0,0,0.12)',
     marginRight: 20,
@@ -126,7 +126,7 @@ const useStyles = makeStyles((theme) => ({
       marginRight: 0
     }
   },
-  valueCardTitle: {
+  featureCardTitle: {
     fontFamily: headerFont
   },
   content: {
@@ -138,6 +138,9 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: 140,
     margin: '0 auto'
   },
+  pricingSectionHeader: {
+    marginBottom: 40,
+  },
   pricingSectionTitle: {
     fontFamily: headerFont,
     fontSize: 42,
@@ -145,12 +148,15 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: '70%',
     textAlign: 'center',
     margin: 'auto',
-    marginBottom: 40,
 
     [theme.breakpoints.down('sm')]: {
       maxWidth: '90%',
       textAlign: 'left'
-    }
+    },
+  },
+  pricingSectionSubheader: {
+    display: 'flex',
+    justifyContent: 'center',
   },
   pricingCardsContainer: {
     padding: '0 20px',
@@ -165,16 +171,16 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-function ValueCard(props) {
+function FeatureCard(props) {
   const classes = useStyles()
   const { title, text } = props
 
   return (
-    <Card className={classes.valueCard}>
+    <Card className={classes.featureCard}>
       <CardHeader
         title={title}
         titleTypographyProps={{
-          className: classes.valueCardTitle
+          className: classes.featureCardTitle
         }}
         className={classes.header}
       />
@@ -183,22 +189,22 @@ function ValueCard(props) {
   )
 }
 
-function ValueSection(props) {
+function FeatureSection(props) {
   const classes = useStyles()
-  const values = staqConfig.get('values') || []
-  const title = staqConfig.get('valueSectionTitle') || null
+  const features = staqConfig.get('features') || []
+  const title = staqConfig.get('featureSectionTitle') || null
 
-  return values.length > 0 ? (
-    <div className={classes.valueSection}>
-      <Typography className={classes.valueSectionTitle}>{title}</Typography>
+  return features.length > 0 ? (
+    <div className={classes.featureSection}>
+      <Typography className={classes.featureSectionTitle}>{title}</Typography>
 
-      <div className={classes.valueCardsContainer}>
-        {values.map((value) => {
+      <div className={classes.featureCardsContainer}>
+        {features.map((feature) => {
           return (
-            <ValueCard
-              key={value.title}
-              title={value.title}
-              text={value.text}
+            <FeatureCard
+              key={feature.title}
+              title={feature.title}
+              text={feature.text}
             />
           )
         })}
@@ -211,10 +217,14 @@ function PricingSection() {
   const classes = useStyles()
   const plans = staqConfig.get('plans') || []
   const title = staqConfig.get('pricingSectionTitle') || null
+  const subheader = staqConfig.get('pricingSectionSubheader') || null
 
   return (
     <div className={classes.pricingSection}>
-      <Typography className={classes.pricingSectionTitle}>{title}</Typography>
+      <div className={classes.pricingSectionHeader}>
+        <Typography className={classes.pricingSectionTitle}>{title}</Typography>
+        <Typography className={classes.pricingSectionSubheader}>{subheader}</Typography>
+      </div>
 
       <div className={classes.pricingCardsContainer}>
         {plans.map((plan) => {
@@ -276,7 +286,7 @@ function LandingPageBasic() {
         )}
       </div>
 
-      <ValueSection />
+      <FeatureSection />
 
       <PricingSection />
     </div>

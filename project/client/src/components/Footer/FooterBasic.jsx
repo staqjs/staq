@@ -103,7 +103,7 @@ function FooterColumn(props) {
                 { link.text }
               </Link>
               )
-              : ( <a href={link.link} className={classes.footerLink}> { link.text } </a> )
+              : ( <a key={link.link} href={link.link} className={classes.footerLink}> { link.text } </a> )
           })
         }
       </div>

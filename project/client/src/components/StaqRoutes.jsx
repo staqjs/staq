@@ -4,7 +4,7 @@ import _ from 'lodash'
 
 import staqConfig from '../../../staq'
 
-import { withAuth, SignInPage, SignUpPage } from './Session'
+import { withAuth, SignInPage, SignUpPage, ForgotPasswordPage } from './Session'
 import LandingPage from './LandingPage/LandingPage'
 import Footer from './Footer/Footer'
 import NavBar from './Navigation/NavBar'
@@ -37,7 +37,7 @@ function PrivateRouteBase({ component: Component, auth, ...rest }) {
   )
 }
 
-const footerRoutes = ['/', '/demo', '/signin', '/signup']
+const footerRoutes = ['/', '/demo', '/signin', '/signup', '/forgot-password']
 
 function StaqRoutes() {
   const history = useHistory()
@@ -61,6 +61,7 @@ function StaqRoutes() {
       <Route exact path={ROUTES.LANDING} component={LandingPage} />
       <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
       <Route path={ROUTES.SIGN_IN} component={SignInPage} />
+      <Route path={ROUTES.FORGOT_PASSWORD} component={ForgotPasswordPage} />
 
       <PrivateRoute path={ROUTES.USER_SETTINGS} component={UserSettingsPage} />
       <PrivateRoute

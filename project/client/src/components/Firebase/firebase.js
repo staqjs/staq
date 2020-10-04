@@ -87,7 +87,7 @@ class Firebase {
       ...document
     })
 
-  updateDocument = (uid, collectionName, documentId, updateFields) => {
+  updateDocument = (collectionName, documentId, updateFields) => {
     return this.db
       .collection(collectionName)
       .doc(documentId)

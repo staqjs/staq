@@ -1,4 +1,5 @@
 import React from 'react'
+import _ from 'lodash'
 
 import { withFirebase } from '../Firebase'
 
@@ -46,6 +47,22 @@ class AuthProvider extends React.Component {
     })
   }
 
+  update = (newFields) => {
+    const { firebase } = this.props
+
+    firebase
+      .user(this.state.currentUser.uid)
+      .update(newFields)
+      .then(() => {
+        const currentUser = {
+          ...this.state.currentUser,
+          ...newFields
+        }
+        localStorage.setItem('currentUser', JSON.stringify(currentUser))
+        this.setState({ currentUser })
+      })
+  }
+
   onLogout = (newCallbackOnLogout) => {
     this.setState({
       onLogoutCallback: newCallbackOnLogout
@@ -54,13 +71,15 @@ class AuthProvider extends React.Component {
 
   render() {
     const { children } = this.props
+    const { currentUser } = this.state
 
     return (
       <AuthContext.Provider
         value={{
-          currentUser: this.state.currentUser,
+          currentUser,
           reload: this.reload,
-          onLogout: this.onLogout
+          onLogout: this.onLogout,
+          update: this.update,
         }}
       >
         {children}

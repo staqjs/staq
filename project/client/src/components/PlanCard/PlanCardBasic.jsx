@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import {
   Button,
   Card,
+  CardActions,
   CardHeader,
   CardContent,
   Typography,
@@ -18,6 +19,9 @@ const contentFont = staqConfig.get('contentFont') || "'Rubik', sans-serif"
 
 const useStyles = makeStyles((theme) => ({
   card: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
     boxShadow:
       '0px 2px 4px -1px rgba(0,0,0,0.2), 0px 1px 4px 0px rgba(0,0,0,0.14), 0px 2px 4px 0px rgba(0,0,0,0.12)',
     marginRight: 20,
@@ -30,6 +34,8 @@ const useStyles = makeStyles((theme) => ({
       marginBottom: 20,
       marginRight: 0
     }
+  },
+  planCardActions: {
   },
   title: {
     fontFamily: headerFont
@@ -63,7 +69,8 @@ const useStyles = makeStyles((theme) => ({
     marginRight: 10
   },
   getStartedLink: {
-    textDecoration: 'none'
+    textDecoration: 'none',
+    width: '100%',
   },
   getStartedBtn: {
     width: '100%',
@@ -121,7 +128,9 @@ function PlanCardBasic(props) {
             )
           })}
         </List>
+      </CardContent>
 
+      <CardActions className={classes.planCardActions}>
         <Link to='/signup' className={classes.getStartedLink}>
           <Button
             color='primary'
@@ -131,7 +140,7 @@ function PlanCardBasic(props) {
             Get Started
           </Button>
         </Link>
-      </CardContent>
+      </CardActions>
     </Card>
   )
 }

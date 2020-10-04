@@ -2,11 +2,12 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 
 import { withAuth } from '../Session'
+import { withFirebase } from '../Firebase'
 
 import StaqStyleProvider from '../StaqStyleProvider'
-import SettingsMenu from './SettingsMenu'
 import SettingsCard from './SettingsCard'
 import UserDetails from './UserDetails'
+import Password from '../PasswordReset/Password'
 
 const useStyles = makeStyles((theme) => ({
   settingsContainer: {
@@ -55,7 +56,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-
 function UserSettingsPage(props) {
   const classes = useStyles()
   const { auth, firebase } = props
@@ -67,6 +67,14 @@ function UserSettingsPage(props) {
   }
 
   const sendPasswordResetEmail = () => {
+    const userEmail = auth.currentUser.email
+    firebase.auth.sendPasswordResetEmail(userEmail)
+      .then(() => {
+        setPasswordResetMessage(`Sent reset instructions to ${userEmail}`)
+      })
+      .catch(() => {
+        setPasswordResetMessage('Error sending reset email')
+      })
   }
 
   const setUserDetailsField = (fieldName, value) => {
@@ -94,6 +102,12 @@ function UserSettingsPage(props) {
               setUserDetailsField={setUserDetailsField}
               saveUserDetails={saveUserDetails}
             />
+
+            <Password
+              passwordResetMessage={passwordResetMessage}
+              sendPasswordResetEmail={sendPasswordResetEmail}
+            />
+
           </SettingsCard>
         </div>
       </div>
@@ -101,4 +115,4 @@ function UserSettingsPage(props) {
   )
 }
 
-export default withAuth(UserSettingsPage)
+export default withFirebase(withAuth(UserSettingsPage))

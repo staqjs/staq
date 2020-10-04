@@ -1,7 +1,6 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { Link, Redirect } from 'react-router-dom'
-import FavoriteTwoToneIcon from '@material-ui/icons/FavoriteTwoTone'
 import { Button, TextField, Typography } from '@material-ui/core'
 
 import StaqStyleProvider from '../StaqStyleProvider'
@@ -10,7 +9,7 @@ import { withAuth } from './context'
 import staqConfig from '../../../../staq'
 
 const useStyles = makeStyles((theme) => ({
-  signInContainer: {
+  forgotPasswordContainer: {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -57,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }))
 
-function SignInPageBase(props) {
+function ForgotPasswordPageBase(props) {
   const classes = useStyles()
   const { auth, firebase } = props
   const Logo = staqConfig.get('logo') || null
@@ -68,7 +67,7 @@ function SignInPageBase(props) {
         auth.currentUser
           ? <Redirect to={staqConfig.get('userHome') || '/'} />
           : (
-            <div className={classes.signInContainer}>
+            <div className={classes.forgotPasswordContainer}>
               {
                 Logo
                   ? (
@@ -80,11 +79,11 @@ function SignInPageBase(props) {
               }
 
               <Typography className={classes.title}>
-                Sign in
+                Reset Password
               </Typography>
 
 
-              <SignInForm firebase={firebase} />
+              <ForgotPasswordForm firebase={firebase} />
             </div>
           )
       }
@@ -92,38 +91,26 @@ function SignInPageBase(props) {
   )
 }
 
-function SignInForm(props) {
+function ForgotPasswordForm(props) {
   const classes = useStyles()
   const { firebase } = props
 
   const [email, setEmail] = React.useState('')
-  const [password, setPassword] = React.useState('')
   const [error, setError] = React.useState('')
 
-  const resetState = () => {
-    setEmail('')
-    setPassword('')
-    setError(null)
-  }
-
   const onSubmit = (event) => {
-    firebase
-      .doSignInWithEmailAndPassword(email, password)
+    firebase.auth.sendPasswordResetEmail(email)
       .then(() => {
-        resetState()
+        setError(`Sent reset instructions to ${email}`)
       })
-      .catch((error) => {
-        setError('Please enter a valid username and password.')
+      .catch(() => {
+        setError('Error sending reset email')
       })
     event.preventDefault()
   }
 
   const onChangeEmail = (event) => {
     setEmail(event.target.value)
-  }
-
-  const onChangePassword = (event) => {
-    setPassword(event.target.value)
   }
 
   return (
@@ -139,38 +126,14 @@ function SignInForm(props) {
           style: { boxShadow: 'none' }
         }}
       />
-      <TextField
-        className={classes.input}
-        label='Password'
-        value={password}
-        onChange={onChangePassword}
-        type='password'
-        inputProps={{ required: true, style: { boxShadow: 'none' } }}
-      />
       <Button
         variant='contained'
         color='primary'
         className={classes.submitBtn}
         type='submit'
       >
-        Login
+        Send reset instructions
       </Button>
-
-      <span className={classes.signupContainer}>
-        <Typography className={classes.signupMessage}>
-          Don't have an account yet?
-        </Typography>
-
-        <Link to="/signup" className={classes.signupLink}>
-          Sign up
-        </Link>
-      </span>
-
-      <span className={classes.signupContainer}>
-        <Link to="/forgot-password" className={classes.signupLink}>
-          Forgot password?
-        </Link>
-      </span>
 
       {error && (
         <Typography className={classes.errorMessage}>{error}</Typography>
@@ -179,12 +142,12 @@ function SignInForm(props) {
   )
 }
 
-function SignInPage(props) {
+function ForgotPasswordPage(props) {
   return (
     <StaqStyleProvider>
-      <SignInPageBase {...props} />
+      <ForgotPasswordPageBase {...props} />
     </StaqStyleProvider>
   )
 }
 
-export default withFirebase(withAuth(SignInPage))
+export default withFirebase(withAuth(ForgotPasswordPage))

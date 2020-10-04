@@ -2,6 +2,7 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { Link, useHistory } from 'react-router-dom'
 import { Button, Typography } from '@material-ui/core'
+import _ from 'lodash'
 
 import StaqStyleProvider from '../StaqStyleProvider'
 import { withFirebase } from '../Firebase'
@@ -71,11 +72,15 @@ const useStyles = makeStyles((theme) => ({
 
 function HomeLogo() {
   const classes = useStyles()
-  const logo = staqConfig.get('navbarLogo')
+  const Logo = staqConfig.get('logo') || null
 
   return (
     <Link to='/' className={classes.homeLink}>
-      { logo }
+      {
+        _.isNil(Logo)
+          ? null
+          :<Logo width={30} height={30} />
+      }
       <Typography className={classes.appTitle}>
         {staqConfig.get('siteTitle')}
       </Typography>

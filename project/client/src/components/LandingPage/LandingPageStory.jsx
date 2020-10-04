@@ -75,8 +75,8 @@ const useStyles = makeStyles((theme) => ({
   },
   icon: {
     fill: '#3a9cbd',
-    width: 50,
-    height: 50,
+    width: 45,
+    height: 45,
     marginRight: 15,
 
     [theme.breakpoints.down('md')]: {
@@ -125,7 +125,7 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
     fontWeight: 400,
     color: '#000000',
-    fontSize: '3.2rem',
+    fontSize: '2.2rem',
 
     [theme.breakpoints.down('md')]: {
       fontSize: '1.5rem'

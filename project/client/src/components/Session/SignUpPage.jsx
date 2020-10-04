@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
     // textTransform: 'none',
     // fontWeight: 400,
     '&:hover': {
-      backgroundColor: '#286a81'
+      backgroundColor: theme.palette.primary.dark,
     },
     width: '100%',
     height: 40,
@@ -46,14 +46,11 @@ const useStyles = makeStyles((theme) => ({
     alignSelf: 'center'
   },
   icon: {
-    fill: '#3a9cbd',
-    width: 50,
-    height: 50,
     marginRight: 15,
   },
   title: {
     fontSize: 32,
-    color: '#3a9cbd'
+    color: theme.palette.primary.main,
   },
   signinContainer: {
     display: 'flex',
@@ -65,21 +62,28 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 18,
   },
   signinLink: {
-    color: '#3a9cbd',
+    color: theme.palette.primary.main,
     fontSize: 18,
   }
 }))
 
-function SignUpPage(props) {
+function SignUpPageBase(props) {
   const classes = useStyles()
   const { firebase } = props
+  const Logo = staqConfig.get('logo') || null
 
   return (
     <StaqStyleProvider>
       <div className={classes.container}>
-        <Link to="/">
-          <FavoriteTwoToneIcon className={classes.icon} />
-        </Link>
+        {
+          Logo
+            ? (
+              <Link to="/">
+                <Logo className={classes.icon} width={50} height={50} />
+              </Link>
+            )
+            : null
+        }
 
         <Typography className={classes.title}>
           Create new account
@@ -164,16 +168,13 @@ function SignUpForm(props) {
         return firebase.user(currentUser.user.uid).set({
           email,
           uid: currentUser.user.uid,
-          ...stripeAttributes
+          ...stripeAttributes,
         })
-      })
-      // .then(() => {
-      //   return firebase.doSendEmailVerification()
-      // })
-      .then(() => {
-        setUser({ ...INITIAL_STATE })
-        next(user)
-        history.push(staqConfig.get('userHome') || '/')
+          .then(() => {
+            setUser({ ...INITIAL_STATE })
+            next(user)
+            history.push(staqConfig.get('userHome') || '/')
+          })
       })
       .catch((error) => {
         setUser({ ...user, error })
@@ -276,6 +277,14 @@ function SignUpForm(props) {
 
       {user.error && <p>{user.error.message}</p>}
     </form>
+  )
+}
+
+function SignUpPage(props) {
+  return (
+    <StaqStyleProvider>
+      <SignUpPageBase {...props} />
+    </StaqStyleProvider>
   )
 }
 

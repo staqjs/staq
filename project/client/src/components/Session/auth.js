@@ -1,3 +1,5 @@
+import _ from 'lodash'
+
 class Auth {
   constructor(firebase) {
     this.firebase = firebase
@@ -17,7 +19,6 @@ class Auth {
       () => {
         localStorage.removeItem('currentUser')
         this.currentUser = null
-        console.log(this.currentUser)
         this.onLogoutCallback()
       }
     )
@@ -29,6 +30,17 @@ class Auth {
 
   reload = () => {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'))
+  }
+
+  update = (newFields) => {
+    this
+      .firebase.user(this.currentUser.uid)
+      .update(newFields)
+      .then(() => {
+        const currentUser = _.merge({}, this.currentUser, newFields)
+        localStorage.setItem('currentUser', JSON.stringify(currentUser))
+        this.currentUser = currentUser
+      })
   }
 }
 
