@@ -7,6 +7,7 @@ import { withAuth } from '../Session'
 
 import LandingPageBasic from './LandingPageBasic'
 import LandingPageStory from './LandingPageStory'
+import LandingPageSaaS from './LandingPageSaaS'
 
 const getLandingPageComponent = () => {
   const layoutName = staqConfig.get('landingPageLayout')
@@ -16,6 +17,10 @@ const getLandingPageComponent = () => {
 
   if (layoutName === 'Story') {
     return LandingPageStory
+  }
+
+  if (layoutName === 'SaaS') {
+    return LandingPageSaaS
   }
 
   return LandingPageBasic
