@@ -14,7 +14,7 @@ import {
 import staqConfig from '../../../../staq'
 import * as ROUTES from '../../constants/routes'
 
-import PlanCard from '../PlanCard/PlanCard'
+import PlanCard from '../../components/PlanCard/PlanCard'
 
 const headerFont = staqConfig.get('headerFont') || "'Montserrat', sans-serif"
 const contentFont = staqConfig.get('contentFont') || "'Rubik', sans-serif"

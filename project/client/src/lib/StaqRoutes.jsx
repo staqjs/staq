@@ -4,12 +4,9 @@ import _ from 'lodash'
 
 import staqConfig from '../../../staq'
 
-import { withAuth, SignInPage, SignUpPage, ForgotPasswordPage } from './Session'
-import LandingPage from './LandingPage/LandingPage'
-import Footer from './Footer/Footer'
-import NavBar from './Navigation/NavBar'
-import UserSettingsPage from './Settings/UserSettingsPage'
-import BillingSettingsPage from './Settings/BillingSettingsPage'
+import LandingPage from '../pages/LandingPage/LandingPage'
+import Footer from '../components/Footer/Footer'
+import NavBar from '../components/Navigation/NavBar'
 import * as ROUTES from '../constants/routes'
 
 function ScrollToTop() {
@@ -59,22 +56,14 @@ function StaqRoutes() {
       }
 
       <Route exact path={ROUTES.LANDING} component={LandingPage} />
-      <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
-      <Route path={ROUTES.SIGN_IN} component={SignInPage} />
-      <Route path={ROUTES.FORGOT_PASSWORD} component={ForgotPasswordPage} />
 
-      <PrivateRoute path={ROUTES.USER_SETTINGS} component={UserSettingsPage} />
-      <PrivateRoute
-        path={ROUTES.BILLING_SETTINGS}
-        component={BillingSettingsPage}
-      />
 
       {footerRoutes.includes(pathname) ? <Footer /> : null}
     </React.Fragment>
   )
 }
 
-const PrivateRoute = withAuth(PrivateRouteBase)
+const PrivateRoute = PrivateRouteBase
 
 export default StaqRoutes
 export { PrivateRoute }

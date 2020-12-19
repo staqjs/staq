@@ -1,9 +1,8 @@
 import React from 'react'
 import _ from 'lodash'
-import Firebase, { FirebaseContext } from './components/Firebase'
-import { AuthProvider } from './components/Session'
+import Firebase, { FirebaseContext } from './Firebase'
 import StripeProvider from './withStripe'
-import staqConfig from '../../staq'
+import staqConfig from '../../../staq'
 
 export default (children) => {
   const firebase = new Firebase(staqConfig.get('firebaseConfig'))
@@ -12,7 +11,7 @@ export default (children) => {
   return (
     <FirebaseContext.Provider value={firebase}>
       <StripeProvider>
-        <AuthProvider>{children}</AuthProvider>
+        {children}
       </StripeProvider>
     </FirebaseContext.Provider>
   )

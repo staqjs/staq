@@ -1,16 +1,15 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
 
-import StaqStyleProvider from '../StaqStyleProvider'
+import StaqStyleProvider from '../../lib/StaqStyleProvider'
 import staqConfig from '../../../../staq'
-import { withAuth } from '../Session'
 
 import LandingPageBasic from './LandingPageBasic'
 import LandingPageStory from './LandingPageStory'
 import LandingPageSaaS from './LandingPageSaaS'
 
 const getLandingPageComponent = () => {
-  const layoutName = staqConfig.get('landingPageLayout')
+  const layoutName = staqConfig.get('Template.Name')
   if (layoutName === 'Basic') {
     return LandingPageBasic
   }
@@ -32,13 +31,9 @@ function LandingPage(props) {
 
   return (
     <StaqStyleProvider>
-      {auth.currentUser ? (
-        <Redirect to={staqConfig.get('userHome') || '/'} />
-      ) : (
-        <LandingPageComponent {...props} />
-      )}
+      <LandingPageComponent {...props} />
     </StaqStyleProvider>
   )
 }
 
-export default withAuth(LandingPage)
+export default LandingPage

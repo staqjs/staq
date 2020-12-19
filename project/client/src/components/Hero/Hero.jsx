@@ -104,6 +104,7 @@ const useStyles = makeStyles({
 
 function Hero(props) {
   const classes = useStyles()
+  const { primaryText, secondaryText, image } = props
 
   return (
     <div className={classes.heroSection}>
@@ -112,13 +113,13 @@ function Hero(props) {
           <div className={classes.heroText}>
             <div className={classes.heroTextPrimaryContainer}>
               <h1 className={classes.heroTextPrimary}>
-                { staqConfig.get('landingPageHeader') }
+                { primaryText }
               </h1>
             </div>
 
             <div className={classes.heroTextSecondaryContainer}>
               <div className={classes.heroTextSecondary}>
-                { staqConfig.get('landingPageSubheader') }
+                { secondaryText }
               </div>
             </div>
 
@@ -138,7 +139,7 @@ function Hero(props) {
           </div>
           <div className={classes.heroImageContainer}>
             <img
-              src={staqConfig.get('landingPageImage')}
+              src={image}
               className={classes.heroImage}
             />
           </div>

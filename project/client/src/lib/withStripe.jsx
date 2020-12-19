@@ -1,7 +1,7 @@
 import React from 'react'
 import { loadStripe } from '@stripe/stripe-js'
 import { Elements, useStripe } from '@stripe/react-stripe-js'
-import staqConfig from '../../staq'
+import staqConfig from '../../../staq'
 
 const noop = () => {}
 

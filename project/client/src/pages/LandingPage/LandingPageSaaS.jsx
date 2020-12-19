@@ -14,7 +14,8 @@ import {
 import staqConfig from '../../../../staq'
 import * as ROUTES from '../../constants/routes'
 
-import Hero from '../Hero/Hero'
+import Hero from '../../components/Hero/Hero'
+import Benefits from '../../components/Benefits/Benefits'
 
 const headerFont = staqConfig.get('headerFont') || "'Montserrat', sans-serif"
 const contentFont = staqConfig.get('contentFont') || "'Rubik', sans-serif"
@@ -33,12 +34,21 @@ function LandingPageSaaS() {
   const classes = useStyles()
   const theme = useTheme()
 
+  const heroPrimaryText = staqConfig.get('Template.Config.Hero.PrimaryText')
+  const heroSecondaryText = staqConfig.get('Template.Config.Hero.SecondaryText')
+  const heroImage = staqConfig.get('Template.Config.Hero.Image')
+
+  const benefits = staqConfig.get('Template.Config.Benefits', [])
+
   return (
     <div className={classes.pageContents}>
       <Hero
-        primaryText="This site is built w/ Staq"
-        secondaryText="Landing page, user flows, and subscription billing in < 100 lines of code"
+        primaryText={heroPrimaryText}
+        secondaryText={heroSecondaryText}
+        image={heroImage}
       />
+
+      <Benefits benefits={benefits} />
     </div>
   )
 }

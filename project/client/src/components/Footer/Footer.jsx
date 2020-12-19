@@ -1,6 +1,6 @@
 import React from 'react'
 
-import StaqStyleProvider from '../StaqStyleProvider'
+import StaqStyleProvider from '../../lib/StaqStyleProvider'
 import staqConfig from '../../../../staq'
 
 import FooterBasic from './FooterBasic'
