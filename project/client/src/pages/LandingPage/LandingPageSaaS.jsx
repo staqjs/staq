@@ -16,6 +16,7 @@ import * as ROUTES from '../../constants/routes'
 
 import Hero from '../../components/Hero/Hero'
 import Benefits from '../../components/Benefits/Benefits'
+import CallToAction from '../../components/CallToAction/CallToAction'
 
 const headerFont = staqConfig.get('headerFont') || "'Montserrat', sans-serif"
 const contentFont = staqConfig.get('contentFont') || "'Rubik', sans-serif"
@@ -40,6 +41,8 @@ function LandingPageSaaS() {
 
   const benefits = staqConfig.get('Template.Config.Benefits', [])
 
+  const callToAction = staqConfig.get('Template.Config.CallToAction', {})
+
   return (
     <div className={classes.pageContents}>
       <Hero
@@ -49,6 +52,11 @@ function LandingPageSaaS() {
       />
 
       <Benefits benefits={benefits} />
+
+      <CallToAction
+        PrimaryText={callToAction.PrimaryText}
+        SecondaryText={callToAction.SecondaryText}
+      />
     </div>
   )
 }

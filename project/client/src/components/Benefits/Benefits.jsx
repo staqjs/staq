@@ -83,7 +83,7 @@ function BenefitsBox(props) {
 }
 
 
-function Benefits (props) {
+function Benefits(props) {
   const classes = useStyles()
   const { benefits } = props
 
@@ -99,6 +99,7 @@ function Benefits (props) {
                   {
                     benefits.map((benefit) => (
                       <BenefitsBox
+                        key={benefit.miniTitle}
                         miniTitle={benefit.miniTitle}
                         title={benefit.title}
                         message={benefit.message}
