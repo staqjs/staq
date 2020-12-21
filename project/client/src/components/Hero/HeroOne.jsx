@@ -1,5 +1,6 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
+import { Link } from 'react-router-dom'
 
 const useStyles = makeStyles((theme) => ({
   heroSection: {
@@ -79,6 +80,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     cursor: 'pointer',
     fontFamily: "'IBM Plex Mono', sans-serif",
+    textDecoration: 'none',
   },
   heroSecondaryAction: {
     marginLeft: 12,
@@ -98,12 +100,16 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     cursor: 'pointer',
     fontFamily: "'IBM Plex Mono', sans-serif",
+    textDecoration: 'none',
   }
 }))
 
 function Hero(props) {
   const classes = useStyles()
-  const { primaryText, secondaryText, image } = props
+  const {
+    primaryText, secondaryText, image,
+    primaryLink, secondaryLink,
+  } = props
 
   return (
     <div className={classes.heroSection}>
@@ -124,15 +130,24 @@ function Hero(props) {
 
             <div className={classes.heroActionsContainer}>
               <div className={classes.heroActionsRow}>
-                <a className={classes.heroPrimaryAction}>
-                  <div>Get Started</div>
-                </a>
 
-                <div className={classes.heroSecondaryActionContainer}>
-                  <a className={classes.heroSecondaryAction}>
-                    <div>Learn More</div>
-                  </a>
-                </div>
+                {
+                  primaryLink && (
+                    <Link className={classes.heroPrimaryAction} to={primaryLink.to}>
+                      <div>{ primaryLink.text }</div>
+                    </Link>
+                  )
+                }
+
+                {
+                  secondaryLink && (
+                    <div className={classes.heroSecondaryActionContainer}>
+                      <Link className={classes.heroSecondaryAction} to={secondaryLink.to}>
+                        <div>{ secondaryLink.text }</div>
+                      </Link>
+                    </div>
+                  )
+                }
               </div>
             </div>
           </div>

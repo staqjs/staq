@@ -35,13 +35,20 @@ const useStyles = makeStyles((theme) => ({
     paddingRight: 24,
     paddingLeft: 24,
   },
-  navbarBrand: {
+  navbarBrandLink: {
     float: 'left',
     color: '#333',
     position: 'relative',
     textDecoration: 'none',
     fontSize: 24,
     lineHeight: '24px',
+  },
+  navbarLogo: {
+    marginRight: 10,
+  },
+  navbarBrand: {
+    display: 'flex',
+    alignItems: 'center',
   },
   navbarMenuLinks: {
     justifySelf: 'center',
@@ -95,6 +102,7 @@ function NavBarOne(props) {
   const history = useHistory()
   const { auth, firebase } = props
 
+  const logo = staqConfig.get('Logo')
   const siteTitle = staqConfig.get('SiteTitle')
   const menuLinks = staqConfig.get('Template.Config.Navbar.MenuLinks', [])
   const getStartedLink = staqConfig.get('Template.Config.Navbar.GetStartedLink', '/signup')
@@ -109,8 +117,15 @@ function NavBarOne(props) {
   return (
     <div className={classes.navbar}>
       <div className={classes.navbarContainer}>
-        <Link to="/" className={classes.navbarBrand}>
-          { siteTitle }
+        <Link to="/" className={classes.navbarBrandLink}>
+          <span className={classes.navbarBrand}>
+            {
+              logo && (
+                <img src={logo} className={classes.navbarLogo} />
+              )
+            }
+            { siteTitle }
+          </span>
         </Link>
 
         {

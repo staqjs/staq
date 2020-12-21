@@ -18,7 +18,7 @@ const defaultTheme = createMuiTheme()
 
 export default function StaqStyleProvider(props) {
   const { children } = props
-  const theme = staqConfig.get('theme') || defaultTheme
+  const theme = staqConfig.get('Theme') || defaultTheme
 
   return (
     <ThemeProvider theme={theme}>

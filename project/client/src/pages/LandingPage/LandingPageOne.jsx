@@ -32,22 +32,19 @@ function LandingPageOne() {
   const classes = useStyles()
   const theme = useTheme()
 
-  const heroPrimaryText = staqConfig.get('Template.Config.Hero.PrimaryText')
-  const heroSecondaryText = staqConfig.get('Template.Config.Hero.SecondaryText')
-  const heroImage = staqConfig.get('Template.Config.Hero.Image')
-
+  const hero = staqConfig.get('Template.Config.Hero', {})
   const benefits = staqConfig.get('Template.Config.Benefits', [])
-
   const pricing = staqConfig.get('Template.Config.Pricing', {})
-
   const callToAction = staqConfig.get('Template.Config.CallToAction', {})
 
   return (
     <div className={classes.pageContents}>
       <HeroOne
-        primaryText={heroPrimaryText}
-        secondaryText={heroSecondaryText}
-        image={heroImage}
+        primaryText={hero.PrimaryText}
+        secondaryText={hero.SecondaryText}
+        primaryLink={hero.PrimaryLink}
+        secondaryLink={hero.SecondaryLink}
+        image={hero.Image}
       />
 
       <BenefitsOne benefits={benefits} />
