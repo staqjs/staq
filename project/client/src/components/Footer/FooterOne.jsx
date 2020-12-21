@@ -4,16 +4,15 @@ import { makeStyles } from '@material-ui/core/styles'
 import { Typography } from '@material-ui/core'
 import { Portal } from 'react-portal'
 
-import staqConfig from '../../../../staq'
-
-const headerFont = staqConfig.get('headerFont') || "'Montserrat', sans-serif"
-const contentFont = staqConfig.get('contentFont') || "'Rubik', sans-serif"
-
 const useStyles = makeStyles((theme) => ({
   container: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
     padding: 50,
     paddingBottom: 20,
     backgroundColor: theme.palette.primary.main,
+    minHeight: 500,
   },
   columns: {
     display: 'flex',
@@ -25,7 +24,6 @@ const useStyles = makeStyles((theme) => ({
     paddingRight: 16,
   },
   columnTitle: {
-    fontFamily: headerFont,
     fontWeight: 600,
     color: theme.palette.primary.contrastText,
     textAlign: 'left',
@@ -36,7 +34,6 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
   },
   footerLink: {
-    fontFamily: contentFont,
     fontSize: 14,
     color: theme.palette.primary.contrastText,
     textDecoration: 'none',
@@ -47,7 +44,6 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-between',
   },
   copyright: {
-    fontFamily: contentFont,
     fontSize: 14,
     color: theme.palette.primary.contrastText,
 
@@ -59,7 +55,6 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
   },
   poweredByPrefix: {
-    fontFamily: contentFont,
     fontSize: 14,
     opacity: 0.8,
     marginRight: 5,
@@ -74,7 +69,6 @@ const useStyles = makeStyles((theme) => ({
     textDecoration: 'none',
   },
   poweredByStaq: {
-    fontFamily: contentFont,
     fontSize: 14,
     fontWeight: 600,
     color: theme.palette.primary.contrastText,
@@ -129,21 +123,23 @@ function PoweredByStaq() {
   )
 }
 
-function FooterBasic(props) {
+function FooterOne(props) {
   const classes = useStyles()
-  const footerColumns = staqConfig.get('footerColumns') || []
+  const { columns, copyright, poweredByStaq } = props
+
+  console.log(props)
 
   return (
     <Portal>
       <div className={classes.container}>
         <div className={classes.columns}>
           {
-            footerColumns.map((footerColumn) => {
+            columns.map((column) => {
               return (
                 <FooterColumn
-                  key={footerColumn.title}
-                  title={footerColumn.title}
-                  links={footerColumn.links}
+                  key={column.title}
+                  title={column.title}
+                  links={column.links}
                 />
               )
             })
@@ -153,12 +149,12 @@ function FooterBasic(props) {
         <div className={classes.bottom}>
           <div className={classes.legal}>
             <Typography className={classes.copyright}>
-              &copy; { staqConfig.get('copyright') }
+              &copy; { copyright }
             </Typography>
           </div>
 
           {
-            staqConfig.get('poweredByStaq') || false
+            (poweredByStaq || false)
               ? <PoweredByStaq />
               : null
           }
@@ -168,4 +164,4 @@ function FooterBasic(props) {
   )
 }
 
-export default FooterBasic
+export default FooterOne

@@ -193,9 +193,6 @@ function SignUpForm(props) {
           user.passwordOne,
           response.data,
           (user) => {
-            firebase.logEvent('sign_up', {
-              email: user.contact_email
-            })
             setLoading(false)
           }
         )

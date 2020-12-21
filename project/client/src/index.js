@@ -1,27 +1,30 @@
-import { SignInPage, SignUpPage, withAuth } from './components/Session'
-import UserSettingsPage from './components/Settings/UserSettingsPage'
-import NavBar from './components/Navigation/NavBar'
-import LandingPage from './components/LandingPage/LandingPage'
-import Footer from './components/Footer/Footer'
-import StaqRoutes, { PrivateRoute } from './components/StaqRoutes'
 import { initStaq } from '../../staq'
-import withStaq from './withStaq'
-import { getStripeCheckoutSession, withStripe } from './withStripe'
-import { withFirebase } from './components/Firebase'
+
+// Components
+// NOTE: Not exporting components for now.
+//       Export pages built from components.
+//       Will export components in the future.
+// ...
+
+// Pages
+import LandingPage from './pages/LandingPage/LandingPage'
+
+// Lib
+import withStaq from './lib/withStaq'
+import StaqRoutes, { PrivateRoute } from './lib/StaqRoutes'
+import { getStripeCheckoutSession, withStripe } from './lib/withStripe'
+import { withFirebase } from './lib/Firebase'
+import { withAuth } from './lib/Auth'
+
 
 export {
   PrivateRoute,
   StaqRoutes,
-  NavBar,
   LandingPage,
-  SignInPage,
-  SignUpPage,
-  UserSettingsPage,
   initStaq,
   withAuth,
   withFirebase,
   withStaq,
   withStripe,
   getStripeCheckoutSession,
-  Footer
 }

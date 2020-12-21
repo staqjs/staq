@@ -1,0 +1,151 @@
+import React from 'react'
+import { makeStyles } from '@material-ui/core/styles'
+
+const useStyles = makeStyles((theme) => ({
+  heroSection: {
+    paddingTop: '96px',
+    paddingBottom: '96px',
+    backgroundColor: '#fff',
+  },
+  heroContainer: {
+    width: '100%',
+    maxWidth: '1296px',
+    marginRight: 'auto',
+    marginLeft: 'auto',
+    paddingRight: '24px',
+    paddingLeft: '24px',
+  },
+  gridHalves: {
+    display: 'grid',
+    '-webkit-box-align': 'center',
+    '-webkit-align-items': 'center',
+    '-ms-flex-align': 'center',
+    alignItems: 'center',
+    gridAutoColumns: '1fr',
+    gridColumnGap: '24px',
+    gridRowGap: '16px',
+    '-ms-grid-rows': 'auto',
+    gridTemplateRows: 'auto',
+    gridTemplateColumns: '1fr 1fr',
+  },
+  heroText: {
+    marginRight: 'auto',
+    marginLeft: 'auto',
+    maxWidth: '506px',
+    width: '100%',
+  },
+  heroTextPrimary: {
+    fontSize: '54px',
+    lineHeight: '54px',
+    fontWeight: 700,
+    marginBottom: '24px',
+    fontFamily: "'Space Grotesk', sans-serif",
+  },
+  heroTextSecondary: {
+    fontSize: '20px',
+    lineHeight: '30px',
+    letterSpacing: '-.01em',
+    fontFamily: "'Space Grotesk',sans-serif",
+  },
+  heroImage: {
+    height: 500,
+    borderRadius: 6
+  },
+  heroActionsRow: {
+    display: 'flex',
+    marginTop: '36px',
+    gridColumnGap: 0,
+    gridRowGap: 0,
+    '-ms-grid-columns': '.75fr .75fr',
+    gridTemplateColumns: '.75fr .75fr',
+    '-ms-grid-rows': 'auto',
+    gridTemplateRows: 'auto',
+    gridAutoColumns: '1fr',
+    justifyItems: 'stretch',
+    '-webkit-box-align': 'center',
+    alignItems: 'center',
+  },
+  heroPrimaryAction: {
+    padding: '18px 36px',
+    backgroundColor: theme.palette.primary.main,
+    color: theme.palette.primary.contrastText,
+    display: 'flex',
+    '-webkit-box-pack': 'center',
+    justifyContent: 'center',
+    '-webkit-box-align': 'center',
+    alignItems: 'center',
+    borderRadius: 6,
+    fontWeight: 600,
+    textAlign: 'center',
+    cursor: 'pointer',
+    fontFamily: "'IBM Plex Mono', sans-serif",
+  },
+  heroSecondaryAction: {
+    marginLeft: 12,
+    borderStyle: 'solid',
+    borderWidth: '1px',
+    borderColor: 'rgba(20,20,20,.1)',
+    backgroundColor: 'transparent',
+    color: '#141414',
+    padding: '18px 36px',
+    display: 'flex',
+    '-webkit-box-pack': 'center',
+    justifyContent: 'center',
+    '-webkit-box-align': 'center',
+    alignItems: 'center',
+    borderRadius: 6,
+    fontWeight: 600,
+    textAlign: 'center',
+    cursor: 'pointer',
+    fontFamily: "'IBM Plex Mono', sans-serif",
+  }
+}))
+
+function Hero(props) {
+  const classes = useStyles()
+  const { primaryText, secondaryText, image } = props
+
+  return (
+    <div className={classes.heroSection}>
+      <div className={classes.heroContainer}>
+        <div className={classes.gridHalves}>
+          <div className={classes.heroText}>
+            <div className={classes.heroTextPrimaryContainer}>
+              <h1 className={classes.heroTextPrimary}>
+                { primaryText }
+              </h1>
+            </div>
+
+            <div className={classes.heroTextSecondaryContainer}>
+              <div className={classes.heroTextSecondary}>
+                { secondaryText }
+              </div>
+            </div>
+
+            <div className={classes.heroActionsContainer}>
+              <div className={classes.heroActionsRow}>
+                <a className={classes.heroPrimaryAction}>
+                  <div>Get Started</div>
+                </a>
+
+                <div className={classes.heroSecondaryActionContainer}>
+                  <a className={classes.heroSecondaryAction}>
+                    <div>Learn More</div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className={classes.heroImageContainer}>
+            <img
+              src={image}
+              className={classes.heroImage}
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default Hero

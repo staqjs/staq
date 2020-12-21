@@ -4,6 +4,8 @@ import 'firebase/auth'
 import 'firebase/firestore'
 import 'firebase/functions'
 
+import staqConfig from '../../../../staq'
+
 class Firebase {
   constructor(config) {
     app.initializeApp(config)
@@ -38,7 +40,7 @@ class Firebase {
 
   doSendEmailVerification = () =>
     this.auth.currentUser.sendEmailVerification({
-      url: 'https://checkfox.app'
+      url: staqConfig.get('BaseUrl')
     })
 
   // *** Merge Auth and DB User API *** //

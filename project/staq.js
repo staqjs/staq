@@ -9,8 +9,8 @@ class StaqConfig {
     this.config = config
   }
 
-  get(field) {
-    return _.get(this.config, field)
+  get(field, dflt) {
+    return _.get(this.config, field, dflt)
   }
 
   set(field, value) {
