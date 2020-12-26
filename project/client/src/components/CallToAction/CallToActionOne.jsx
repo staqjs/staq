@@ -33,18 +33,18 @@ const useStyles = makeStyles((theme) => ({
 
 function CallToActionOne(props) {
   const classes = useStyles()
-  const { title, actionText, actionLink } = props
+  const { Title, ActionText, ActionLink } = props
 
   return (
     <div className={classes.ctaContainer}>
       <h2 className={classes.title}>
-        { title }
+        { Title }
       </h2>
 
       <div className={classes.actionRow}>
         <div className={classes.linkContainer}>
-          <Link className={classes.linkBtn} to={actionLink}>
-            { actionText }
+          <Link className={classes.linkBtn} to={ActionLink}>
+            { ActionText }
           </Link>
         </div>
       </div>

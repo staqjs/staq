@@ -49,7 +49,7 @@ function SignUpFormOne(props) {
     })
   }
 
-  const onSubmit = () => {
+  const onSubmit = (e) => {
     setLoading(true)
     signup(state, (res) => {
       setLoading(false)
@@ -57,51 +57,55 @@ function SignUpFormOne(props) {
     }, (error) => {
       setError(error.message)
     })
+
+    e.preventDefault()
   }
 
   return (
     <div className={classes.signupFormContainer}>
       <div className={classes.signupForm}>
-        <div className={classes.inputs}>
-          <TextField
-            value={state.email}
-            onChange={(event) => setField('email', event.target.value)}
-            className={classes.input}
-            label="Email"
-          />
+        <form onSubmit={onSubmit}>
+          <div className={classes.inputs}>
+            <TextField
+              value={state.email}
+              onChange={(event) => setField('email', event.target.value)}
+              className={classes.input}
+              label="Email"
+            />
 
-          <TextField
-            type="password"
-            value={state.password}
-            onChange={(event) => setField('password', event.target.value)}
-            className={classes.input}
-            label="Password"
-          />
+            <TextField
+              type="password"
+              value={state.password}
+              onChange={(event) => setField('password', event.target.value)}
+              className={classes.input}
+              label="Password"
+            />
 
-          <TextField
-            type="password"
-            value={state.passwordConfirmation}
-            onChange={(event) => setField('passwordConfirmation', event.target.value)}
-            className={classes.input}
-            label="Confirm Password"
-          />
-        </div>
+            <TextField
+              type="password"
+              value={state.passwordConfirmation}
+              onChange={(event) => setField('passwordConfirmation', event.target.value)}
+              className={classes.input}
+              label="Confirm Password"
+            />
+          </div>
 
-        <Button
-          color="primary"
-          variant="contained"
-          className={classes.submitBtn}
-          onClick={onSubmit}
-        >
-          Submit
-        </Button>
+          <Button
+            type="submit"
+            color="primary"
+            variant="contained"
+            className={classes.submitBtn}
+          >
+            Submit
+          </Button>
 
-        {
-          error &&
-          (<div className={classes.errorContainer}>
-            <span className={classes.error}>{ error }</span>
-          </div>)
-        }
+          {
+            error &&
+            (<div className={classes.errorContainer}>
+              <span className={classes.error}>{ error }</span>
+            </div>)
+          }
+        </form>
       </div>
     </div>
   )

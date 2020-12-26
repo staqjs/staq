@@ -107,8 +107,8 @@ const useStyles = makeStyles((theme) => ({
 function Hero(props) {
   const classes = useStyles()
   const {
-    primaryText, secondaryText, image,
-    primaryLink, secondaryLink,
+    PrimaryText, SecondaryText, Image,
+    PrimaryLink, SecondaryLink,
   } = props
 
   return (
@@ -118,13 +118,13 @@ function Hero(props) {
           <div className={classes.heroText}>
             <div className={classes.heroTextPrimaryContainer}>
               <h1 className={classes.heroTextPrimary}>
-                { primaryText }
+                { PrimaryText }
               </h1>
             </div>
 
             <div className={classes.heroTextSecondaryContainer}>
               <div className={classes.heroTextSecondary}>
-                { secondaryText }
+                { SecondaryText }
               </div>
             </div>
 
@@ -132,18 +132,18 @@ function Hero(props) {
               <div className={classes.heroActionsRow}>
 
                 {
-                  primaryLink && (
-                    <Link className={classes.heroPrimaryAction} to={primaryLink.to}>
-                      <div>{ primaryLink.text }</div>
+                  PrimaryLink && (
+                    <Link className={classes.heroPrimaryAction} to={PrimaryLink.to}>
+                      <div>{ PrimaryLink.text }</div>
                     </Link>
                   )
                 }
 
                 {
-                  secondaryLink && (
+                  SecondaryLink && (
                     <div className={classes.heroSecondaryActionContainer}>
-                      <Link className={classes.heroSecondaryAction} to={secondaryLink.to}>
-                        <div>{ secondaryLink.text }</div>
+                      <Link className={classes.heroSecondaryAction} to={SecondaryLink.to}>
+                        <div>{ SecondaryLink.text }</div>
                       </Link>
                     </div>
                   )
@@ -153,7 +153,7 @@ function Hero(props) {
           </div>
           <div className={classes.heroImageContainer}>
             <img
-              src={image}
+              src={Image}
               className={classes.heroImage}
             />
           </div>

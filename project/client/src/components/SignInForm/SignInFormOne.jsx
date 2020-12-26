@@ -49,7 +49,7 @@ function SignInFormOne(props) {
     })
   }
 
-  const onSubmit = () => {
+  const onSubmit = (e) => {
     firebase
       .doSignInWithEmailAndPassword(state.email, state.password)
       .then(() => {
@@ -61,43 +61,47 @@ function SignInFormOne(props) {
       .catch((error) => {
         setError('Please enter a valid username and password.')
       })
+
+    e.preventDefault()
   }
 
   return (
     <div className={classes.signInFormContainer}>
       <div className={classes.signInForm}>
-        <div className={classes.inputs}>
-          <TextField
-            value={state.email}
-            onChange={(event) => setField('email', event.target.value)}
-            className={classes.input}
-            label="Email"
-          />
+        <form onSubmit={onSubmit}>
+          <div className={classes.inputs}>
+            <TextField
+              value={state.email}
+              onChange={(event) => setField('email', event.target.value)}
+              className={classes.input}
+              label="Email"
+            />
 
-          <TextField
-            type="password"
-            value={state.password}
-            onChange={(event) => setField('password', event.target.value)}
-            className={classes.input}
-            label="Password"
-          />
-        </div>
+            <TextField
+              type="password"
+              value={state.password}
+              onChange={(event) => setField('password', event.target.value)}
+              className={classes.input}
+              label="Password"
+            />
+          </div>
 
-        <Button
-          color="primary"
-          variant="contained"
-          className={classes.submitBtn}
-          onClick={onSubmit}
-        >
-          Login
-        </Button>
+          <Button
+            type="submit"
+            color="primary"
+            variant="contained"
+            className={classes.submitBtn}
+          >
+            Login
+          </Button>
 
-        {
-          error &&
-          (<div className={classes.errorContainer}>
-            <span className={classes.error}>{ error }</span>
-          </div>)
-        }
+          {
+            error &&
+            (<div className={classes.errorContainer}>
+              <span className={classes.error}>{ error }</span>
+            </div>)
+          }
+        </form>
       </div>
     </div>
   )

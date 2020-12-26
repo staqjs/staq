@@ -84,7 +84,7 @@ function BenefitsBox(props) {
 
 function BenefitsOne(props) {
   const classes = useStyles()
-  const { benefits } = props
+  const { Benefits } = props
 
   return (
     <div className={classes.benefitsSection}>
@@ -96,7 +96,7 @@ function BenefitsOne(props) {
                 <div className={classes.gridContainer}>
 
                   {
-                    benefits.map((benefit) => (
+                    Benefits.map((benefit) => (
                       <BenefitsBox
                         key={benefit.miniTitle}
                         miniTitle={benefit.miniTitle}

@@ -44,24 +44,24 @@ const useStyles = makeStyles((theme) => ({
 
 function PricingSectionOne(props) {
   const classes = useStyles()
-  const { title, subtitle, plans } = props
+  const { Title, Subtitle, Plans } = props
 
   return (
     <div className={classes.pricingSectionContainer}>
       <div className={classes.pricingContainer}>
         <h1 className={classes.sectionTitle}>
-          { title }
+          { Title }
         </h1>
 
         <div className={classes.subtitleContainer}>
           <p className={classes.subtitle}>
-            { subtitle }
+            { Subtitle }
           </p>
         </div>
 
         <div className={classes.planCardsContainer}>
          {
-           plans.map(plan => (
+           Plans.map(plan => (
              <PlanCardOne
                key={plan.title}
                title={plan.title}
