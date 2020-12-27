@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link, useHistory } from 'react-router-dom'
-import { Button } from '@material-ui/core'
+import { Button, IconButton, Menu, MenuItem } from '@material-ui/core'
+import MenuIcon from '@material-ui/icons/Menu'
 import { makeStyles } from '@material-ui/core/styles'
+import { useTheme } from '@material-ui/core/styles'
+import useMediaQuery from '@material-ui/core/useMediaQuery'
 
 import staqConfig from '../../../../staq'
 import { withAuth } from '../../lib/Auth'
@@ -18,15 +21,8 @@ const useStyles = makeStyles((theme) => ({
     height: 90,
   },
   navbarContainer: {
-    display: 'grid',
-    gridTemplateColumns: '1fr 3fr 1fr',
-    gridTemplateRows: 'auto',
-    gridAutoColumns: '1fr',
-    gridColumnGap: 16,
-    gridRowGap: 16,
-    '-webkit-box-pack': 'justify',
+    display: 'flex',
     justifyContent: 'space-between',
-    '-webkit-box-align': 'center',
     alignItems: 'center',
     width: '100%',
     maxWidth: 1296,
@@ -97,9 +93,8 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-function NavBarOne(props) {
+function RegularSizeNavbar(props) {
   const classes = useStyles()
-  const history = useHistory()
   const { auth, firebase } = props
 
   const logo = staqConfig.get('Logo')
@@ -168,6 +163,137 @@ function NavBarOne(props) {
       </div>
     </div>
   )
+}
+
+function NonAuthMenu(props) {
+  const classes = useStyles()
+  const history = useHistory()
+  const { menuLinks } = props
+
+  const [anchorEl, setAnchorEl] = useState(null)
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  }
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  }
+
+  const onClickMenuLink = (menuLink) => {
+    history.push(menuLink.to)
+    handleClose()
+  }
+
+
+  return (
+    <div className={classes.menuContainer}>
+      <IconButton onClick={handleClick}>
+        <MenuIcon />
+      </IconButton>
+      <Menu
+        id="simple-menu"
+        anchorEl={anchorEl}
+        keepMounted
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+      >
+        {
+          menuLinks.map(menuLink => (
+            <MenuItem key={menuLink.to} onClick={() => onClickMenuLink(menuLink)}>
+              { menuLink.text }
+            </MenuItem>
+          ))
+        }
+      </Menu>
+    </div>
+  )
+}
+
+function AuthMenu(props) {
+  const classes = useStyles()
+  const history = useHistory()
+  const { auth, firebase } = props
+  const [anchorEl, setAnchorEl] = useState(null)
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  }
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  }
+
+  const onClickSignOut = () => {
+    auth.onLogout(() => {
+      history.push('/')
+    })
+    firebase.doSignOut()
+  }
+
+  return (
+    <div className={classes.menuContainer}>
+      <IconButton onClick={handleClick}>
+        <MenuIcon />
+      </IconButton>
+      <Menu
+        id="simple-menu"
+        anchorEl={anchorEl}
+        keepMounted
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+      >
+        <MenuItem onClick={onClickSignOut}>Sign Out</MenuItem>
+      </Menu>
+    </div>
+  )
+}
+
+function SmallScreenavbar(props) {
+  const classes = useStyles()
+  const { auth, firebase } = props
+
+  const logo = staqConfig.get('Logo')
+  const siteTitle = staqConfig.get('SiteTitle')
+  const menuLinks = staqConfig.get('Template.Config.Navbar.MenuLinks', [])
+  const getStartedLink = staqConfig.get('Template.Config.Navbar.GetStartedLink', '/signup')
+
+  return (
+    <div className={classes.navbar}>
+      <div className={classes.navbarContainer}>
+        <Link to="/" className={classes.navbarBrandLink}>
+          <span className={classes.navbarBrand}>
+            {
+              logo && (
+                <img src={logo} className={classes.navbarLogo} />
+              )
+            }
+            { siteTitle }
+          </span>
+        </Link>
+
+        {
+          auth.currentUser
+          ?
+            <AuthMenu auth={auth} firebase={firebase} />
+          : (
+            <NonAuthMenu
+              menuLinks={menuLinks}
+            />
+          )
+        }
+      </div>
+    </div>
+  )
+}
+
+function NavBarOne(props) {
+  const theme = useTheme()
+  const xsScreen = useMediaQuery(theme.breakpoints.down('xs'))
+
+  return xsScreen
+    ? <SmallScreenavbar {...props} />
+    : <RegularSizeNavbar {...props} />
 }
 
 export default withFirebase(withAuth(NavBarOne))

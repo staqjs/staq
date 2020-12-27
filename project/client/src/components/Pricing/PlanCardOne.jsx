@@ -16,7 +16,16 @@ const useStyles = makeStyles((theme) => ({
 
     '&:last-child': {
       marginRight: 0,
-    }
+    },
+
+    [theme.breakpoints.down('sm')]: {
+      marginRight: 0,
+      marginBottom: 20,
+
+      '&:last-child': {
+        marginBottom: 0,
+      },
+    },
   },
   topSection: {
     padding: '1.5rem',

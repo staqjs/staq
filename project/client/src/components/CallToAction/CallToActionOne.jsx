@@ -4,12 +4,17 @@ import { Link } from 'react-router-dom'
 
 const useStyles = makeStyles((theme) => ({
   ctaContainer: {
-    marginLeft: 400,
-    marginRight: 400,
+    marginLeft: 200,
+    marginRight: 200,
     marginBottom: 0,
     marginTop: 0,
     textAlign: 'center',
     padding: '100px 50px',
+
+    [theme.breakpoints.down('md')]: {
+      marginRight: 0,
+      marginLeft: 0,
+    },
   },
   title: {
     margin: 0,

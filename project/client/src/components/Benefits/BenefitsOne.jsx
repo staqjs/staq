@@ -1,7 +1,7 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   benefitsSection: {
 
   },
@@ -46,10 +46,31 @@ const useStyles = makeStyles({
     display: 'grid',
     maxWidth: 1280,
     gridGap: 60,
+
+    [theme.breakpoints.down('md')]: {
+      gridTemplateColumns: 'unset',
+      display: 'flex',
+      flexWrap: 'wrap',
+    },
   },
   miniTitle: {
     fontFamily:  "'IBM Plex Mono', sans-serif",
     fontSize: 14,
+  },
+  box: {
+    maxWidth: 400,
+
+    [theme.breakpoints.down('md')]: {
+      marginRight: 20,
+
+      '&:last-child': {
+        marginRight: 0,
+      },
+    },
+
+    [theme.breakpoints.down('sm')]: {
+      width: '85%',
+    },
   },
   boxTitle: {
     fontFamily: "'Space Grotesk',sans-serif",
@@ -59,7 +80,7 @@ const useStyles = makeStyles({
   boxMessage: {
     fontFamily: "'Space Grotesk', sans-serif",
   }
-})
+}))
 
 
 function BenefitsBox(props) {

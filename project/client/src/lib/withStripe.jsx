@@ -49,9 +49,9 @@ export const getStripeCheckoutSession = (
 
 export default (props) => {
   const { children } = props
-  const usePayments = staqConfig.get('payments')
+  const usePayments = staqConfig.get('Payments.Enabled')
   const stripePromise = usePayments
-    ? loadStripe(staqConfig.get('stripePublishableKey'))
+    ? loadStripe(staqConfig.get('Payments.StripePublishableKey'))
     : new Promise(noop)
   return (
     <Elements stripe={stripePromise}>

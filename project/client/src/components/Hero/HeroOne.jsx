@@ -28,12 +28,21 @@ const useStyles = makeStyles((theme) => ({
     '-ms-grid-rows': 'auto',
     gridTemplateRows: 'auto',
     gridTemplateColumns: '1fr 1fr',
+
+    [theme.breakpoints.down('md')]: {
+      gridTemplateColumns: 'unset',
+    },
   },
   heroText: {
     marginRight: 'auto',
     marginLeft: 'auto',
     maxWidth: '506px',
     width: '100%',
+
+    [theme.breakpoints.down('md')]: {
+      marginRight: 'unset',
+      marginLeft: 'unset',
+    },
   },
   heroTextPrimary: {
     fontSize: '54px',
@@ -50,7 +59,13 @@ const useStyles = makeStyles((theme) => ({
   },
   heroImage: {
     height: 500,
-    borderRadius: 6
+    borderRadius: 6,
+
+    [theme.breakpoints.down('md')]: {
+      height: 'unset',
+      width: '90%',
+      maxWidth: 800,
+    },
   },
   heroActionsRow: {
     display: 'flex',
