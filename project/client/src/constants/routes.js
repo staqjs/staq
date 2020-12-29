@@ -1,6 +1,7 @@
 export const Landing = '/'
 export const SignUp = '/signup'
 export const SignIn = '/signin'
+export const Pricing = '/pricing'
 export const Demo = '/demo'
 export const UserSettings = '/settings/user'
 export const BillingSettings = '/settings/billing'

@@ -10,6 +10,7 @@ import { withAuth } from './Auth'
 import LandingPage from '../pages/LandingPage/LandingPage'
 import SignUpPage from '../pages/SignUpPage/SignUpPage'
 import SignInPage from '../pages/SignInPage/SignInPage'
+import PricingPage from '../pages/PricingPage/PricingPage'
 
 import * as Footers from '../components/Footer'
 import * as Navbars from '../components/Navigation'
@@ -40,7 +41,7 @@ function PrivateRouteBase({ component: Component, auth, ...rest }) {
   )
 }
 
-const footerRoutes = ['/', '/demo', '/signin', '/signup', '/forgot-password']
+const footerRoutes = ['/', '/demo', '/signin', '/signup', '/pricing', '/forgot-password']
 
 function StaqRoutes() {
   const history = useHistory()
@@ -74,6 +75,7 @@ function StaqRoutes() {
       <Route exact path={Routes.Landing} component={LandingPage} />
       <Route path={Routes.SignUp} component={SignUpPage} />
       <Route path={Routes.SignIn} component={SignInPage} />
+      <Route path={Routes.Pricing} component={PricingPage} />
 
       {/* <Route path={Routes.ForgotPassword} component={ForgotPasswordPage} />
 

@@ -21,7 +21,8 @@ const useStyles = makeStyles((theme) => ({
     height: 90,
   },
   navbarContainer: {
-    display: 'flex',
+    display: 'grid',
+    gridTemplateColumns: '1fr 1fr 1fr',
     justifyContent: 'space-between',
     alignItems: 'center',
     width: '100%',
@@ -30,6 +31,11 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: 'auto',
     paddingRight: 24,
     paddingLeft: 24,
+
+    [theme.breakpoints.down('sm')]: {
+      display: 'flex',
+      gridTemplateColumns: 'unset',
+    },
   },
   navbarBrandLink: {
     float: 'left',
@@ -289,7 +295,7 @@ function SmallScreenavbar(props) {
 
 function NavBarOne(props) {
   const theme = useTheme()
-  const xsScreen = useMediaQuery(theme.breakpoints.down('xs'))
+  const xsScreen = useMediaQuery(theme.breakpoints.down('sm'))
 
   return xsScreen
     ? <SmallScreenavbar {...props} />
