@@ -19,7 +19,7 @@ const StripeProviderBase = (props) => {
   return (
     <StripeContext.Provider
       value={{
-        stripe
+        stripe,
       }}
     >
       {children}
@@ -30,20 +30,20 @@ const StripeProviderBase = (props) => {
 export const getStripeCheckoutSession = (
   clientReferenceId,
   stripeCustomerId,
-  priceId
+  priceId,
 ) => {
   const firebase = staqConfig.get('firebase')
   const successUrl = staqConfig.get('Payments.CheckoutSuccessUrl')
   const cancelUrl = staqConfig.get('Payments.CheckoutCancelUrl')
   const createCheckoutSession = firebase.functions.httpsCallable(
-    'createStripeCheckoutSession'
+    'createStripeCheckoutSession',
   )
   return createCheckoutSession({
     clientReferenceId,
     priceId,
     successUrl,
     cancelUrl,
-    customerId: stripeCustomerId
+    customerId: stripeCustomerId,
   })
 }
 

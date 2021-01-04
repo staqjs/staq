@@ -101,6 +101,7 @@ const useStyles = makeStyles((theme) => ({
 
 function RegularSizeNavbar(props) {
   const classes = useStyles()
+  const history = useHistory()
   const { auth, firebase } = props
 
   const logo = staqConfig.get('Logo')

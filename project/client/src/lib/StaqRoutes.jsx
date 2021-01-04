@@ -30,26 +30,33 @@ function PrivateRouteBase({ component: Component, auth, ...rest }) {
   return (
     <Route
       {...rest}
-      render={(props) =>
-        auth.currentUser ? (
+      render={(props) => {
+        return auth.currentUser ? (
           <Component auth={auth} {...props} />
         ) : (
-          <Redirect to='/signin' />
+          <Redirect to="/signin" />
         )
-      }
+      }}
     />
   )
 }
 
-const footerRoutes = ['/', '/demo', '/signin', '/signup', '/pricing', '/forgot-password']
+const footerRoutes = [
+  '/',
+  '/demo',
+  '/signin',
+  '/signup',
+  '/pricing',
+  '/forgot-password',
+]
 
 function StaqRoutes() {
   const history = useHistory()
+  const [pathname, setPathname] = useState(history.location.pathname)
+
   history.listen((location) => {
     setPathname(location.pathname)
   })
-
-  const [pathname, setPathname] = useState(history.location.pathname)
 
   const template = staqConfig.get('Template.Name')
 
@@ -58,19 +65,20 @@ function StaqRoutes() {
 
   const footerColumns = staqConfig.get('Template.Config.Footer.Columns', {})
   const copyright = staqConfig.get('Template.Config.Footer.Copyright')
-  const poweredByStaq = staqConfig.get('Template.Config.Footer.PoweredByStaq', false)
+  const poweredByStaq = staqConfig.get(
+    'Template.Config.Footer.PoweredByStaq',
+    false,
+  )
   const Footer = Footers[`Footer${template}`]
-
-  console.log(Footers)
 
   return (
     <StaqStyleProvider>
       <ScrollToTop />
-      {
-        _.isNil(navbarRoutes)
-          ? <Navbar />
-          : navbarRoutes.includes(pathname) ? <Navbar /> : null
-      }
+      {_.isNil(navbarRoutes) ? (
+        <Navbar />
+      ) : navbarRoutes.includes(pathname) ? (
+        <Navbar />
+      ) : null}
 
       <Route exact path={Routes.Landing} component={LandingPage} />
       <Route path={Routes.SignUp} component={SignUpPage} />
@@ -82,15 +90,13 @@ function StaqRoutes() {
           <PrivateRoute path={Routes.UserSettings} component={UserSettingsPage} />
           <PrivateRoute path={Routes.BillingSettings} component={BillingSettingsPage} /> */}
 
-      {
-        footerRoutes.includes(pathname)
-          ? <Footer
-              columns={footerColumns}
-              copyright={copyright}
-              poweredByStaq={poweredByStaq}
-            />
-          : null
-      }
+      {footerRoutes.includes(pathname) ? (
+        <Footer
+          columns={footerColumns}
+          copyright={copyright}
+          poweredByStaq={poweredByStaq}
+        />
+      ) : null}
     </StaqStyleProvider>
   )
 }
