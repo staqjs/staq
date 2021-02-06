@@ -11,6 +11,7 @@ import LandingPage from '../pages/LandingPage/LandingPage'
 import SignUpPage from '../pages/SignUpPage/SignUpPage'
 import SignInPage from '../pages/SignInPage/SignInPage'
 import PricingPage from '../pages/PricingPage/PricingPage'
+import ForgotPasswordPage from '../pages/ForgotPasswordPage/ForgotPasswordPage'
 
 import * as Footers from '../components/Footer'
 import * as Navbars from '../components/Navigation'
@@ -85,10 +86,10 @@ function StaqRoutes() {
       <Route path={Routes.SignIn} component={SignInPage} />
       <Route path={Routes.Pricing} component={PricingPage} />
 
-      {/* <Route path={Routes.ForgotPassword} component={ForgotPasswordPage} />
+      <Route path={Routes.ForgotPassword} component={ForgotPasswordPage} />
 
-          <PrivateRoute path={Routes.UserSettings} component={UserSettingsPage} />
-          <PrivateRoute path={Routes.BillingSettings} component={BillingSettingsPage} /> */}
+      {/* <PrivateRoute path={Routes.UserSettings} component={UserSettingsPage} /> */}
+      {/* <PrivateRoute path={Routes.BillingSettings} component={BillingSettingsPage} /> *\/} */}
 
       {footerRoutes.includes(pathname) ? (
         <Footer

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles'
 import { Typography } from '@material-ui/core'
 import { Portal } from 'react-portal'
+import _ from 'lodash'
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -85,21 +86,20 @@ function FooterColumn(props) {
 
   return (
     <div className={classes.column}>
-      <div className={classes.columnTitle}>
-        { title }
-      </div>
+      <div className={classes.columnTitle}>{title}</div>
       <div className={classes.columnLinks}>
-        {
-          links.map((link) => {
-            return _.startsWith(link, '/') ?
-              (
-              <Link key={link.link} to={link.link} className={classes.footerLink}>
-                { link.text }
-              </Link>
-              )
-              : ( <a key={link.link} href={link.link} className={classes.footerLink}> { link.text } </a> )
-          })
-        }
+        {links.map((link) => {
+          return _.startsWith(link, '/') ? (
+            <Link key={link.link} to={link.link} className={classes.footerLink}>
+              {link.text}
+            </Link>
+          ) : (
+            <a key={link.link} href={link.link} className={classes.footerLink}>
+              {' '}
+              {link.text}{' '}
+            </a>
+          )
+        })}
       </div>
     </div>
   )
@@ -111,13 +111,9 @@ function PoweredByStaq() {
   return (
     <div className={classes.poweredByContainer}>
       <a href="https://staqjs.com" className={classes.poweredByLink}>
-        <Typography className={classes.poweredByPrefix}>
-          Powered by
-        </Typography>
+        <Typography className={classes.poweredByPrefix}>Powered by</Typography>
 
-        <Typography className={classes.poweredByStaq}>
-          staqjs
-        </Typography>
+        <Typography className={classes.poweredByStaq}>staqjs</Typography>
       </a>
     </div>
   )
@@ -127,37 +123,29 @@ function FooterOne(props) {
   const classes = useStyles()
   const { columns, copyright, poweredByStaq } = props
 
-  console.log(props)
-
   return (
     <Portal>
       <div className={classes.container}>
         <div className={classes.columns}>
-          {
-            columns.map((column) => {
-              return (
-                <FooterColumn
-                  key={column.title}
-                  title={column.title}
-                  links={column.links}
-                />
-              )
-            })
-          }
+          {columns.map((column) => {
+            return (
+              <FooterColumn
+                key={column.title}
+                title={column.title}
+                links={column.links}
+              />
+            )
+          })}
         </div>
 
         <div className={classes.bottom}>
           <div className={classes.legal}>
             <Typography className={classes.copyright}>
-              &copy; { copyright }
+              &copy; {copyright}
             </Typography>
           </div>
 
-          {
-            (poweredByStaq || false)
-              ? <PoweredByStaq />
-              : null
-          }
+          {poweredByStaq || false ? <PoweredByStaq /> : null}
         </div>
       </div>
     </Portal>

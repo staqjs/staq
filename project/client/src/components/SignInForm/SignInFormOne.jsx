@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles'
 import { Button, TextField, Typography } from '@material-ui/core'
 
@@ -8,9 +8,16 @@ import { withFirebase } from '../../lib/Firebase'
 const useStyles = makeStyles((theme) => ({
   signInFormContainer: {
     width: 500,
+  },
+  signInForm: {
     boxShadow: '0 0 4px #888',
     padding: 10,
-    borderRadius: 4
+    borderRadius: 4,
+  },
+  title: {
+    marginBottom: 15,
+    fontWeight: 600,
+    fontSize: 18,
   },
   input: {
     width: '100%',
@@ -18,6 +25,7 @@ const useStyles = makeStyles((theme) => ({
   },
   submitBtn: {
     width: '100%',
+    marginBottom: 10,
   },
   inputs: {
     marginBottom: 20,
@@ -28,6 +36,9 @@ const useStyles = makeStyles((theme) => ({
   error: {
     fontSize: 14,
     color: 'red',
+  },
+  forgotPassword: {
+    color: theme.palette.secondary.main,
   },
 }))
 
@@ -45,7 +56,7 @@ function SignInFormOne(props) {
   const setField = (field, value) => {
     setState({
       ...state,
-      [field]: value
+      [field]: value,
     })
   }
 
@@ -55,7 +66,7 @@ function SignInFormOne(props) {
       .then(() => {
         setState({
           email: '',
-          password: ''
+          password: '',
         })
       })
       .catch((error) => {
@@ -67,6 +78,8 @@ function SignInFormOne(props) {
 
   return (
     <div className={classes.signInFormContainer}>
+      <Typography className={classes.title}>Sign In</Typography>
+
       <div className={classes.signInForm}>
         <form onSubmit={onSubmit}>
           <div className={classes.inputs}>
@@ -95,12 +108,15 @@ function SignInFormOne(props) {
             Login
           </Button>
 
-          {
-            error &&
-            (<div className={classes.errorContainer}>
-              <span className={classes.error}>{ error }</span>
-            </div>)
-          }
+          <Link className={classes.forgotPassword} to={'/'}>
+            Forgot your password?
+          </Link>
+
+          {error && (
+            <div className={classes.errorContainer}>
+              <span className={classes.error}>{error}</span>
+            </div>
+          )}
         </form>
       </div>
     </div>

@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Redirect } from 'react-router-dom'
+import { Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 
 import staqConfig from '../../../../staq'
@@ -10,7 +11,9 @@ import SignInFormOne from '../../components/SignInForm/SignInFormOne'
 const useStyles = makeStyles((theme) => ({
   signInPageContainer: {
     display: 'flex',
+    flexDirection: 'column',
     justifyContent: 'center',
+    alignItems: 'center',
     padding: 50,
   },
 }))
@@ -20,13 +23,13 @@ function SignInPageOne(props) {
   const { auth } = props
   const userHome = staqConfig.get('userHome') || '/'
 
-  return auth.currentUser
-    ? <Redirect to={userHome} />
-    : (
-      <div className={classes.signInPageContainer}>
-        <SignInFormOne />
-      </div>
-    )
+  return auth.currentUser ? (
+    <Redirect to={userHome} />
+  ) : (
+    <div className={classes.signInPageContainer}>
+      <SignInFormOne />
+    </div>
+  )
 }
 
 export default withAuth(SignInPageOne)

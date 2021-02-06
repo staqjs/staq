@@ -8,9 +8,16 @@ import { signup } from '../../lib/signup'
 const useStyles = makeStyles((theme) => ({
   signupFormContainer: {
     width: 500,
+  },
+  signupForm: {
     boxShadow: '0 0 4px #888',
     padding: 10,
-    borderRadius: 4
+    borderRadius: 4,
+  },
+  title: {
+    marginBottom: 15,
+    fontWeight: 600,
+    fontSize: 18,
   },
   input: {
     width: '100%',
@@ -37,7 +44,7 @@ function SignUpFormOne(props) {
   const [state, setState] = useState({
     email: '',
     password: '',
-    passwordConfirmation: ''
+    passwordConfirmation: '',
   })
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
@@ -45,24 +52,30 @@ function SignUpFormOne(props) {
   const setField = (field, value) => {
     setState({
       ...state,
-      [field]: value
+      [field]: value,
     })
   }
 
   const onSubmit = (e) => {
     setLoading(true)
-    signup(state, (res) => {
-      setLoading(false)
-      history.push('/dashboard')
-    }, (error) => {
-      setError(error.message)
-    })
+    signup(
+      state,
+      (res) => {
+        setLoading(false)
+        history.push('/dashboard')
+      },
+      (error) => {
+        setError(error.message)
+      },
+    )
 
     e.preventDefault()
   }
 
   return (
     <div className={classes.signupFormContainer}>
+      <Typography className={classes.title}>Sign Up</Typography>
+
       <div className={classes.signupForm}>
         <form onSubmit={onSubmit}>
           <div className={classes.inputs}>
@@ -84,7 +97,9 @@ function SignUpFormOne(props) {
             <TextField
               type="password"
               value={state.passwordConfirmation}
-              onChange={(event) => setField('passwordConfirmation', event.target.value)}
+              onChange={(event) =>
+                setField('passwordConfirmation', event.target.value)
+              }
               className={classes.input}
               label="Confirm Password"
             />
@@ -99,12 +114,11 @@ function SignUpFormOne(props) {
             Submit
           </Button>
 
-          {
-            error &&
-            (<div className={classes.errorContainer}>
-              <span className={classes.error}>{ error }</span>
-            </div>)
-          }
+          {error && (
+            <div className={classes.errorContainer}>
+              <span className={classes.error}>{error}</span>
+            </div>
+          )}
         </form>
       </div>
     </div>
