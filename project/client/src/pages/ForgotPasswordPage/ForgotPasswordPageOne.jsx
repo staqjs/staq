@@ -9,6 +9,9 @@ import { withAuth } from '../../lib/Auth'
 import staqConfig from '../../../../staq'
 
 const useStyles = makeStyles((theme) => ({
+  resetPasswordFormContainer: {
+    width: 500,
+  },
   forgotPasswordContainer: {
     display: 'flex',
     flexDirection: 'column',
@@ -17,12 +20,18 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: 30,
     marginTop: 50,
   },
+  title: {
+    marginBottom: 15,
+    fontWeight: 600,
+    fontSize: 18,
+  },
   form: {
     display: 'flex',
     flexDirection: 'column',
-    width: '25%',
     maxWidth: 500,
-    marginTop: 30,
+    boxShadow: '0 0 4px #888',
+    padding: 10,
+    borderRadius: 4,
 
     [theme.breakpoints.down('md')]: {
       width: '80%',
@@ -36,10 +45,6 @@ const useStyles = makeStyles((theme) => ({
   },
   icon: {
     marginRight: 15,
-  },
-  title: {
-    color: theme.palette.primary.main,
-    fontSize: 32,
   },
   signupContainer: {
     display: 'flex',
@@ -73,8 +78,6 @@ function ForgotPasswordPageBase(props) {
             </Link>
           ) : null}
 
-          <Typography className={classes.title}>Reset Password</Typography>
-
           <ForgotPasswordForm firebase={firebase} />
         </div>
       )}
@@ -106,31 +109,35 @@ function ForgotPasswordForm(props) {
   }
 
   return (
-    <form onSubmit={onSubmit} className={classes.form}>
-      <TextField
-        className={classes.input}
-        label="Email"
-        value={email}
-        onChange={onChangeEmail}
-        inputProps={{
-          required: true,
-          type: 'email',
-          style: { boxShadow: 'none' },
-        }}
-      />
-      <Button
-        variant="contained"
-        color="primary"
-        className={classes.submitBtn}
-        type="submit"
-      >
-        Send reset instructions
-      </Button>
+    <div className={classes.resetPasswordFormContainer}>
+      <Typography className={classes.title}>Reset Password</Typography>
 
-      {error && (
-        <Typography className={classes.errorMessage}>{error}</Typography>
-      )}
-    </form>
+      <form onSubmit={onSubmit} className={classes.form}>
+        <TextField
+          className={classes.input}
+          label="Email"
+          value={email}
+          onChange={onChangeEmail}
+          inputProps={{
+            required: true,
+            type: 'email',
+            style: { boxShadow: 'none' },
+          }}
+        />
+        <Button
+          variant="contained"
+          color="primary"
+          className={classes.submitBtn}
+          type="submit"
+        >
+          Send reset instructions
+        </Button>
+
+        {error && (
+          <Typography className={classes.errorMessage}>{error}</Typography>
+        )}
+      </form>
+    </div>
   )
 }
 

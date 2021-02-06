@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import { Button, TextField, Typography } from '@material-ui/core'
 
 import { withFirebase } from '../../lib/Firebase'
+import * as Routes from '../../constants/routes'
 
 const useStyles = makeStyles((theme) => ({
   signInFormContainer: {
@@ -108,7 +109,7 @@ function SignInFormOne(props) {
             Login
           </Button>
 
-          <Link className={classes.forgotPassword} to={'/'}>
+          <Link className={classes.forgotPassword} to={Routes.ForgotPassword}>
             Forgot your password?
           </Link>
 
