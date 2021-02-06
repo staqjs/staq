@@ -14,8 +14,8 @@ import withStaq from './lib/withStaq'
 import StaqRoutes, { PrivateRoute } from './lib/StaqRoutes'
 import { getStripeCheckoutSession, withStripe } from './lib/withStripe'
 import { withFirebase } from './lib/Firebase'
+import { withLoadingSpinner } from './lib/withLoadingSpinner'
 import { withAuth } from './lib/Auth'
-
 
 export {
   PrivateRoute,
@@ -24,6 +24,7 @@ export {
   initStaq,
   withAuth,
   withFirebase,
+  withLoadingSpinner,
   withStaq,
   withStripe,
   getStripeCheckoutSession,
