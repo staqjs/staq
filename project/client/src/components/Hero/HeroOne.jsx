@@ -116,14 +116,17 @@ const useStyles = makeStyles((theme) => ({
     cursor: 'pointer',
     fontFamily: "'IBM Plex Mono', sans-serif",
     textDecoration: 'none',
-  }
+  },
 }))
 
-function Hero(props) {
+function HeroOne(props) {
   const classes = useStyles()
   const {
-    PrimaryText, SecondaryText, Image,
-    PrimaryLink, SecondaryLink,
+    PrimaryText,
+    SecondaryText,
+    Image,
+    PrimaryLink,
+    SecondaryLink,
   } = props
 
   return (
@@ -132,45 +135,39 @@ function Hero(props) {
         <div className={classes.gridHalves}>
           <div className={classes.heroText}>
             <div className={classes.heroTextPrimaryContainer}>
-              <h1 className={classes.heroTextPrimary}>
-                { PrimaryText }
-              </h1>
+              <h1 className={classes.heroTextPrimary}>{PrimaryText}</h1>
             </div>
 
             <div className={classes.heroTextSecondaryContainer}>
-              <div className={classes.heroTextSecondary}>
-                { SecondaryText }
-              </div>
+              <div className={classes.heroTextSecondary}>{SecondaryText}</div>
             </div>
 
             <div className={classes.heroActionsContainer}>
               <div className={classes.heroActionsRow}>
+                {PrimaryLink && (
+                  <Link
+                    className={classes.heroPrimaryAction}
+                    to={PrimaryLink.to}
+                  >
+                    <div>{PrimaryLink.text}</div>
+                  </Link>
+                )}
 
-                {
-                  PrimaryLink && (
-                    <Link className={classes.heroPrimaryAction} to={PrimaryLink.to}>
-                      <div>{ PrimaryLink.text }</div>
+                {SecondaryLink && (
+                  <div className={classes.heroSecondaryActionContainer}>
+                    <Link
+                      className={classes.heroSecondaryAction}
+                      to={SecondaryLink.to}
+                    >
+                      <div>{SecondaryLink.text}</div>
                     </Link>
-                  )
-                }
-
-                {
-                  SecondaryLink && (
-                    <div className={classes.heroSecondaryActionContainer}>
-                      <Link className={classes.heroSecondaryAction} to={SecondaryLink.to}>
-                        <div>{ SecondaryLink.text }</div>
-                      </Link>
-                    </div>
-                  )
-                }
+                  </div>
+                )}
               </div>
             </div>
           </div>
           <div className={classes.heroImageContainer}>
-            <img
-              src={Image}
-              className={classes.heroImage}
-            />
+            <img src={Image} className={classes.heroImage} />
           </div>
         </div>
       </div>
@@ -178,4 +175,4 @@ function Hero(props) {
   )
 }
 
-export default Hero
+export default HeroOne

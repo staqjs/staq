@@ -9,6 +9,9 @@ import { initStaq } from '../../staq'
 // Pages
 import LandingPage from './pages/LandingPage/LandingPage'
 
+// Components
+import Hero from './components/Hero/Hero'
+
 // Lib
 import withStaq from './lib/withStaq'
 import StaqRoutes, { PrivateRoute } from './lib/StaqRoutes'
@@ -21,6 +24,7 @@ export {
   PrivateRoute,
   StaqRoutes,
   LandingPage,
+  Hero,
   initStaq,
   withAuth,
   withFirebase,
