@@ -1,6 +1,6 @@
 {
   "name": "@staqjs/server",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "StaqJS is a Javascript library for building Software-as-a-Service (SaaS) businesses.",
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
@@ -13,6 +13,7 @@
   ],
   "scripts": {
     "build": "microbundle-crl --no-compress",
+    "start": "microbundle-crl watch --no-compress --format modern,cjs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
