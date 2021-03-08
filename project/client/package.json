@@ -2,15 +2,15 @@
   "name": "@staqjs/client",
   "version": "0.0.22",
   "description": "StaqJS is a Javascript library for creating Software-as-a-Service (SaaS) businesses",
-  "main": "dist/index.js",
-  "module": "dist/index.modern.js",
+  "main": "output.js",
+  "module": "output.js",
   "source": "src/index.js",
   "engines": {
     "node": ">=10"
   },
   "scripts": {
-    "build": "microbundle-crl --no-compress --format modern,cjs",
-    "start": "microbundle-crl watch --no-compress --format modern,cjs",
+    "build": "NODE_ENV=production rollup -c",
+    "start": "rollup --watch -c",
     "prepare": "run-s build",
     "test": "run-s test:unit test:lint test:build",
     "test:build": "run-s build",
@@ -27,12 +27,22 @@
     "dist"
   ],
   "dependencies": {
+    "@craco/craco": "^6.1.1",
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
     "@material-ui/styles": "^4.10.0",
     "@stripe/react-stripe-js": "^1.1.2",
     "@stripe/stripe-js": "^1.8.0",
-    "react-portal": "^4.2.1"
+    "@tailwindcss/ui": "^0.7.2",
+    "import": "^0.0.6",
+    "postcss-cli": "^8.3.1",
+    "postcss-import": "^14.0.0",
+    "react-portal": "^4.2.1",
+    "rollup": "^2.40.0",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-postcss": "^4.0.0"
   },
   "peerDependencies": {
     "firebase": "^7.16.1",
@@ -41,6 +51,8 @@
     "react-router-dom": "^5.2.0"
   },
   "devDependencies": {
+    "@tailwindcss/postcss7-compat": "^2.0.3",
+    "autoprefixer": "^10.2.5",
     "babel-eslint": "^10.1.0",
     "cross-env": "^7.0.2",
     "eslint": "^7.5.0",
@@ -52,8 +64,11 @@
     "gh-pages": "^2.2.0",
     "microbundle-crl": "^0.13.10",
     "npm-run-all": "^4.1.5",
+    "postcss": "^8.2.7",
     "prettier": "^2.0.4",
-    "react-scripts": "^3.4.1"
+    "react-scripts": "^3.4.1",
+    "rollup-plugin-tailwindcss": "^1.0.0",
+    "tailwindcss": "^2.0.3"
   },
   "repository": {
     "type": "git",

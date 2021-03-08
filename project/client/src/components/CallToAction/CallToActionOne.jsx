@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: "'IBM Plex Mono', sans-serif",
     fontWeight: 400,
     borderRadius: 6,
-  }
+  },
 }))
 
 function CallToActionOne(props) {
@@ -42,14 +42,12 @@ function CallToActionOne(props) {
 
   return (
     <div className={classes.ctaContainer}>
-      <h2 className={classes.title}>
-        { Title }
-      </h2>
+      <h2 className={classes.title}>{Title}</h2>
 
       <div className={classes.actionRow}>
         <div className={classes.linkContainer}>
           <Link className={classes.linkBtn} to={ActionLink}>
-            { ActionText }
+            {ActionText}
           </Link>
         </div>
       </div>
