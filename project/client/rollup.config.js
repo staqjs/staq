@@ -8,7 +8,7 @@ const extensions = ['.js', '.jsx', '.ts', '.tsx']
 export default {
   input: './src/index.js',
   output: {
-    file: './output.js',
+    file: './dist/index.js',
     format: 'esm',
   },
   plugins: [

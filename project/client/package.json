@@ -2,8 +2,7 @@
   "name": "@staqjs/client",
   "version": "0.0.22",
   "description": "StaqJS is a Javascript library for creating Software-as-a-Service (SaaS) businesses",
-  "main": "output.js",
-  "module": "output.js",
+  "main": "dist/index.js",
   "source": "src/index.js",
   "engines": {
     "node": ">=10"
@@ -17,7 +16,6 @@
     "test:lint": "eslint .",
     "test:unit": "cross-env CI=1 react-scripts test --env=jsdom",
     "test:watch": "react-scripts test --env=jsdom",
-    "predeploy": "cd example && yarn install && yarn run build",
     "deploy": "gh-pages -d example/build"
   },
   "directories": {

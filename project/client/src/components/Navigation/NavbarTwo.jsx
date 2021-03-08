@@ -27,11 +27,11 @@ function RegularSizeNavbar(props) {
   }
 
   return (
-    <div className={'flex'}>
-      <div className={'flex'}>
+    <div className={''}>
+      <div className={'flex justify-between p-4'}>
         <Link to="/" className={''}>
-          <span className={''}>
-            {logo && <img src={logo} className={''} />}
+          <span className={'flex items-center'}>
+            {logo && <img src={logo} className={'pr-4'} />}
             {siteTitle}
           </span>
         </Link>
@@ -41,7 +41,7 @@ function RegularSizeNavbar(props) {
         ) : (
           <nav role="navigation" className={''}>
             {menuLinks.map((menuLink) => (
-              <Link key={menuLink.to} to={menuLink.to} className={''}>
+              <Link key={menuLink.to} to={menuLink.to} className={'p-4'}>
                 {menuLink.text}
               </Link>
             ))}
@@ -56,7 +56,12 @@ function RegularSizeNavbar(props) {
           </div>
         ) : (
           <div className={''}>
-            <Link to={getStartedLink} className={''}>
+            <Link
+              to={getStartedLink}
+              className={
+                'px-6 flex items-center justify-center rounded-md ring-2 ring-black'
+              }
+            >
               Get Started
             </Link>
           </div>
