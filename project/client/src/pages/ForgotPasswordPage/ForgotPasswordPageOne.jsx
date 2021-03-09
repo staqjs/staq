@@ -48,7 +48,7 @@ function ForgotPasswordForm(props) {
 
   return (
     <div
-      className={'w-11/12 md:w/1/2 max-w-lg max-h-36 rounded-md shadow-md p-4'}
+      className={'w-11/12 md:w/1/2 max-w-lg max-h-40 rounded-md shadow-md p-4'}
     >
       <span className={'mb-4 font-bold'}>Reset Password</span>
 

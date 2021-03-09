@@ -50,7 +50,10 @@ function RegularSizeNavbar(props) {
 
         {auth.currentUser ? (
           <div className={'text-right'}>
-            <button className={''} onClick={onClickSignOut}>
+            <button
+              className={'rounded-md ring-2 ring-black px-4 py-2'}
+              onClick={onClickSignOut}
+            >
               Sign Out
             </button>
           </div>

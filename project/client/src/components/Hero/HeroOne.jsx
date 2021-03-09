@@ -17,7 +17,7 @@ function HeroOne(props) {
           'flex flex-col items-start lg:flex-row lg:justify-between p-6 max-w-screen-xl'
         }
       >
-        <div className={'mb-6 pr-2 lg:max-w-full max-w-prose'}>
+        <div className={'mb-6 pr-2 max-w-prose lg:max-w-2/5'}>
           <div className={'mb-6'}>
             <span className={'text-6xl'}>{PrimaryText}</span>
           </div>
@@ -50,7 +50,7 @@ function HeroOne(props) {
             )}
           </div>
         </div>
-        <div>
+        <div className={'max-w-3/5'}>
           <img src={Image} className={'object-contain rounded-md'} />
         </div>
       </div>
