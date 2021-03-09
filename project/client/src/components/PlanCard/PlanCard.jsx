@@ -1,6 +1,5 @@
 import React from 'react'
 
-import StaqStyleProvider from '../StaqStyleProvider'
 import staqConfig from '../../../../staq'
 
 import PlanCardBasic from './PlanCardBasic'
@@ -17,11 +16,7 @@ const getPlanCardComponent = () => {
 const PlanCardComponent = getPlanCardComponent()
 
 function PlanCard(props) {
-  return (
-    <StaqStyleProvider>
-      <PlanCardComponent {...props} />
-    </StaqStyleProvider>
-  )
+  return <PlanCardComponent {...props} />
 }
 
 export default PlanCard

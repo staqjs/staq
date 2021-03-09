@@ -1,32 +1,19 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
-import { Typography } from '@material-ui/core'
-import { makeStyles } from '@material-ui/core/styles'
 
 import staqConfig from '../../../../staq'
 import { withAuth } from '../../lib/Auth'
 
 import SignInFormOne from '../../components/SignInForm/SignInFormOne'
 
-const useStyles = makeStyles((theme) => ({
-  signInPageContainer: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 50,
-  },
-}))
-
 function SignInPageOne(props) {
-  const classes = useStyles()
   const { auth } = props
   const userHome = staqConfig.get('userHome') || '/'
 
   return auth.currentUser ? (
     <Redirect to={userHome} />
   ) : (
-    <div className={classes.signInPageContainer}>
+    <div className={'min-h-screen flex justify-center mt-6'}>
       <SignInFormOne />
     </div>
   )

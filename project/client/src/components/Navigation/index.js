@@ -1,5 +1,3 @@
 import NavbarOne from './NavbarOne'
 
-export {
-  NavbarOne
-}
+export { NavbarOne }

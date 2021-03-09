@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { Redirect, Route, useLocation, useHistory } from 'react-router-dom'
 import _ from 'lodash'
 
-import StaqStyleProvider from './StaqStyleProvider'
 import staqConfig from '../../../staq'
 
 import { withAuth } from './Auth'
@@ -73,7 +72,7 @@ function StaqRoutes() {
   const Footer = Footers[`Footer${template}`]
 
   return (
-    <StaqStyleProvider>
+    <>
       <ScrollToTop />
       {_.isNil(navbarRoutes) ? (
         <Navbar />
@@ -88,9 +87,6 @@ function StaqRoutes() {
 
       <Route path={Routes.ForgotPassword} component={ForgotPasswordPage} />
 
-      {/* <PrivateRoute path={Routes.UserSettings} component={UserSettingsPage} /> */}
-      {/* <PrivateRoute path={Routes.BillingSettings} component={BillingSettingsPage} /> *\/} */}
-
       {footerRoutes.includes(pathname) ? (
         <Footer
           columns={footerColumns}
@@ -98,7 +94,7 @@ function StaqRoutes() {
           poweredByStaq={poweredByStaq}
         />
       ) : null}
-    </StaqStyleProvider>
+    </>
   )
 }
 

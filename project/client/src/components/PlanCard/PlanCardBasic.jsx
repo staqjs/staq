@@ -1,84 +1,9 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core/styles'
 import { Link } from 'react-router-dom'
-import {
-  Button,
-  Card,
-  CardActions,
-  CardHeader,
-  CardContent,
-  Typography,
-  List,
-  ListItem
-} from '@material-ui/core'
-import CheckIcon from '@material-ui/icons/Check'
 import staqConfig from '../../../../staq'
 
 const headerFont = staqConfig.get('headerFont') || "'Montserrat', sans-serif"
 const contentFont = staqConfig.get('contentFont') || "'Rubik', sans-serif"
-
-const useStyles = makeStyles((theme) => ({
-  card: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    boxShadow:
-      '0px 2px 4px -1px rgba(0,0,0,0.2), 0px 1px 4px 0px rgba(0,0,0,0.14), 0px 2px 4px 0px rgba(0,0,0,0.12)',
-    marginRight: 20,
-    padding: 10,
-    width: 300,
-
-    [theme.breakpoints.down('sm')]: {
-      width: '100%',
-      maxWidth: '100%',
-      marginBottom: 20,
-      marginRight: 0
-    }
-  },
-  planCardActions: {
-  },
-  title: {
-    fontFamily: headerFont
-  },
-  price: {
-    display: 'block'
-  },
-  dollarSign: {
-    display: 'inline',
-    verticalAlign: 'top',
-    lineHeight: '56px',
-    fontFamily: headerFont
-  },
-  priceValue: {
-    display: 'inline',
-    verticalAlign: 'bottom',
-    fontSize: 56,
-    fontFamily: headerFont
-  },
-  unitTime: {
-    display: 'inline',
-    verticalAlign: 'sub',
-    fontFamily: headerFont,
-    lineHeight: '56px'
-  },
-  featureText: {
-    display: 'flex',
-    fontFamily: contentFont
-  },
-  checkIcon: {
-    marginRight: 10
-  },
-  getStartedLink: {
-    textDecoration: 'none',
-    width: '100%',
-  },
-  getStartedBtn: {
-    width: '100%',
-    marginTop: 20,
-    textTransform: 'none',
-    fontWeight: 600
-  }
-}))
 
 /*
  * Plan:
@@ -87,61 +12,37 @@ const useStyles = makeStyles((theme) => ({
  *   - features
  */
 function PlanCardBasic(props) {
-  const classes = useStyles()
   const { type, name, price, features } = props
 
   return (
-    <Card className={classes.card}>
-      <CardHeader
-        title={name}
-        titleTypographyProps={{
-          className: classes.title
-        }}
-        className={classes.header}
-      />
-      <CardContent className={classes.content}>
+    <div className={''}>
+      <div className={''}>{name}</div>
+      <div className={''}>
         {price ? (
-          <div className={classes.price}>
-            <Typography component='span' className={classes.dollarSign}>
-              $
-            </Typography>
-            <Typography component='span' className={classes.priceValue}>
-              {price}
-            </Typography>
-            {type === 'monthly' ? (
-              <Typography component='span' className={classes.unitTime}>
-                /mo
-              </Typography>
-            ) : null}
+          <div className={''}>
+            <span className={''}>$</span>
+            <span className={''}>{price}</span>
+            {type === 'monthly' ? <span className={''}>/mo</span> : null}
           </div>
         ) : null}
 
-        <List className={classes.features}>
+        <ul className={''}>
           {features.map((feature) => {
             return (
-              <ListItem key={feature} className={classes.feature}>
-                <Typography className={classes.featureText}>
-                  <CheckIcon className={classes.checkIcon} />
-                  {feature}
-                </Typography>
-              </ListItem>
+              <li key={feature} className={''}>
+                <span className={''}>{feature}</span>
+              </li>
             )
           })}
-        </List>
-      </CardContent>
+        </ul>
+      </div>
 
-      <CardActions className={classes.planCardActions}>
-        <Link to='/signup' className={classes.getStartedLink}>
-          <Button
-            color='primary'
-            variant='contained'
-            className={classes.getStartedBtn}
-          >
-            Get Started
-          </Button>
+      <div className={''}>
+        <Link to="/signup" className={''}>
+          <button className={''}>Get Started</button>
         </Link>
-      </CardActions>
-    </Card>
+      </div>
+    </div>
   )
 }
 

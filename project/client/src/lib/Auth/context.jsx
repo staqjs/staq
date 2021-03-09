@@ -1,5 +1,4 @@
 import React from 'react'
-import _ from 'lodash'
 
 import { withFirebase } from '../Firebase'
 
@@ -19,7 +18,7 @@ class AuthProvider extends React.Component {
       currentUser: JSON.parse(localStorage.getItem('currentUser')),
       onLogoutCallback: () => {
         console.log('logging out')
-      }
+      },
     }
   }
 
@@ -33,7 +32,7 @@ class AuthProvider extends React.Component {
         localStorage.removeItem('currentUser')
         this.setState({ currentUser: null })
         this.state.onLogoutCallback()
-      }
+      },
     )
   }
 
@@ -43,7 +42,7 @@ class AuthProvider extends React.Component {
 
   reload = () => {
     this.setState({
-      currentUser: JSON.parse(localStorage.getItem('currentUser'))
+      currentUser: JSON.parse(localStorage.getItem('currentUser')),
     })
   }
 
@@ -56,7 +55,7 @@ class AuthProvider extends React.Component {
       .then(() => {
         const currentUser = {
           ...this.state.currentUser,
-          ...newFields
+          ...newFields,
         }
         localStorage.setItem('currentUser', JSON.stringify(currentUser))
         this.setState({ currentUser })
@@ -65,7 +64,7 @@ class AuthProvider extends React.Component {
 
   onLogout = (newCallbackOnLogout) => {
     this.setState({
-      onLogoutCallback: newCallbackOnLogout
+      onLogoutCallback: newCallbackOnLogout,
     })
   }
 

@@ -1,5 +1,4 @@
 import React from 'react'
-import _ from 'lodash'
 import Firebase, { FirebaseContext } from './Firebase'
 import { AuthProvider } from './Auth'
 import StripeProvider from './withStripe'

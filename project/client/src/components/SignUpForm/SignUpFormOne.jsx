@@ -1,45 +1,9 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import { makeStyles } from '@material-ui/core/styles'
-import { Button, TextField, Typography } from '@material-ui/core'
 
 import { signup } from '../../lib/signup'
 
-const useStyles = makeStyles((theme) => ({
-  signupFormContainer: {
-    width: 500,
-  },
-  signupForm: {
-    boxShadow: '0 0 4px #888',
-    padding: 10,
-    borderRadius: 4,
-  },
-  title: {
-    marginBottom: 15,
-    fontWeight: 600,
-    fontSize: 18,
-  },
-  input: {
-    width: '100%',
-    marginBottom: 5,
-  },
-  submitBtn: {
-    width: '100%',
-  },
-  inputs: {
-    marginBottom: 20,
-  },
-  errorContainer: {
-    marginTop: 10,
-  },
-  error: {
-    fontSize: 14,
-    color: 'red',
-  },
-}))
-
 function SignUpFormOne(props) {
-  const classes = useStyles()
   const history = useHistory()
   const [state, setState] = useState({
     email: '',
@@ -73,50 +37,58 @@ function SignUpFormOne(props) {
   }
 
   return (
-    <div className={classes.signupFormContainer}>
-      <Typography className={classes.title}>Sign Up</Typography>
+    <div
+      className={'w-11/12 md:w/1/2 max-w-lg max-h-64 rounded-md shadow-md p-4'}
+    >
+      <div className={'mb-4 font-bold'}>Sign Up</div>
 
-      <div className={classes.signupForm}>
+      <div className={''}>
         <form onSubmit={onSubmit}>
-          <div className={classes.inputs}>
-            <TextField
+          <div className={'mb-2'}>
+            <input
               value={state.email}
               onChange={(event) => setField('email', event.target.value)}
-              className={classes.input}
-              label="Email"
+              placeholder="Email"
+              className={
+                'focus:border-light-blue-500 focus:ring-1 focus:ring-light-blue-500 focus:outline-none w-full text-sm text-black placeholder-gray-500 border border-gray-200 rounded-md py-2 pl-2 mb-2'
+              }
             />
 
-            <TextField
+            <input
               type="password"
               value={state.password}
               onChange={(event) => setField('password', event.target.value)}
-              className={classes.input}
-              label="Password"
+              placeholder="Password"
+              className={
+                'focus:border-light-blue-500 focus:ring-1 focus:ring-light-blue-500 focus:outline-none w-full text-sm text-black placeholder-gray-500 border border-gray-200 rounded-md py-2 pl-2 mb-2'
+              }
             />
 
-            <TextField
+            <input
               type="password"
               value={state.passwordConfirmation}
               onChange={(event) =>
                 setField('passwordConfirmation', event.target.value)
               }
-              className={classes.input}
-              label="Confirm Password"
+              placeholder="Confirm Password"
+              className={
+                'focus:border-light-blue-500 focus:ring-1 focus:ring-light-blue-500 focus:outline-none w-full text-sm text-black placeholder-gray-500 border border-gray-200 rounded-md py-2 pl-2'
+              }
             />
           </div>
 
-          <Button
+          <button
             type="submit"
-            color="primary"
-            variant="contained"
-            className={classes.submitBtn}
+            className={
+              'w-full rounded-md px-6 py-2 bg-primary text-center text-white text-contrast'
+            }
           >
             Submit
-          </Button>
+          </button>
 
           {error && (
-            <div className={classes.errorContainer}>
-              <span className={classes.error}>{error}</span>
+            <div className={''}>
+              <span className={''}>{error}</span>
             </div>
           )}
         </form>

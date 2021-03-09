@@ -1,7 +1,6 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
 
-import StaqStyleProvider from '../../lib/StaqStyleProvider'
 import staqConfig from '../../../../staq'
 import { withAuth } from '../../lib/Auth'
 
@@ -20,14 +19,10 @@ function PricingPage(props) {
   const { auth } = props
   const PricingPageComponent = getPricingPageComponent()
 
-  return (
-    <StaqStyleProvider>
-      {auth.currentUser ? (
-        <Redirect to={staqConfig.get('UserHome') || '/'} />
-      ) : (
-        <PricingPageComponent {...props} />
-      )}
-    </StaqStyleProvider>
+  return auth.currentUser ? (
+    <Redirect to={staqConfig.get('UserHome') || '/'} />
+  ) : (
+    <PricingPageComponent {...props} />
   )
 }
 

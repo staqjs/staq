@@ -1,84 +1,34 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core/styles'
 
 import PlanCardOne from './PlanCardOne'
 
-const useStyles = makeStyles((theme) => ({
-  pricingSectionContainer: {
-    paddingTop: 60,
-    width: '100%',
-    backgroundColor: theme.palette.primary.main,
-  },
-  pricingContainer: {
-    paddingBottom: '8rem',
-    marginBottom: 0,
-    paddingLeft: '3rem',
-    paddingRight: '3rem',
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    position: 'relative',
-  },
-  sectionTitle: {
-    fontSize: '2.25rem',
-    fontWeight: 700,
-    textAlign: 'center',
-    marginBottom: '0.75rem',
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    color: theme.palette.primary.contrastText,
-  },
-  subtitleContainer: {
-    justifyContent: 'center',
-    display: 'flex',
-    maxWidth: '32rem',
-    marginLeft: 'auto',
-    marginRight: 'auto',
-  },
-  planCardsContainer: {
-    display: 'flex',
-    justifyContent: 'center',
-    marginLeft: 'auto',
-    marginRight: 'auto',
-
-    [theme.breakpoints.down('sm')]: {
-      flexDirection: 'column',
-      alignItems: 'center',
-    },
-  }
-}))
-
 function PricingSectionOne(props) {
-  const classes = useStyles()
   const { Title, Subtitle, Plans } = props
 
   return (
-    <div className={classes.pricingSectionContainer}>
-      <div className={classes.pricingContainer}>
-        <h1 className={classes.sectionTitle}>
-          { Title }
+    <div className={'flex justify-center bg-primary p-12'}>
+      <div className={'max-w-screen-xl flex flex-col items-center'}>
+        <h1 className={'text-4xl text-white text-contrast font-bold'}>
+          {Title}
         </h1>
 
-        <div className={classes.subtitleContainer}>
-          <p className={classes.subtitle}>
-            { Subtitle }
-          </p>
+        <div className={'h-24'}>
+          <p className={''}>{Subtitle}</p>
         </div>
 
-        <div className={classes.planCardsContainer}>
-         {
-           Plans.map(plan => (
-             <PlanCardOne
-               key={plan.title}
-               title={plan.title}
-               subtitle={plan.subtitle}
-               price={plan.price}
-               priceDescription={plan.priceDescription}
-               priceSubdescription={plan.priceSubdescription}
-               features={plan.features}
-               ctaLink={plan.ctaLink}
-             />
-           ))
-          }
+        <div className={'flex flex-col md:flex-row'}>
+          {Plans.map((plan) => (
+            <PlanCardOne
+              key={plan.title}
+              title={plan.title}
+              subtitle={plan.subtitle}
+              price={plan.price}
+              priceDescription={plan.priceDescription}
+              priceSubdescription={plan.priceSubdescription}
+              features={plan.features}
+              ctaLink={plan.ctaLink}
+            />
+          ))}
         </div>
       </div>
     </div>
