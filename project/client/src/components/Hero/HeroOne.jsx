@@ -50,7 +50,7 @@ function HeroOne(props) {
             )}
           </div>
         </div>
-        <div className={'max-w-3/5'}>
+        <div className={'lg:max-w-3/5'}>
           <img src={Image} className={'object-contain rounded-md'} />
         </div>
       </div>
