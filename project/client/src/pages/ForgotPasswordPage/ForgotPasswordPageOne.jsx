@@ -12,7 +12,7 @@ function ForgotPasswordPageBase(props) {
   return auth.currentUser ? (
     <Redirect to={staqConfig.get('userHome') || '/'} />
   ) : (
-    <div className={''}>
+    <div className={'min-h-screen flex justify-center mt-6'}>
       {Logo ? (
         <Link to="/">
           <Logo className={''} width={50} height={50} />
@@ -47,17 +47,26 @@ function ForgotPasswordForm(props) {
   }
 
   return (
-    <div className={''}>
-      <span className={''}>Reset Password</span>
+    <div
+      className={'w-11/12 md:w/1/2 max-w-lg max-h-36 rounded-md shadow-md p-4'}
+    >
+      <span className={'mb-4 font-bold'}>Reset Password</span>
 
       <form onSubmit={onSubmit} className={''}>
         <input
-          className={''}
           placeholder="Email"
           value={email}
           onChange={onChangeEmail}
+          className={
+            'focus:border-light-blue-500 focus:ring-1 focus:ring-light-blue-500 focus:outline-none w-full text-sm text-black placeholder-gray-500 border border-gray-200 rounded-md py-2 pl-2 mb-2'
+          }
         />
-        <button className={''} type="submit">
+        <button
+          className={
+            'w-full rounded-md px-6 py-2 bg-primary text-center text-white text-contrast'
+          }
+          type="submit"
+        >
           Send reset instructions
         </button>
 
