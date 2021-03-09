@@ -21,8 +21,6 @@
   "dependencies": {
     "@stripe/react-stripe-js": "^1.1.2",
     "@stripe/stripe-js": "^1.8.0",
-    "import": "^0.0.6",
-    "postcss-import": "^14.0.0",
     "react-portal": "^4.2.1"
   },
   "peerDependencies": {
