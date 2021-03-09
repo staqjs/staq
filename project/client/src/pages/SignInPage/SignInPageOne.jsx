@@ -13,7 +13,7 @@ function SignInPageOne(props) {
   return auth.currentUser ? (
     <Redirect to={userHome} />
   ) : (
-    <div className={''}>
+    <div className={'flex justify-center mt-6'}>
       <SignInFormOne />
     </div>
   )

@@ -20,17 +20,9 @@ function PlanCardBasic(props) {
       <div className={''}>
         {price ? (
           <div className={''}>
-            <span component="span" className={''}>
-              $
-            </span>
-            <span component="span" className={''}>
-              {price}
-            </span>
-            {type === 'monthly' ? (
-              <span component="span" className={''}>
-                /mo
-              </span>
-            ) : null}
+            <span className={''}>$</span>
+            <span className={''}>{price}</span>
+            {type === 'monthly' ? <span className={''}>/mo</span> : null}
           </div>
         ) : null}
 

@@ -81,14 +81,11 @@ function StaqRoutes() {
       ) : null}
 
       <Route exact path={Routes.Landing} component={LandingPage} />
-      {/* <Route path={Routes.SignUp} component={SignUpPage} /> */}
-      {/* <Route path={Routes.SignIn} component={SignInPage} /> */}
-      {/* <Route path={Routes.Pricing} component={PricingPage} /> */}
+      <Route path={Routes.SignUp} component={SignUpPage} />
+      <Route path={Routes.SignIn} component={SignInPage} />
+      <Route path={Routes.Pricing} component={PricingPage} />
 
-      {/* <Route path={Routes.ForgotPassword} component={ForgotPasswordPage} /> */}
-
-      {/* <PrivateRoute path={Routes.UserSettings} component={UserSettingsPage} /> */}
-      {/* <PrivateRoute path={Routes.BillingSettings} component={BillingSettingsPage} /> *\/} */}
+      <Route path={Routes.ForgotPassword} component={ForgotPasswordPage} />
 
       {footerRoutes.includes(pathname) ? (
         <Footer

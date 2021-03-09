@@ -7,7 +7,7 @@ import SignUpFormOne from '../../components/SignUpForm/SignUpFormOne'
 
 function SignUpPageOne(props) {
   return (
-    <div className={''}>
+    <div className={'flex justify-center mt-6'}>
       <SignUpFormOne />
     </div>
   )

@@ -38,8 +38,8 @@ function SignInFormOne(props) {
   }
 
   return (
-    <div className={''}>
-      <span className={''}>Sign In</span>
+    <div className={'w-11/12 md:w/1/2 max-w-lg rounded-md shadow-md p-4'}>
+      <div className={'mb-4 font-bold'}>Sign In</div>
 
       <div className={''}>
         <form onSubmit={onSubmit}>
@@ -47,29 +47,33 @@ function SignInFormOne(props) {
             <input
               value={state.email}
               onChange={(event) => setField('email', event.target.value)}
-              className={''}
-              label="Email"
+              placeholder="Email"
+              className={
+                'focus:border-light-blue-500 focus:ring-1 focus:ring-light-blue-500 focus:outline-none w-full text-sm text-black placeholder-gray-500 border border-gray-200 rounded-md py-2 pl-2 mb-2'
+              }
             />
 
             <input
               type="password"
               value={state.password}
               onChange={(event) => setField('password', event.target.value)}
-              className={''}
-              label="Password"
+              placeholder="Password"
+              className={
+                'focus:border-light-blue-500 focus:ring-1 focus:ring-light-blue-500 focus:outline-none w-full text-sm text-black placeholder-gray-500 border border-gray-200 rounded-md py-2 pl-2 mb-2'
+              }
             />
           </div>
 
           <button
             type="submit"
-            color="primary"
-            variant="contained"
-            className={''}
+            className={
+              'w-full rounded-md px-6 py-2 bg-blue-400 text-center text-white'
+            }
           >
             Login
           </button>
 
-          <Link className={''} to={Routes.ForgotPassword}>
+          <Link className={'text-sm'} to={Routes.ForgotPassword}>
             Forgot your password?
           </Link>
 

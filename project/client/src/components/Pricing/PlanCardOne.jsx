@@ -13,7 +13,9 @@ function PlanCardOne(props) {
   } = props
 
   return (
-    <article className={'bg-white rounded-md shadow p-4 mr-4 last:mr-0'}>
+    <article
+      className={'bg-white rounded-md shadow p-4 md:mr-4 last:mr-0 mb-2'}
+    >
       <div className={''}>
         <h2 className={'text-2xl font-bold'}>{title}</h2>
         <p className={'h-24'}>{subtitle}</p>

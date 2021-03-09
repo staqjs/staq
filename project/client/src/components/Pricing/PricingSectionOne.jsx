@@ -14,7 +14,7 @@ function PricingSectionOne(props) {
           <p className={''}>{Subtitle}</p>
         </div>
 
-        <div className={'flex'}>
+        <div className={'flex flex-col md:flex-row'}>
           {Plans.map((plan) => (
             <PlanCardOne
               key={plan.title}
