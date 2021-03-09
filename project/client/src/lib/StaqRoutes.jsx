@@ -69,10 +69,7 @@ function StaqRoutes() {
     'Template.Config.Footer.PoweredByStaq',
     false,
   )
-  // const Footer = Footers[`Footer${template}`]
-
-  console.log(LandingPage)
-  console.log(Navbar)
+  const Footer = Footers[`Footer${template}`]
 
   return (
     <>
@@ -93,13 +90,13 @@ function StaqRoutes() {
       {/* <PrivateRoute path={Routes.UserSettings} component={UserSettingsPage} /> */}
       {/* <PrivateRoute path={Routes.BillingSettings} component={BillingSettingsPage} /> *\/} */}
 
-      {/* {footerRoutes.includes(pathname) ? ( */}
-      {/*   <Footer */}
-      {/*     columns={footerColumns} */}
-      {/*     copyright={copyright} */}
-      {/*     poweredByStaq={poweredByStaq} */}
-      {/*   /> */}
-      {/* ) : null} */}
+      {footerRoutes.includes(pathname) ? (
+        <Footer
+          columns={footerColumns}
+          copyright={copyright}
+          poweredByStaq={poweredByStaq}
+        />
+      ) : null}
     </>
   )
 }

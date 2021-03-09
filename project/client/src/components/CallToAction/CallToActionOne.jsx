@@ -5,15 +5,16 @@ function CallToActionOne(props) {
   const { Title, ActionText, ActionLink } = props
 
   return (
-    <div className={''}>
-      <h2 className={''}>{Title}</h2>
+    <div className={'flex flex-col items-center p-8 my-6'}>
+      <h2 className={'text-3xl font-bold'}>{Title}</h2>
 
-      <div className={''}>
-        <div className={''}>
-          <Link className={''} to={ActionLink}>
-            {ActionText}
-          </Link>
-        </div>
+      <div className={'mt-8'}>
+        <Link
+          className={'rounded-md bg-blue-400 px-6 py-4 text-white font-bold'}
+          to={ActionLink}
+        >
+          {ActionText}
+        </Link>
       </div>
     </div>
   )

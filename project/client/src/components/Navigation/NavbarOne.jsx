@@ -25,42 +25,46 @@ function RegularSizeNavbar(props) {
   }
 
   return (
-    <div className={'grid grid-flow-row grid-cols-3 p-6'}>
-      <Link to="/" className={''}>
-        <span className={'flex items-center'}>
-          {logo && <img src={logo} className={'pr-4'} />}
-          <span className={'text-xl font-bold'}>{siteTitle}</span>
-        </span>
-      </Link>
+    <div className={'flex justify-center'}>
+      <div
+        className={'w-full max-w-screen-xl grid grid-flow-row grid-cols-3 p-6'}
+      >
+        <Link to="/" className={''}>
+          <span className={'flex items-center'}>
+            {logo && <img src={logo} className={'pr-4'} />}
+            <span className={'text-xl font-bold'}>{siteTitle}</span>
+          </span>
+        </Link>
 
-      {auth.currentUser ? (
-        <div></div>
-      ) : (
-        <nav role="navigation" className={'text-center'}>
-          {menuLinks.map((menuLink) => (
-            <Link key={menuLink.to} to={menuLink.to} className={'p-4'}>
-              {menuLink.text}
+        {auth.currentUser ? (
+          <div></div>
+        ) : (
+          <nav role="navigation" className={'text-center'}>
+            {menuLinks.map((menuLink) => (
+              <Link key={menuLink.to} to={menuLink.to} className={'p-4'}>
+                {menuLink.text}
+              </Link>
+            ))}
+          </nav>
+        )}
+
+        {auth.currentUser ? (
+          <div className={'text-right'}>
+            <button className={''} onClick={onClickSignOut}>
+              Sign Out
+            </button>
+          </div>
+        ) : (
+          <div className={'text-right'}>
+            <Link
+              to={getStartedLink}
+              className={'rounded-md ring-2 ring-black px-4 py-2'}
+            >
+              Get Started
             </Link>
-          ))}
-        </nav>
-      )}
-
-      {auth.currentUser ? (
-        <div className={'text-right'}>
-          <button className={''} onClick={onClickSignOut}>
-            Sign Out
-          </button>
-        </div>
-      ) : (
-        <div className={'text-right'}>
-          <Link
-            to={getStartedLink}
-            className={'rounded-md ring-2 ring-black px-4 py-2'}
-          >
-            Get Started
-          </Link>
-        </div>
-      )}
+          </div>
+        )}
+      </div>
     </div>
   )
 }
