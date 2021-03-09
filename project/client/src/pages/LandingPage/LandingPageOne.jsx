@@ -1,5 +1,4 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core/styles'
 
 import staqConfig from '../../../../staq'
 
@@ -8,26 +7,14 @@ import BenefitsOne from '../../components/Benefits/BenefitsOne'
 import PricingSectionOne from '../../components/Pricing/PricingSectionOne'
 import CallToActionOne from '../../components/CallToAction/CallToActionOne'
 
-const useStyles = makeStyles(() => ({
-  pageContents: {
-    position: 'relative',
-    overflow: 'hidden',
-    width: '100%',
-    backgroundColor: '#fff',
-    color: '#141414',
-  },
-}))
-
-function LandingPageTwo() {
-  const classes = useStyles()
-
+function LandingPageOne() {
   const heroProps = staqConfig.get('Template.Config.Hero', {})
   const benefitsProps = staqConfig.get('Template.Config.Benefits', {})
   const pricingProps = staqConfig.get('Template.Config.Pricing', {})
   const callToActionProps = staqConfig.get('Template.Config.CallToAction', {})
 
   return (
-    <div className={classes.pageContents}>
+    <div className={''}>
       <HeroOne {...heroProps} />
       <BenefitsOne {...benefitsProps} />
       <PricingSectionOne {...pricingProps} />
@@ -36,4 +23,4 @@ function LandingPageTwo() {
   )
 }
 
-export default LandingPageTwo
+export default LandingPageOne

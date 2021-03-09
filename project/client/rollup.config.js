@@ -53,5 +53,14 @@ export default {
       },
     }),
   ],
-  external: ['react', 'react-dom'],
+  external: [
+    'react',
+    'react-dom',
+    'react-router-dom',
+    'firebase/app',
+    'firebase/analytics',
+    'firebase/auth',
+    'firebase/functions',
+    'firebase/firestore',
+  ],
 }

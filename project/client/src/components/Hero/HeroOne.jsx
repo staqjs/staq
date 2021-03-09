@@ -1,126 +1,7 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core/styles'
 import { Link } from 'react-router-dom'
 
-const useStyles = makeStyles((theme) => ({
-  heroSection: {
-    paddingTop: '96px',
-    paddingBottom: '96px',
-    backgroundColor: '#fff',
-  },
-  heroContainer: {
-    width: '100%',
-    maxWidth: '1296px',
-    marginRight: 'auto',
-    marginLeft: 'auto',
-    paddingRight: '24px',
-    paddingLeft: '24px',
-  },
-  gridHalves: {
-    display: 'grid',
-    '-webkit-box-align': 'center',
-    '-webkit-align-items': 'center',
-    '-ms-flex-align': 'center',
-    alignItems: 'center',
-    gridAutoColumns: '1fr',
-    gridColumnGap: '24px',
-    gridRowGap: '16px',
-    '-ms-grid-rows': 'auto',
-    gridTemplateRows: 'auto',
-    gridTemplateColumns: '1fr 1fr',
-
-    [theme.breakpoints.down('md')]: {
-      gridTemplateColumns: 'unset',
-    },
-  },
-  heroText: {
-    marginRight: 'auto',
-    marginLeft: 'auto',
-    maxWidth: '506px',
-    width: '100%',
-
-    [theme.breakpoints.down('md')]: {
-      marginRight: 'unset',
-      marginLeft: 'unset',
-    },
-  },
-  heroTextPrimary: {
-    fontSize: '54px',
-    lineHeight: '54px',
-    fontWeight: 700,
-    marginBottom: '24px',
-    fontFamily: "'Space Grotesk', sans-serif",
-  },
-  heroTextSecondary: {
-    fontSize: '20px',
-    lineHeight: '30px',
-    letterSpacing: '-.01em',
-    fontFamily: "'Space Grotesk',sans-serif",
-  },
-  heroImage: {
-    height: 500,
-    borderRadius: 6,
-
-    [theme.breakpoints.down('md')]: {
-      height: 'unset',
-      width: '90%',
-      maxWidth: 800,
-    },
-  },
-  heroActionsRow: {
-    display: 'flex',
-    marginTop: '36px',
-    gridColumnGap: 0,
-    gridRowGap: 0,
-    '-ms-grid-columns': '.75fr .75fr',
-    gridTemplateColumns: '.75fr .75fr',
-    '-ms-grid-rows': 'auto',
-    gridTemplateRows: 'auto',
-    gridAutoColumns: '1fr',
-    justifyItems: 'stretch',
-    '-webkit-box-align': 'center',
-    alignItems: 'center',
-  },
-  heroPrimaryAction: {
-    padding: '18px 36px',
-    backgroundColor: theme.palette.primary.main,
-    color: theme.palette.primary.contrastText,
-    display: 'flex',
-    '-webkit-box-pack': 'center',
-    justifyContent: 'center',
-    '-webkit-box-align': 'center',
-    alignItems: 'center',
-    borderRadius: 6,
-    fontWeight: 600,
-    textAlign: 'center',
-    cursor: 'pointer',
-    fontFamily: "'IBM Plex Mono', sans-serif",
-    textDecoration: 'none',
-  },
-  heroSecondaryAction: {
-    marginLeft: 12,
-    borderStyle: 'solid',
-    borderWidth: '1px',
-    borderColor: 'rgba(20,20,20,.1)',
-    backgroundColor: 'transparent',
-    color: '#141414',
-    padding: '18px 36px',
-    display: 'flex',
-    '-webkit-box-pack': 'center',
-    justifyContent: 'center',
-    '-webkit-box-align': 'center',
-    alignItems: 'center',
-    borderRadius: 6,
-    fontWeight: 600,
-    textAlign: 'center',
-    cursor: 'pointer',
-    fontFamily: "'IBM Plex Mono', sans-serif",
-    textDecoration: 'none',
-  },
-}))
-
 function HeroOne(props) {
-  const classes = useStyles()
   const {
     PrimaryText,
     SecondaryText,
@@ -130,45 +11,45 @@ function HeroOne(props) {
   } = props
 
   return (
-    <div className={classes.heroSection}>
-      <div className={classes.heroContainer}>
-        <div className={classes.gridHalves}>
-          <div className={classes.heroText}>
-            <div className={classes.heroTextPrimaryContainer}>
-              <h1 className={classes.heroTextPrimary}>{PrimaryText}</h1>
-            </div>
-
-            <div className={classes.heroTextSecondaryContainer}>
-              <div className={classes.heroTextSecondary}>{SecondaryText}</div>
-            </div>
-
-            <div className={classes.heroActionsContainer}>
-              <div className={classes.heroActionsRow}>
-                {PrimaryLink && (
-                  <Link
-                    className={classes.heroPrimaryAction}
-                    to={PrimaryLink.to}
-                  >
-                    <div>{PrimaryLink.text}</div>
-                  </Link>
-                )}
-
-                {SecondaryLink && (
-                  <div className={classes.heroSecondaryActionContainer}>
-                    <Link
-                      className={classes.heroSecondaryAction}
-                      to={SecondaryLink.to}
-                    >
-                      <div>{SecondaryLink.text}</div>
-                    </Link>
-                  </div>
-                )}
-              </div>
-            </div>
+    <div className={'flex justify-center'}>
+      <div
+        className={
+          'flex flex-col items-start lg:flex-row lg:justify-between p-6 max-w-screen-xl'
+        }
+      >
+        <div className={'mb-6 pr-2 lg:max-w-full max-w-prose'}>
+          <div className={'mb-6'}>
+            <span className={'text-6xl'}>{PrimaryText}</span>
           </div>
-          <div className={classes.heroImageContainer}>
-            <img src={Image} className={classes.heroImage} />
+
+          <div className={'mb-4'}>
+            <span className={'text-2xl'}>{SecondaryText}</span>
           </div>
+
+          <div className={'flex'}>
+            {PrimaryLink && (
+              <Link
+                className={'px-4 py-2 rounded-md bg-yellow-400'}
+                to={PrimaryLink.to}
+              >
+                <span>{PrimaryLink.text}</span>
+              </Link>
+            )}
+
+            {SecondaryLink && (
+              <Link
+                to={SecondaryLink.to}
+                className={
+                  'ml-4 px-4 py-2 rounded-md ring-2 ring-black ring-inset'
+                }
+              >
+                <span>{SecondaryLink.text}</span>
+              </Link>
+            )}
+          </div>
+        </div>
+        <div>
+          <img src={Image} className={'object-contain rounded-md'} />
         </div>
       </div>
     </div>

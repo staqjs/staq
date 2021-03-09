@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { Redirect, Route, useLocation, useHistory } from 'react-router-dom'
 import _ from 'lodash'
 
-import StaqStyleProvider from './StaqStyleProvider'
 import staqConfig from '../../../staq'
 
 import { withAuth } from './Auth'
@@ -76,7 +75,7 @@ function StaqRoutes() {
   console.log(Navbar)
 
   return (
-    <StaqStyleProvider>
+    <>
       <ScrollToTop />
       {_.isNil(navbarRoutes) ? (
         <Navbar />
@@ -101,7 +100,7 @@ function StaqRoutes() {
       {/*     poweredByStaq={poweredByStaq} */}
       {/*   /> */}
       {/* ) : null} */}
-    </StaqStyleProvider>
+    </>
   )
 }
 

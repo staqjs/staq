@@ -1,5 +1,4 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core/styles'
 import 'tailwindcss/tailwind.css'
 
 import staqConfig from '../../../../staq'
@@ -8,16 +7,6 @@ import HeroOne from '../../components/Hero/HeroOne'
 import BenefitsOne from '../../components/Benefits/BenefitsOne'
 import PricingSectionOne from '../../components/Pricing/PricingSectionOne'
 import CallToActionOne from '../../components/CallToAction/CallToActionOne'
-
-const useStyles = makeStyles(() => ({
-  pageContents: {
-    position: 'relative',
-    overflow: 'hidden',
-    width: '100%',
-    backgroundColor: '#fff',
-    color: '#141414',
-  },
-}))
 
 function LandingPageOne() {
   const classes = useStyles()
