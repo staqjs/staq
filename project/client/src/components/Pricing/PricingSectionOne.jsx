@@ -6,9 +6,11 @@ function PricingSectionOne(props) {
   const { Title, Subtitle, Plans } = props
 
   return (
-    <div className={'flex justify-center bg-blue-400 p-12'}>
+    <div className={'flex justify-center bg-primary p-12'}>
       <div className={'max-w-screen-xl flex flex-col items-center'}>
-        <h1 className={'text-4xl text-white font-bold'}>{Title}</h1>
+        <h1 className={'text-4xl text-white text-contrast font-bold'}>
+          {Title}
+        </h1>
 
         <div className={'h-24'}>
           <p className={''}>{Subtitle}</p>

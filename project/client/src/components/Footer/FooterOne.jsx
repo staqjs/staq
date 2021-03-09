@@ -8,14 +8,14 @@ function FooterColumn(props) {
 
   return (
     <div className={'px-4'}>
-      <div className={'text-white font-bold'}>{title}</div>
+      <div className={'text-white text-contrast font-bold'}>{title}</div>
       <div className={'flex flex-col'}>
         {links.map((link) => {
           return _.startsWith(link, '/') ? (
             <Link
               key={link.link}
               to={link.link}
-              className={'text-white text-sm'}
+              className={'text-white text-contrast text-sm'}
             >
               {link.text}
             </Link>
@@ -23,7 +23,7 @@ function FooterColumn(props) {
             <a
               key={link.link}
               href={link.link}
-              className={'text-white text-sm'}
+              className={'text-white text-contrast text-sm'}
             >
               {' '}
               {link.text}{' '}
@@ -38,7 +38,10 @@ function FooterColumn(props) {
 function PoweredByStaq() {
   return (
     <div className={''}>
-      <a href="https://staqjs.com" className={'text-sm text-white'}>
+      <a
+        href="https://staqjs.com"
+        className={'text-sm text-white text-contrast'}
+      >
         <span className={''}>Powered by</span>
         <span className={'ml-1 font-bold'}>staqjs</span>
       </a>
@@ -53,7 +56,7 @@ function FooterOne(props) {
     <Portal>
       <div
         className={
-          'h-96 px-6 py-4 bg-blue-400 flex flex-col justify-between items-center'
+          'h-96 px-6 py-4 bg-primary flex flex-col justify-between items-center'
         }
       >
         <div className={'flex'}>
@@ -70,7 +73,9 @@ function FooterOne(props) {
 
         <div className={'w-full flex justify-between'}>
           <div className={''}>
-            <span className={'text-sm text-white'}>&copy; {copyright}</span>
+            <span className={'text-sm text-white text-contrast'}>
+              &copy; {copyright}
+            </span>
           </div>
 
           {poweredByStaq || false ? <PoweredByStaq /> : null}

@@ -10,7 +10,9 @@ function CallToActionOne(props) {
 
       <div className={'mt-8'}>
         <Link
-          className={'rounded-md bg-blue-400 px-6 py-4 text-white font-bold'}
+          className={
+            'rounded-md bg-primary px-6 py-4 text-white text-contrast font-bold'
+          }
           to={ActionLink}
         >
           {ActionText}

@@ -38,7 +38,9 @@ function SignInFormOne(props) {
   }
 
   return (
-    <div className={'w-11/12 md:w/1/2 max-w-lg rounded-md shadow-md p-4'}>
+    <div
+      className={'w-11/12 md:w/1/2 max-w-lg max-h-64 rounded-md shadow-md p-4'}
+    >
       <div className={'mb-4 font-bold'}>Sign In</div>
 
       <div className={''}>
@@ -67,7 +69,7 @@ function SignInFormOne(props) {
           <button
             type="submit"
             className={
-              'w-full rounded-md px-6 py-2 bg-blue-400 text-center text-white'
+              'w-full rounded-md px-6 py-2 bg-primary text-center text-white text-contrast'
             }
           >
             Login

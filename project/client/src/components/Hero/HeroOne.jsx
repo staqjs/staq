@@ -29,7 +29,9 @@ function HeroOne(props) {
           <div className={'flex'}>
             {PrimaryLink && (
               <Link
-                className={'px-4 py-2 rounded-md bg-yellow-400'}
+                className={
+                  'px-4 py-2 rounded-md bg-primary text-white text-contrast'
+                }
                 to={PrimaryLink.to}
               >
                 <span>{PrimaryLink.text}</span>
