@@ -21,7 +21,7 @@ function BenefitsOne(props) {
         <div className={'sjs-px-4'}>
           <div
             className={
-              'sjs-grid sjs-grid-flow-row sjs-grid-cols-2 lg:sjs-grid-cols-3'
+              'sjs-grid sjs-grid-flow-row sjs-grid-cols-1 md:sjs-grid-cols-2 lg:sjs-grid-cols-3'
             }
           >
             {Benefits.map((benefit) => (
