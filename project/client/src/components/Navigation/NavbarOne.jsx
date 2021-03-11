@@ -110,7 +110,7 @@ function NonAuthMenu(props) {
 
         <div
           className={
-            'sjs-rounded-md sjs-border-2 sjs-border-gray-300 sjs-shadow-md sjs-p-2 sjs-flex sjs-flex-col'
+            'sjs-rounded-md sjs-border-2 sjs-border-gray-300 sjs-shadow-md sjs-bg-white sjs-p-2 sjs-flex sjs-flex-col'
           }
         >
           {menuLinks.map((menuLink) => (
@@ -146,14 +146,18 @@ function AuthMenu(props) {
 
   return (
     <div className={''}>
-      <ToolTipController>
+      <ToolTipController detect="click" offsetY={10} offsetX={-50}>
         <Select>
           <button>
             <FiMenu />
           </button>
         </Select>
 
-        <div>
+        <div
+          className={
+            'sjs-rounded-md sjs-border-2 sjs-border-gray-300 sjs-shadow-md sjs-bg-white sjs-p-2 sjs-flex sjs-flex-col'
+          }
+        >
           <button onClick={onClickSignOut}>Sign Out</button>
         </div>
       </ToolTipController>
