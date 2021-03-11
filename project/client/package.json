@@ -1,6 +1,6 @@
 {
   "name": "@staqjs/client",
-  "version": "0.0.27",
+  "version": "0.0.28",
   "description": "StaqJS is a Javascript library for creating Software-as-a-Service (SaaS) businesses",
   "main": "dist/index.js",
   "source": "src/index.js",
