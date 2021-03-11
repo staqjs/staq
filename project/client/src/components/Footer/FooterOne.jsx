@@ -7,15 +7,17 @@ function FooterColumn(props) {
   const { title, links } = props
 
   return (
-    <div className={'px-4'}>
-      <div className={'text-white text-contrast font-bold'}>{title}</div>
-      <div className={'flex flex-col'}>
+    <div className={'sjs-px-4'}>
+      <div className={'sjs-text-white sjs-text-contrast sjs-font-bold'}>
+        {title}
+      </div>
+      <div className={'sjs-flex sjs-flex-col'}>
         {links.map((link) => {
           return _.startsWith(link, '/') ? (
             <Link
               key={link.link}
               to={link.link}
-              className={'text-white text-contrast text-sm'}
+              className={'sjs-text-white sjs-text-contrast sjs-text-sm'}
             >
               {link.text}
             </Link>
@@ -23,7 +25,7 @@ function FooterColumn(props) {
             <a
               key={link.link}
               href={link.link}
-              className={'text-white text-contrast text-sm'}
+              className={'sjs-text-white sjs-text-contrast sjs-text-sm'}
             >
               {' '}
               {link.text}{' '}
@@ -40,10 +42,10 @@ function PoweredByStaq() {
     <div className={''}>
       <a
         href="https://staqjs.com"
-        className={'text-sm text-white text-contrast'}
+        className={'sjs-text-sm sjs-text-white sjs-text-contrast'}
       >
         <span className={''}>Powered by</span>
-        <span className={'ml-1 font-bold'}>staqjs</span>
+        <span className={'sjs-ml-1 sjs-font-bold'}>staqjs</span>
       </a>
     </div>
   )
@@ -56,10 +58,10 @@ function FooterOne(props) {
     <Portal>
       <div
         className={
-          'h-96 px-6 py-4 bg-primary flex flex-col justify-between items-center'
+          'sjs-h-96 sjs-px-6 sjs-py-4 sjs-bg-primary sjs-flex sjs-flex-col sjs-justify-between sjs-items-center'
         }
       >
-        <div className={'flex'}>
+        <div className={'sjs-flex'}>
           {columns.map((column) => {
             return (
               <FooterColumn
@@ -71,9 +73,9 @@ function FooterOne(props) {
           })}
         </div>
 
-        <div className={'w-full flex justify-between'}>
+        <div className={'sjs-w-full sjs-flex sjs-justify-between'}>
           <div className={''}>
-            <span className={'text-sm text-white text-contrast'}>
+            <span className={'sjs-text-sm sjs-text-white sjs-text-contrast'}>
               &copy; {copyright}
             </span>
           </div>

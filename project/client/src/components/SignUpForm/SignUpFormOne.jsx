@@ -38,9 +38,11 @@ function SignUpFormOne(props) {
 
   return (
     <div
-      className={'w-11/12 md:w/1/2 max-w-lg max-h-64 rounded-md shadow-md p-4'}
+      className={
+        'sjs-w-11/12 md:sjs-w/1/2 sjs-max-w-lg sjs-max-h-64 sjs-rounded-md sjs-shadow-md sjs-p-4'
+      }
     >
-      <div className={'mb-4 font-bold'}>Sign Up</div>
+      <div className={'sjs-mb-4 sjs-font-bold'}>Sign Up</div>
 
       <div className={''}>
         <form onSubmit={onSubmit}>
@@ -50,7 +52,7 @@ function SignUpFormOne(props) {
               onChange={(event) => setField('email', event.target.value)}
               placeholder="Email"
               className={
-                'focus:border-light-blue-500 focus:ring-1 focus:ring-light-blue-500 focus:outline-none w-full text-sm text-black placeholder-gray-500 border border-gray-200 rounded-md py-2 pl-2 mb-2'
+                'focus:sjs-border-light-blue-500 focus:sjs-ring-1 focus:sjs-ring-light-blue-500 focus:sjs-outline-none sjs-w-full sjs-text-sm sjs-text-black sjs-placeholder-gray-500 sjs-border sjs-border-gray-200 sjs-rounded-md sjs-py-2 sjs-pl-2 sjs-mb-2'
               }
             />
 
@@ -60,7 +62,7 @@ function SignUpFormOne(props) {
               onChange={(event) => setField('password', event.target.value)}
               placeholder="Password"
               className={
-                'focus:border-light-blue-500 focus:ring-1 focus:ring-light-blue-500 focus:outline-none w-full text-sm text-black placeholder-gray-500 border border-gray-200 rounded-md py-2 pl-2 mb-2'
+                'focus:sjs-border-light-blue-500 focus:sjs-ring-1 focus:sjs-ring-light-blue-500 focus:sjs-outline-none sjs-w-full sjs-text-sm sjs-text-black sjs-placeholder-gray-500 sjs-border sjs-border-gray-200 sjs-rounded-md sjs-py-2 sjs-pl-2 sjs-mb-2'
               }
             />
 
@@ -72,7 +74,7 @@ function SignUpFormOne(props) {
               }
               placeholder="Confirm Password"
               className={
-                'focus:border-light-blue-500 focus:ring-1 focus:ring-light-blue-500 focus:outline-none w-full text-sm text-black placeholder-gray-500 border border-gray-200 rounded-md py-2 pl-2'
+                'focus:sjs-border-light-blue-500 focus:sjs-ring-1 focus:sjs-ring-light-blue-500 focus:sjs-outline-none sjs-w-full sjs-text-sm sjs-text-black sjs-placeholder-gray-500 sjs-border sjs-border-gray-200 sjs-rounded-md sjs-py-2 sjs-pl-2 sjs-mb-2'
               }
             />
           </div>
@@ -80,7 +82,7 @@ function SignUpFormOne(props) {
           <button
             type="submit"
             className={
-              'w-full rounded-md px-6 py-2 bg-primary text-center text-white text-contrast'
+              'sjs-w-full sjs-rounded-md sjs-px-6 sjs-py-2 sjs-bg-primary sjs-text-center sjs-text-white sjs-text-contrast'
             }
           >
             Submit

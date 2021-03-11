@@ -25,23 +25,25 @@ function RegularSizeNavbar(props) {
   }
 
   return (
-    <div className={'flex justify-center'}>
+    <div className={'sjs-flex sjs-justify-center'}>
       <div
-        className={'w-full max-w-screen-xl grid grid-flow-row grid-cols-3 p-6'}
+        className={
+          'sjs-w-full sjs-max-w-screen-xl sjs-grid sjs-grid-flow-row sjs-grid-cols-3 sjs-p-6'
+        }
       >
         <Link to="/" className={''}>
-          <span className={'flex items-center'}>
-            {logo && <img src={logo} className={'pr-4'} />}
-            <span className={'text-xl font-bold'}>{siteTitle}</span>
+          <span className={'sjs-flex sjs-items-center'}>
+            {logo && <img src={logo} className={'sjs-pr-4'} />}
+            <span className={'sjs-text-xl sjs-font-bold'}>{siteTitle}</span>
           </span>
         </Link>
 
         {auth.currentUser ? (
           <div></div>
         ) : (
-          <nav role="navigation" className={'text-center'}>
+          <nav role="navigation" className={'sjs-text-center'}>
             {menuLinks.map((menuLink) => (
-              <Link key={menuLink.to} to={menuLink.to} className={'p-4'}>
+              <Link key={menuLink.to} to={menuLink.to} className={'sjs-p-4'}>
                 {menuLink.text}
               </Link>
             ))}
@@ -49,19 +51,23 @@ function RegularSizeNavbar(props) {
         )}
 
         {auth.currentUser ? (
-          <div className={'text-right'}>
+          <div className={'sjs-text-right'}>
             <button
-              className={'rounded-md ring-2 ring-black px-4 py-2'}
+              className={
+                'sjs-rounded-md sjs-ring-2 sjs-ring-black sjs-px-4 sjs-py-2'
+              }
               onClick={onClickSignOut}
             >
               Sign Out
             </button>
           </div>
         ) : (
-          <div className={'text-right'}>
+          <div className={'sjs-text-right'}>
             <Link
               to={getStartedLink}
-              className={'rounded-md ring-2 ring-black px-4 py-2'}
+              className={
+                'sjs-rounded-md sjs-ring-2 sjs-ring-black sjs-px-4 sjs-py-2'
+              }
             >
               Get Started
             </Link>
@@ -91,26 +97,7 @@ function NonAuthMenu(props) {
     handleClose()
   }
 
-  return (
-    <div className={''}>
-      <IconButton onClick={handleClick}>
-        <MenuIcon />
-      </IconButton>
-      <Menu
-        id="simple-menu"
-        anchorEl={anchorEl}
-        keepMounted
-        open={Boolean(anchorEl)}
-        onClose={handleClose}
-      >
-        {menuLinks.map((menuLink) => (
-          <MenuItem key={menuLink.to} onClick={() => onClickMenuLink(menuLink)}>
-            {menuLink.text}
-          </MenuItem>
-        ))}
-      </Menu>
-    </div>
-  )
+  return <div className={''}></div>
 }
 
 function AuthMenu(props) {
@@ -133,22 +120,7 @@ function AuthMenu(props) {
     firebase.doSignOut()
   }
 
-  return (
-    <div className={''}>
-      <IconButton onClick={handleClick}>
-        <MenuIcon />
-      </IconButton>
-      <Menu
-        id="simple-menu"
-        anchorEl={anchorEl}
-        keepMounted
-        open={Boolean(anchorEl)}
-        onClose={handleClose}
-      >
-        <MenuItem onClick={onClickSignOut}>Sign Out</MenuItem>
-      </Menu>
-    </div>
-  )
+  return <div className={''}></div>
 }
 
 function SmallScreenavbar(props) {

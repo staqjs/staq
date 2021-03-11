@@ -6,17 +6,23 @@ function PricingSectionOne(props) {
   const { Title, Subtitle, Plans } = props
 
   return (
-    <div className={'flex justify-center bg-primary p-12'}>
-      <div className={'max-w-screen-xl flex flex-col items-center'}>
-        <h1 className={'text-4xl text-white text-contrast font-bold'}>
+    <div className={'sjs-flex sjs-justify-center sjs-bg-primary sjs-p-12'}>
+      <div
+        className={'sjs-max-w-screen-xl sjs-flex sjs-flex-col sjs-items-center'}
+      >
+        <h1
+          className={
+            'sjs-text-4xl sjs-text-white sjs-text-contrast sjs-font-bold'
+          }
+        >
           {Title}
         </h1>
 
-        <div className={'h-24'}>
+        <div className={'sjs-h-24'}>
           <p className={''}>{Subtitle}</p>
         </div>
 
-        <div className={'flex flex-col md:flex-row'}>
+        <div className={'sjs-flex sjs-flex-col md:sjs-flex-row'}>
           {Plans.map((plan) => (
             <PlanCardOne
               key={plan.title}

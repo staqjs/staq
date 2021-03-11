@@ -14,17 +14,24 @@ function PlanCardOne(props) {
 
   return (
     <article
-      className={'bg-white rounded-md shadow p-4 md:mr-4 last:mr-0 mb-2'}
+      className={
+        'sjs-bg-white sjs-rounded-md sjs-shadow sjs-p-4 md:sjs-mr-4 last:sjs-mr-0 sjs-mb-2'
+      }
     >
       <div className={''}>
-        <h2 className={'text-2xl font-bold'}>{title}</h2>
-        <p className={'h-24'}>{subtitle}</p>
+        <h2 className={'sjs-text-2xl sjs-font-bold'}>{title}</h2>
+        <p className={'sjs-h-24'}>{subtitle}</p>
 
         <div className={''}>
-          <div className={'flex'}>
-            <span className={'text-6xl font-bold'}> {price.value} </span>
+          <div className={'sjs-flex'}>
+            <span className={'sjs-text-6xl sjs-font-bold'}>
+              {' '}
+              {price.value}{' '}
+            </span>
             <span
-              className={'h-full flex flex-col justify-start text-sm ml-1 mt-1'}
+              className={
+                'sjs-h-full sjs-flex sjs-flex-col sjs-justify-start sjs-text-sm sjs-ml-1 sjs-mt-1'
+              }
             >
               {price.description}{' '}
             </span>
@@ -33,10 +40,10 @@ function PlanCardOne(props) {
         </div>
       </div>
 
-      <hr className={'my-4'} />
+      <hr className={'sjs-my-4'} />
 
-      <div className={'flex flex-col'}>
-        <ul className={'mb-4'}>
+      <div className={'sjs-flex sjs-flex-col'}>
+        <ul className={'sjs-mb-4'}>
           {features.map((feature) => (
             <li key={feature.text} className={''}>
               <span className={''}>{feature.text}</span>
@@ -46,7 +53,7 @@ function PlanCardOne(props) {
 
         <Link
           className={
-            'w-full rounded-md bg-primary px-6 py-2 mt-4 font-bold text-white text-contrast text-center'
+            'sjs-w-full sjs-rounded-md sjs-bg-primary sjs-px-6 sjs-py-2 sjs-mt-4 sjs-font-bold sjs-text-white sjs-text-contrast sjs-text-center'
           }
           to={ctaLink.to}
         >
