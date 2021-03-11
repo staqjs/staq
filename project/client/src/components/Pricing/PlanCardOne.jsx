@@ -53,7 +53,7 @@ function PlanCardOne(props) {
 
         <Link
           className={
-            'sjs-w-full sjs-rounded-md sjs-bg-primary sjs-px-6 sjs-py-2 sjs-mt-4 sjs-font-bold sjs-text-white sjs-text-contrast sjs-text-center'
+            'sjs-w-full sjs-rounded-md sjs-shadow sjs-bg-primary sjs-px-6 sjs-py-2 sjs-mt-4 sjs-font-bold sjs-text-white sjs-text-contrast sjs-text-center'
           }
           to={ctaLink.to}
         >
