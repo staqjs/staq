@@ -4,31 +4,31 @@ import { Portal } from 'react-portal'
 import _ from 'lodash'
 
 function FooterColumn(props) {
-  const { title, links } = props
+  const { Title, Links } = props
 
   return (
     <div className={'sjs-px-4'}>
       <div className={'sjs-text-white sjs-text-contrast sjs-font-bold'}>
-        {title}
+        {Title}
       </div>
       <div className={'sjs-flex sjs-flex-col'}>
-        {links.map((link) => {
+        {Links.map((link) => {
           return _.startsWith(link, '/') ? (
             <Link
-              key={link.link}
-              to={link.link}
+              key={link.To}
+              to={link.To}
               className={'sjs-text-white sjs-text-contrast sjs-text-sm'}
             >
-              {link.text}
+              {link.Text}
             </Link>
           ) : (
             <a
-              key={link.link}
-              href={link.link}
+              key={link.To}
+              href={link.To}
               className={'sjs-text-white sjs-text-contrast sjs-text-sm'}
             >
               {' '}
-              {link.text}{' '}
+              {link.Text}{' '}
             </a>
           )
         })}
@@ -37,7 +37,7 @@ function FooterColumn(props) {
   )
 }
 
-function PoweredByStaq() {
+function PoweredByStaqLabel() {
   return (
     <div className={''}>
       <a
@@ -52,7 +52,7 @@ function PoweredByStaq() {
 }
 
 function FooterOne(props) {
-  const { columns, copyright, poweredByStaq } = props
+  const { Columns, Copyright, PoweredByStaq } = props
 
   return (
     <Portal>
@@ -62,25 +62,23 @@ function FooterOne(props) {
         }
       >
         <div className={'sjs-flex'}>
-          {columns.map((column) => {
-            return (
-              <FooterColumn
-                key={column.title}
-                title={column.title}
-                links={column.links}
-              />
-            )
-          })}
+          {Columns.map((column) => (
+            <FooterColumn
+              key={column.Title}
+              Title={column.Title}
+              Links={column.Links}
+            />
+          ))}
         </div>
 
         <div className={'sjs-w-full sjs-flex sjs-justify-between'}>
           <div className={''}>
             <span className={'sjs-text-sm sjs-text-white sjs-text-contrast'}>
-              &copy; {copyright}
+              &copy; {Copyright}
             </span>
           </div>
 
-          {poweredByStaq || false ? <PoweredByStaq /> : null}
+          {PoweredByStaq || false ? <PoweredByStaqLabel /> : null}
         </div>
       </div>
     </Portal>

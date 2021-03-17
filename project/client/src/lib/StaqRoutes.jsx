@@ -89,9 +89,9 @@ function StaqRoutes() {
 
       {footerRoutes.includes(pathname) ? (
         <Footer
-          columns={footerColumns}
-          copyright={copyright}
-          poweredByStaq={poweredByStaq}
+          Columns={footerColumns}
+          Copyright={copyright}
+          PoweredByStaq={poweredByStaq}
         />
       ) : null}
     </>
