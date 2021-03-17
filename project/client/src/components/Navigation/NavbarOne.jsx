@@ -11,10 +11,10 @@ function RegularSizeNavbar(props) {
   const history = useHistory()
   const { auth, firebase } = props
 
-  const logo = staqConfig.get('Logo')
-  const siteTitle = staqConfig.get('SiteTitle')
-  const menuLinks = staqConfig.get('Template.Config.Navbar.MenuLinks', [])
-  const getStartedLink = staqConfig.get(
+  const Logo = staqConfig.get('Logo')
+  const SiteTitle = staqConfig.get('SiteTitle')
+  const MenuLinks = staqConfig.get('Template.Config.Navbar.MenuLinks', [])
+  const GetStartedLink = staqConfig.get(
     'Template.Config.Navbar.GetStartedLink',
     '/signup',
   )
@@ -35,8 +35,8 @@ function RegularSizeNavbar(props) {
       >
         <Link to="/" className={''}>
           <span className={'sjs-flex sjs-items-center'}>
-            {logo && <img src={logo} className={'sjs-pr-4'} />}
-            <span className={'sjs-text-xl sjs-font-bold'}>{siteTitle}</span>
+            {Logo && <img src={Logo} className={'sjs-pr-4'} />}
+            <span className={'sjs-text-xl sjs-font-bold'}>{SiteTitle}</span>
           </span>
         </Link>
 
@@ -44,9 +44,9 @@ function RegularSizeNavbar(props) {
           <div></div>
         ) : (
           <nav role="navigation" className={'sjs-text-center'}>
-            {menuLinks.map((menuLink) => (
-              <Link key={menuLink.to} to={menuLink.to} className={'sjs-p-4'}>
-                {menuLink.text}
+            {MenuLinks.map((menuLink) => (
+              <Link key={menuLink.To} to={menuLink.To} className={'sjs-p-4'}>
+                {menuLink.Text}
               </Link>
             ))}
           </nav>
@@ -66,7 +66,7 @@ function RegularSizeNavbar(props) {
         ) : (
           <div className={'sjs-text-right'}>
             <Link
-              to={getStartedLink}
+              to={GetStartedLink}
               className={
                 'sjs-rounded-md sjs-ring-2 sjs-ring-black sjs-px-4 sjs-py-2'
               }
@@ -82,7 +82,7 @@ function RegularSizeNavbar(props) {
 
 function NonAuthMenu(props) {
   const history = useHistory()
-  const { menuLinks } = props
+  const { MenuLinks } = props
 
   const [anchorEl, setAnchorEl] = useState(null)
 
@@ -113,9 +113,9 @@ function NonAuthMenu(props) {
             'sjs-rounded-md sjs-border-2 sjs-border-gray-300 sjs-shadow-md sjs-bg-white sjs-p-2 sjs-flex sjs-flex-col'
           }
         >
-          {menuLinks.map((menuLink) => (
-            <Link key={menuLink.to} to={menuLink.to} className={'sjs-text-sm'}>
-              {menuLink.text}
+          {MenuLinks.map((menuLink) => (
+            <Link key={menuLink.To} to={menuLink.To} className={'sjs-text-sm'}>
+              {menuLink.Text}
             </Link>
           ))}
         </div>
@@ -168,10 +168,10 @@ function AuthMenu(props) {
 function SmallScreenavbar(props) {
   const { auth, firebase } = props
 
-  const logo = staqConfig.get('Logo')
-  const siteTitle = staqConfig.get('SiteTitle')
-  const menuLinks = staqConfig.get('Template.Config.Navbar.MenuLinks', [])
-  const getStartedLink = staqConfig.get(
+  const Logo = staqConfig.get('Logo')
+  const SiteTitle = staqConfig.get('SiteTitle')
+  const MenuLinks = staqConfig.get('Template.Config.Navbar.MenuLinks', [])
+  const GetStartedLink = staqConfig.get(
     'Template.Config.Navbar.GetStartedLink',
     '/signup',
   )
@@ -184,15 +184,15 @@ function SmallScreenavbar(props) {
     >
       <Link to="/" className={''}>
         <span className={''}>
-          {logo && <img src={logo} className={''} />}
-          <span className={'sjs-text-xl sjs-font-bold'}>{siteTitle}</span>
+          {Logo && <img src={Logo} className={''} />}
+          <span className={'sjs-text-xl sjs-font-bold'}>{SiteTitle}</span>
         </span>
       </Link>
 
       {auth.currentUser ? (
         <AuthMenu auth={auth} firebase={firebase} />
       ) : (
-        <NonAuthMenu menuLinks={menuLinks} />
+        <NonAuthMenu MenuLinks={MenuLinks} />
       )}
     </div>
   )

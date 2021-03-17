@@ -9,14 +9,14 @@ import CallToActionOne from '../../components/CallToAction/CallToActionOne'
 
 function LandingPageOne() {
   const heroProps = staqConfig.get('Template.Config.Hero', {})
-  const benefitsProps = staqConfig.get('Template.Config.Benefits', {})
+  const benefitsProps = staqConfig.get('Template.Config.Benefits', [])
   const pricingProps = staqConfig.get('Template.Config.Pricing', {})
   const callToActionProps = staqConfig.get('Template.Config.CallToAction', {})
 
   return (
     <div className={''}>
       <HeroOne {...heroProps} />
-      <BenefitsOne {...benefitsProps} />
+      <BenefitsOne Benefits={benefitsProps} />
       <PricingSectionOne {...pricingProps} />
       <CallToActionOne {...callToActionProps} />
     </div>

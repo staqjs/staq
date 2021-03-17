@@ -1,13 +1,13 @@
 import React from 'react'
 
 function BenefitsBox(props) {
-  const { miniTitle, title, message } = props
+  const { MiniTitle, Title, Message } = props
 
   return (
     <div className={'sjs-bg-white sjs-rounded-md shadow sjs-m-2 sjs-p-2'}>
-      <p className={'sjs-text-gray-400'}>{miniTitle}</p>
-      <p className={'sjs-font-medium'}>{title}</p>
-      <p className={''}>{message}</p>
+      <p className={'sjs-text-gray-400'}>{MiniTitle}</p>
+      <p className={'sjs-font-medium'}>{Title}</p>
+      <p className={''}>{Message}</p>
     </div>
   )
 }
@@ -26,10 +26,10 @@ function BenefitsOne(props) {
           >
             {Benefits.map((benefit) => (
               <BenefitsBox
-                key={benefit.miniTitle}
-                miniTitle={benefit.miniTitle}
-                title={benefit.title}
-                message={benefit.message}
+                key={benefit.MiniTitle}
+                miniTitle={benefit.MiniTitle}
+                title={benefit.Title}
+                message={benefit.Message}
               />
             ))}
           </div>

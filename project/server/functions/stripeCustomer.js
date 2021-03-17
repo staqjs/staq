@@ -63,7 +63,6 @@ export default functions.https.onCall(async (data, context) => {
   console.log("data", data);
 
   const stripeSecretKey = await getSecret("stripe-secret-key");
-  console.log(stripeSecretKey);
   const stripe = _stripe(stripeSecretKey);
 
   if (data.action === "create") {

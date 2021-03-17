@@ -32,20 +32,20 @@ function HeroOne(props) {
                 className={
                   'sjs-px-4 sjs-py-2 sjs-rounded-md sjs-shadow sjs-bg-primary sjs-text-white sjs-text-contrast'
                 }
-                to={PrimaryLink.to}
+                to={PrimaryLink.To}
               >
-                <span>{PrimaryLink.text}</span>
+                <span>{PrimaryLink.Text}</span>
               </Link>
             )}
 
             {SecondaryLink && (
               <Link
-                to={SecondaryLink.to}
+                to={SecondaryLink.To}
                 className={
                   'sjs-ml-4 sjs-px-4 sjs-py-2 sjs-rounded-md sjs-shadow sjs-ring-2 sjs-ring-black sjs-ring-inset'
                 }
               >
-                <span>{SecondaryLink.text}</span>
+                <span>{SecondaryLink.Text}</span>
               </Link>
             )}
           </div>

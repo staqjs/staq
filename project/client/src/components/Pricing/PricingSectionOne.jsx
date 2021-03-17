@@ -25,14 +25,12 @@ function PricingSectionOne(props) {
         <div className={'sjs-flex sjs-flex-col md:sjs-flex-row'}>
           {Plans.map((plan) => (
             <PlanCardOne
-              key={plan.title}
-              title={plan.title}
-              subtitle={plan.subtitle}
-              price={plan.price}
-              priceDescription={plan.priceDescription}
-              priceSubdescription={plan.priceSubdescription}
-              features={plan.features}
-              ctaLink={plan.ctaLink}
+              key={plan.Title}
+              Title={plan.Title}
+              Subtitle={plan.Subtitle}
+              Price={plan.Price}
+              Features={plan.Features}
+              CtaLink={plan.CtaLink}
             />
           ))}
         </div>
