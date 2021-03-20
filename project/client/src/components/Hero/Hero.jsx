@@ -1,9 +1,12 @@
 import React from 'react'
 import HeroOne from './HeroOne'
+import HeroTwo from './HeroTwo'
 
 const getHeroComponent = (templateName) => {
   if (templateName === 'One') {
     return HeroOne
+  } else if (templateName === 'Two') {
+    return HeroTwo
   }
 
   return HeroOne

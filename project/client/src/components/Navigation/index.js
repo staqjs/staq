@@ -1,3 +1,4 @@
 import NavbarOne from './NavbarOne'
+import NavbarTwo from './NavbarTwo'
 
-export { NavbarOne }
+export { NavbarOne, NavbarTwo }

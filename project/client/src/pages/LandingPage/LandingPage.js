@@ -9,7 +9,7 @@ import LandingPageOne from './LandingPageOne'
 import LandingPageTwo from './LandingPageTwo'
 
 const getLandingPageComponent = () => {
-  const layoutName = staqConfig.get('Template')
+  const layoutName = staqConfig.get('Template.Name')
   if (layoutName === 'One') {
     return LandingPageOne
   }
